@@ -9,3 +9,23 @@
     <p class="weather">mostly sunny</p>
   </div>
 </template>
+
+<script>
+export default {
+  name: "DayTemperature",
+  data() {
+    return {
+      nextDays: [],
+      days: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+    };
+  },
+};
+</script>
