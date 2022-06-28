@@ -42,3 +42,22 @@ export default {
   },
 };
 </script>
+
+<style>
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+
+  width: 8.4rem;
+  padding: 1rem;
+  background-color: aqua;
+  border-radius: 11px;
+}
+
+.temperature {
+  display: flex;
+  gap: 1.6rem;
+}
+</style>
