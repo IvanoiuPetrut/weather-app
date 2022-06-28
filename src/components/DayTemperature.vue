@@ -11,11 +11,13 @@
 </template>
 
 <script>
+import { onMounted } from "vue";
+
 export default {
   name: "DayTemperature",
   data() {
     return {
-      nextDays: [],
+      nextDays: this.$store.state.nextDays,
       days: [
         "Monday",
         "Tuesday",
@@ -26,6 +28,17 @@ export default {
         "Sunday",
       ],
     };
+  },
+  computed: {
+    highTemp() {
+      return this.nextDays[0].day.maxtemp_c;
+    },
+    lowTemp() {
+      return this.nextDays[0].day.mintemp_c;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchForecast");
   },
 };
 </script>
