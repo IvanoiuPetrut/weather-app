@@ -1,42 +1,46 @@
 <template>
   <div class="card">
     <h3 class="day"></h3>
-    <img src="http://placekitten.com/100/100" alt="cat" />
+    <img class="weather-image" :src="weatherImage" :alt="weatherCondition" />
     <div class="temperature">
       <p class="temperature__high">H: {{ highTemp }}</p>
-      <p class="temperature__low">L:</p>
+      <p class="temperature__low">L: {{ lowTemp }}</p>
     </div>
-    <p class="weather">mostly sunny</p>
+    <p class="weather">{{ weatherCondition }}</p>
+    <button @click="test()">test</button>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "DayTemperature",
-  data() {
-    return {
-      nextDays: this.$store.state.nextDays,
-      days: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-    };
+  methods: {
+    test() {
+      console.log(this.nextDays);
+      console.log(this.weatherImage);
+    },
   },
   computed: {
+    ...mapState({
+      nextDays: (state) => state.nextDays,
+    }),
     highTemp() {
-      // return this.nextDays[0].day.maxtemp_c;
-      // return this.$store.nextDays[0].day.maxtemp_c;
-      return "2";
+      return this.nextDays[0].day.maxtemp_c;
     },
     lowTemp() {
-      // return this.nextDays[0].day.mintemp_c;
-      return "0";
+      return this.nextDays[0].day.mintemp_c;
     },
+    weatherCondition() {
+      return this.nextDays[0].day.condition.text;
+    },
+    weatherImage() {
+      return this.nextDays[0].day.condition.icon;
+    },
+  },
+  created() {
+    this.$store.dispatch("fetchForecast");
+    console.log(this.nextDays);
   },
 };
 </script>
@@ -56,6 +60,6 @@ export default {
 
 .temperature {
   display: flex;
-  gap: 1.6rem;
+  gap: 0.4rem;
 }
 </style>

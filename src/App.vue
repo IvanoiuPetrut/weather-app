@@ -11,9 +11,6 @@ export default {
   components: {
     DayTemperature,
   },
-  mounted() {
-    this.$store.dispatch("fetchForecast");
-  },
 };
 </script>
 

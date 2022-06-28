@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import axios from "axios";
 
 export default createStore({
   state: {
@@ -16,16 +17,14 @@ export default createStore({
   },
   actions: {
     fetchForecast({ commit }) {
-      fetch(
-        "https://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=Sibiu&days=10&aqi=no&alerts=no"
+      axios(
+        "http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=sibiu&days=6&aqi=no&alerts=no"
       )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.forecast.forecastday);
-          commit("setNextDays", data.forecast.forecastday);
+        .then((response) => {
+          commit("setNextDays", response.data.forecast.forecastday);
         })
         .catch((error) => {
-          console.log(error);
+          throw new Error(`API ${error}`);
         });
     },
   },
