@@ -12,7 +12,6 @@ export default createStore({
   mutations: {
     setNextDays(state, nextDays) {
       state.nextDays = nextDays;
-      console.log("hello");
     },
   },
   actions: {

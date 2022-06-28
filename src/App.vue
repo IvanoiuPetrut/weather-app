@@ -1,6 +1,6 @@
 <template>
-  <DayTemperature></DayTemperature>
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
+  <DayTemperature></DayTemperature>
 </template>
 
 <script>
@@ -10,6 +10,9 @@ export default {
   name: "App",
   components: {
     DayTemperature,
+  },
+  mounted() {
+    this.$store.dispatch("fetchForecast");
   },
 };
 </script>

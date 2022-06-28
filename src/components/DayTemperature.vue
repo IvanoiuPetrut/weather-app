@@ -3,7 +3,7 @@
     <h3 class="day"></h3>
     <img src="http://placekitten.com/100/100" alt="cat" />
     <div class="temperature">
-      <p class="temperature__high">H:</p>
+      <p class="temperature__high">H: {{ highTemp }}</p>
       <p class="temperature__low">L:</p>
     </div>
     <p class="weather">mostly sunny</p>
@@ -29,14 +29,14 @@ export default {
   },
   computed: {
     highTemp() {
-      return this.nextDays[0].day.maxtemp_c;
+      // return this.nextDays[0].day.maxtemp_c;
+      // return this.$store.nextDays[0].day.maxtemp_c;
+      return "2";
     },
     lowTemp() {
-      return this.nextDays[0].day.mintemp_c;
+      // return this.nextDays[0].day.mintemp_c;
+      return "0";
     },
-  },
-  mounted() {
-    this.$store.dispatch("fetchForecast");
   },
 };
 </script>
