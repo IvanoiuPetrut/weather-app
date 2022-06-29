@@ -14,16 +14,13 @@
 import { mapState } from "vuex";
 export default {
   name: "DayTemperature",
-  data() {
-    return {
-      currentDayId: 0,
-    };
+  props: {
+    currentDayId: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
-    test() {
-      console.log(this.nextDays);
-      console.log(this.weatherImage);
-    },
     getDayName(dateStr, locale) {
       var date = new Date(dateStr);
       return date.toLocaleDateString(locale, { weekday: "long" });
@@ -52,7 +49,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   display: flex;
   flex-direction: column;

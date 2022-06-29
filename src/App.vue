@@ -4,6 +4,7 @@
     <DayTemperature
       v-for="(day, index) in $store.state.nextDays"
       :key="index"
+      :currentDayId="index"
     ></DayTemperature>
   </div>
 </template>
