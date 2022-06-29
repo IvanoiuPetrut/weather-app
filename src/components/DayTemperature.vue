@@ -73,9 +73,27 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+
+@mixin glass-morph {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  // shadow
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
 .card {
+  color: #f1f3f5;
   @include flex-column();
-  @include card($theme: DarkGray);
+  @include card();
+  @include glass-morph();
 }
 
 .weather-image {
