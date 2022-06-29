@@ -3,8 +3,12 @@
     <h3 class="day">{{ dayName }}</h3>
     <img class="weather-image" :src="weatherImage" :alt="weatherCondition" />
     <div class="temperature">
-      <p class="temperature__high">H: {{ highTemp }}</p>
-      <p class="temperature__low">L: {{ lowTemp }}</p>
+      <p class="temperature__high">
+        H: {{ highTemp }}°{{ this.temperatureType }}
+      </p>
+      <p class="temperature__low">
+        L: {{ lowTemp }}°{{ this.temperatureType }}
+      </p>
     </div>
     <p class="weather">{{ weatherCondition }}</p>
   </div>
@@ -35,12 +39,12 @@ export default {
       return this.getDayName(this.nextDays[this.currentDayId].date, "en-US");
     },
     highTemp() {
-      return this.temperatureType === "c"
+      return this.temperatureType === "C"
         ? this.nextDays[this.currentDayId].day.maxtemp_c
         : this.nextDays[this.currentDayId].day.maxtemp_f;
     },
     lowTemp() {
-      return this.temperatureType === "c"
+      return this.temperatureType === "C"
         ? this.nextDays[this.currentDayId].day.mintemp_c
         : this.nextDays[this.currentDayId].day.mintemp_f;
     },
@@ -57,21 +61,37 @@ export default {
 };
 </script>
 
-<style scoped>
-.card {
+<style lang="scss" scoped>
+@mixin card($theme: DarkGray) {
+  background-color: $theme;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+@mixin flex-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+}
+.card {
+  @include flex-column();
+  @include card($theme: DarkGray);
+}
 
-  width: 8.4rem;
-  padding: 1rem;
-  background-color: aqua;
-  border-radius: 11px;
+.weather-image {
+  margin-bottom: 0.6rem;
 }
 
 .temperature {
   display: flex;
-  gap: 0.4rem;
+  gap: 1.6rem;
+
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.weather {
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
 }
 </style>

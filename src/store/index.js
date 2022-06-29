@@ -7,7 +7,7 @@ export default createStore({
     weatherType: "forecast",
     city: "Sibiu",
     country: "Romania",
-    temperatureType: "c",
+    temperatureType: "C",
     windSpeedType: "km/h",
     precipitationType: "mm",
     pressureType: "mb",
