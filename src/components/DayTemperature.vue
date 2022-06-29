@@ -29,15 +29,20 @@ export default {
   computed: {
     ...mapState({
       nextDays: (state) => state.nextDays,
+      temperatureType: (state) => state.temperatureType,
     }),
     dayName() {
       return this.getDayName(this.nextDays[this.currentDayId].date, "en-US");
     },
     highTemp() {
-      return this.nextDays[this.currentDayId].day.maxtemp_c;
+      return this.temperatureType === "c"
+        ? this.nextDays[this.currentDayId].day.maxtemp_c
+        : this.nextDays[this.currentDayId].day.maxtemp_f;
     },
     lowTemp() {
-      return this.nextDays[this.currentDayId].day.mintemp_c;
+      return this.temperatureType === "c"
+        ? this.nextDays[this.currentDayId].day.mintemp_c
+        : this.nextDays[this.currentDayId].day.mintemp_f;
     },
     weatherCondition() {
       return this.nextDays[this.currentDayId].day.condition.text;
@@ -45,6 +50,9 @@ export default {
     weatherImage() {
       return this.nextDays[this.currentDayId].day.condition.icon;
     },
+  },
+  mounted() {
+    console.log(this.temperatureType);
   },
 };
 </script>
