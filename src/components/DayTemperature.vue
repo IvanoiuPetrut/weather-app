@@ -7,7 +7,6 @@
       <p class="temperature__low">L: {{ lowTemp }}</p>
     </div>
     <p class="weather">{{ weatherCondition }}</p>
-    <button @click="test()">test</button>
   </div>
 </template>
 
@@ -37,10 +36,6 @@ export default {
     weatherImage() {
       return this.nextDays[0].day.condition.icon;
     },
-  },
-  created() {
-    this.$store.dispatch("fetchForecast");
-    console.log(this.nextDays);
   },
 };
 </script>

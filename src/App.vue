@@ -1,6 +1,11 @@
 <template>
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
-  <DayTemperature></DayTemperature>
+  <div class="days-temperature">
+    <DayTemperature
+      v-for="(day, index) in $store.state.nextDays"
+      :key="index"
+    ></DayTemperature>
+  </div>
 </template>
 
 <script>
@@ -11,7 +16,16 @@ export default {
   components: {
     DayTemperature,
   },
+  created() {
+    this.$store.dispatch("fetchForecast");
+    console.log(this.nextDays);
+  },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.days-temperature {
+  display: flex;
+  gap: 0.4rem;
+}
+</style>
