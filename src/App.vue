@@ -18,7 +18,6 @@ export default {
   },
   created() {
     this.$store.dispatch("fetchForecast");
-    console.log(this.nextDays);
   },
 };
 </script>

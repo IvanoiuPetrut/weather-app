@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h3 class="day"></h3>
+    <h3 class="day">{{ dayName }}</h3>
     <img class="weather-image" :src="weatherImage" :alt="weatherCondition" />
     <div class="temperature">
       <p class="temperature__high">H: {{ highTemp }}</p>
@@ -14,27 +14,39 @@
 import { mapState } from "vuex";
 export default {
   name: "DayTemperature",
+  data() {
+    return {
+      currentDayId: 0,
+    };
+  },
   methods: {
     test() {
       console.log(this.nextDays);
       console.log(this.weatherImage);
+    },
+    getDayName(dateStr, locale) {
+      var date = new Date(dateStr);
+      return date.toLocaleDateString(locale, { weekday: "long" });
     },
   },
   computed: {
     ...mapState({
       nextDays: (state) => state.nextDays,
     }),
+    dayName() {
+      return this.getDayName(this.nextDays[this.currentDayId].date, "en-US");
+    },
     highTemp() {
-      return this.nextDays[0].day.maxtemp_c;
+      return this.nextDays[this.currentDayId].day.maxtemp_c;
     },
     lowTemp() {
-      return this.nextDays[0].day.mintemp_c;
+      return this.nextDays[this.currentDayId].day.mintemp_c;
     },
     weatherCondition() {
-      return this.nextDays[0].day.condition.text;
+      return this.nextDays[this.currentDayId].day.condition.text;
     },
     weatherImage() {
-      return this.nextDays[0].day.condition.icon;
+      return this.nextDays[this.currentDayId].day.condition.icon;
     },
   },
 };

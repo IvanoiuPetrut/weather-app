@@ -21,6 +21,7 @@ export default createStore({
         "http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=sibiu&days=6&aqi=no&alerts=no"
       )
         .then((response) => {
+          console.log(response.data);
           commit("setNextDays", response.data.forecast.forecastday);
         })
         .catch((error) => {
