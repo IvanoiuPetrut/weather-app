@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h3 class="day">{{ dayName }}</h3>
+    <h3 class="day heading-tertiary">{{ dayName }}</h3>
     <img class="weather-image" :src="weatherImage" :alt="weatherCondition" />
     <div class="temperature">
       <p class="temperature__high">
@@ -83,12 +83,6 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-h3 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  // shadow
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
 .card {
   color: #f1f3f5;
   @include flex-column();
@@ -109,7 +103,8 @@ h3 {
 }
 
 .weather {
-  font-size: 1.2rem;
+  color: #e9ecef;
+  font-size: 1rem;
   letter-spacing: 0.5px;
 }
 </style>
