@@ -3,12 +3,8 @@
     <h3 class="day heading-tertiary">{{ dayName }}</h3>
     <img class="margin-btm--sm" :src="weatherImage" :alt="weatherCondition" />
     <div class="temperature margin-btm--md">
-      <p class="temperature__high">
-        H: {{ highTemp }}°{{ this.temperatureType }}
-      </p>
-      <p class="temperature__low">
-        L: {{ lowTemp }}°{{ this.temperatureType }}
-      </p>
+      <p class="temperature__high">H: {{ highTemp }}</p>
+      <p class="temperature__low">L: {{ lowTemp }}</p>
     </div>
     <p class="weather">{{ weatherCondition }}</p>
   </div>
@@ -40,13 +36,21 @@ export default {
     },
     highTemp() {
       return this.temperatureType === "C"
-        ? this.nextDays[this.currentDayId].day.maxtemp_c
-        : this.nextDays[this.currentDayId].day.maxtemp_f;
+        ? `${this.nextDays[this.currentDayId].day.maxtemp_c}°${
+            this.temperatureType
+          }`
+        : `${this.nextDays[this.currentDayId].day.maxtemp_f}°${
+            this.temperatureType
+          }`;
     },
     lowTemp() {
       return this.temperatureType === "C"
-        ? this.nextDays[this.currentDayId].day.mintemp_c
-        : this.nextDays[this.currentDayId].day.mintemp_f;
+        ? `${this.nextDays[this.currentDayId].day.mintemp_c}°${
+            this.temperatureType
+          }`
+        : `${this.nextDays[this.currentDayId].day.mintemp_f}°${
+            this.temperatureType
+          }`;
     },
     weatherCondition() {
       return this.nextDays[this.currentDayId].day.condition.text;
