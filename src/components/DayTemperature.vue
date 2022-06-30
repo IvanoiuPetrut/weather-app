@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <h3 class="day heading-tertiary">{{ dayName }}</h3>
-    <img class="weather-image" :src="weatherImage" :alt="weatherCondition" />
-    <div class="temperature">
+    <img class="margin-btm--sm" :src="weatherImage" :alt="weatherCondition" />
+    <div class="temperature margin-btm--md">
       <p class="temperature__high">
         H: {{ highTemp }}°{{ this.temperatureType }}
       </p>
@@ -90,15 +90,10 @@ export default {
   @include glass-morph();
 }
 
-.weather-image {
-  margin-bottom: 0.6rem;
-}
-
 .temperature {
   display: flex;
   gap: 1.6rem;
 
-  margin-bottom: 1rem;
   letter-spacing: 0.5px;
 }
 
