@@ -1,5 +1,9 @@
 <template>
-  <Button :onClick="toggleTemperatureType"></Button>
+  <ToggleButton
+    :onClick="toggleTemperatureType"
+    firstOption="C°"
+    secondOption="F°"
+  ></ToggleButton>
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
   <div class="days-temperature container">
     <DayTemperature
@@ -12,13 +16,13 @@
 
 <script>
 import DayTemperature from "./components/DayTemperature.vue";
-import Button from "./components/Button.vue";
+import ToggleButton from "./components/ToggleButton.vue";
 
 export default {
   name: "App",
   components: {
     DayTemperature,
-    Button,
+    ToggleButton,
   },
   methods: {
     toggleTemperatureType() {
