@@ -1,4 +1,5 @@
 <template>
+  <Button></Button>
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
   <div class="days-temperature container">
     <DayTemperature
@@ -11,11 +12,13 @@
 
 <script>
 import DayTemperature from "./components/DayTemperature.vue";
+import Button from "./components/Button.vue";
 
 export default {
   name: "App",
   components: {
     DayTemperature,
+    Button,
   },
   created() {
     this.$store.dispatch("fetchForecast");
