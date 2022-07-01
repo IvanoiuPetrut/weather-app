@@ -12,12 +12,12 @@ export default createStore({
     precipitationType: "mm",
     pressureType: "mb",
     visibilityType: "km",
-    nextDays: [],
+    forecast: [],
   },
   getters: {},
   mutations: {
-    setNextDays(state, nextDays) {
-      state.nextDays = nextDays;
+    setForecast(state, forecast) {
+      state.forecast = forecast;
     },
   },
   actions: {
@@ -27,7 +27,7 @@ export default createStore({
       )
         .then((response) => {
           console.log(response.data);
-          commit("setNextDays", response.data.forecast.forecastday);
+          commit("setForecast", response.data.forecast.forecastday);
         })
         .catch((error) => {
           throw new Error(`API ${error}`);

@@ -2,7 +2,7 @@
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
   <div class="days-temperature container">
     <DayTemperature
-      v-for="(day, index) in $store.state.nextDays"
+      v-for="(day, index) in $store.state.forecast"
       :key="index"
       :currentDayId="index"
     ></DayTemperature>
