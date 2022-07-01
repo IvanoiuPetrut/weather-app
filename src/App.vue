@@ -1,5 +1,5 @@
 <template>
-  <Button></Button>
+  <Button :onClick="toggleTemperatureType"></Button>
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
   <div class="days-temperature container">
     <DayTemperature
@@ -19,6 +19,11 @@ export default {
   components: {
     DayTemperature,
     Button,
+  },
+  methods: {
+    toggleTemperatureType() {
+      this.$store.commit("toggleTemperatureType");
+    },
   },
   created() {
     this.$store.dispatch("fetchForecast");

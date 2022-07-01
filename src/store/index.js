@@ -19,6 +19,9 @@ export default createStore({
     setForecast(state, forecast) {
       state.forecast = forecast;
     },
+    toggleTemperatureType(state) {
+      state.temperatureType = state.temperatureType === "C" ? "F" : "C";
+    },
   },
   actions: {
     fetchForecast({ commit }) {
