@@ -1,7 +1,11 @@
 <template>
   <div class="card">
-    <h3 class="day">{{ dayName }}</h3>
-    <img class="weather-image" :src="weatherImage" :alt="weatherCondition" />
+    <h3 class="day heading--tertiary margin-bottom--sm">{{ dayName }}</h3>
+    <img
+      class="weather-image margin-bottom--md"
+      :src="weatherImage"
+      :alt="weatherCondition"
+    />
     <div class="temperature">
       <p class="temperature__high">H: {{ highTemp }}</p>
       <p class="temperature__low">L: {{ lowTemp }}</p>
@@ -87,12 +91,6 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-h3 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  // shadow
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
 .card {
   color: #f1f3f5;
   @include flex-column();
@@ -100,8 +98,8 @@ h3 {
   @include glass-morph();
 }
 
-.weather-image {
-  margin-bottom: 0.6rem;
+.heading--tertiary {
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .temperature {

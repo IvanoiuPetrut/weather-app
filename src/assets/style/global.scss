@@ -10,7 +10,7 @@ $font-stack: "Open Sans", sans-serif;
 
 html {
   font-size: 62.5%;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-family: $font-stack;
   color: #333;
   line-height: 1.5;
@@ -19,6 +19,27 @@ html {
 // HELPER CLASSES
 
 .container {
-  max-width: 1200px;
+  max-width: 120rem;
   margin: 0 auto;
+}
+
+.margin-bottom--sm {
+  margin-bottom: 0.6rem;
+}
+
+.margin-bottom--md {
+  margin-bottom: 1.6rem;
+}
+
+.margin-bottom--bg {
+  margin-bottom: 3.2rem;
+}
+
+// HEADINGS
+
+.heading--tertiary {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
 }
