@@ -5,18 +5,22 @@
     firstOption="C°"
     secondOption="F°"
   ></ToggleButton>
-  <button @click="$store.commit('setCurrentDate')">Refresh</button>
-  <div class="days-temperature container">
-    <DayTemperature
-      v-for="(day, index) in $store.state.forecast"
-      :key="index"
-      :currentDayId="index"
-    ></DayTemperature>
+  <div class="current-weather">
+    <CurrentTemperature
+      v-if="this.$store.state.currentWeather"
+    ></CurrentTemperature>
+    <MoonPhase></MoonPhase>
   </div>
-  <MoonPhase></MoonPhase>
-  <CurrentTemperature
-    v-if="this.$store.state.currentWeather"
-  ></CurrentTemperature>
+  <div class="forecast container">
+    <h2 class="heading--tertiary">3-day forecast</h2>
+    <div class="days-temperature">
+      <DayTemperature
+        v-for="(day, index) in $store.state.forecast"
+        :key="index"
+        :currentDayId="index"
+      ></DayTemperature>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -71,9 +75,23 @@ body {
   background-attachment: fixed;
 }
 
+.forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
 .days-temperature {
   display: flex;
   justify-content: center;
   gap: 0.8rem;
+}
+
+.current-weather {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4.8rem;
 }
 </style>
