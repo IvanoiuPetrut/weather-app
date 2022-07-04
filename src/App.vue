@@ -14,12 +14,14 @@
     ></DayTemperature>
   </div>
   <MoonPhase></MoonPhase>
+  <CurrentTemperature></CurrentTemperature>
 </template>
 
 <script>
 import DayTemperature from "./components/DayTemperature.vue";
 import MoonPhase from "./components/MoonPhase.vue";
 import ToggleButton from "./components/ToggleButton.vue";
+import CurrentTemperature from "./components/CurrentTemperature.vue";
 
 export default {
   name: "App",
@@ -27,6 +29,7 @@ export default {
     DayTemperature,
     ToggleButton,
     MoonPhase,
+    CurrentTemperature,
   },
   methods: {
     toggleTemperatureType() {
