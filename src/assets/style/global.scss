@@ -1,8 +1,8 @@
 $font-stack: "Open Sans", sans-serif;
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,56 +10,43 @@ $font-stack: "Open Sans", sans-serif;
 
 html {
   font-size: 62.5%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: $font-stack;
   color: #333;
   line-height: 1.5;
 }
 
-@mixin flex-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-@mixin card($theme: DarkGray) {
-  background-color: $theme;
-  padding: 1rem;
-  border-radius: 0.5rem;
+// HELPER CLASSES
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
 }
 
-@mixin glass-morph {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+.margin-bottom--sm {
+  margin-bottom: 0.6rem;
+}
+
+.margin-bottom--md {
+  margin-bottom: 1.6rem;
+}
+
+.margin-bottom--bg {
+  margin-bottom: 3.2rem;
 }
 
 // HEADINGS
 
-.heading-tertiary {
+.heading--tertiary {
   font-size: 1.4rem;
-  font-weight: bold;
+  font-weight: 700;
+  line-height: 1.5;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-// HELPER CLASSES
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.margin-btm--sm {
-  margin-bottom: 0.6rem;
-}
-
-.margin-btm--md {
-  margin-bottom: 1.2rem;
-}
-
-.margin-btm--bg {
-  margin-bottom: 2rem;
 }

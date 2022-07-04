@@ -1,8 +1,14 @@
 <template>
+  <ToggleButton
+    :onClick="toggleTemperatureType"
+    :isOptionActive="this.$store.state.isCelsius"
+    firstOption="C°"
+    secondOption="F°"
+  ></ToggleButton>
   <button @click="$store.dispatch('fetchForecast')">Refresh</button>
   <div class="days-temperature container">
     <DayTemperature
-      v-for="(day, index) in $store.state.nextDays"
+      v-for="(day, index) in $store.state.forecast"
       :key="index"
       :currentDayId="index"
     ></DayTemperature>
@@ -11,11 +17,21 @@
 
 <script>
 import DayTemperature from "./components/DayTemperature.vue";
+import ToggleButton from "./components/ToggleButton.vue";
 
 export default {
   name: "App",
   components: {
     DayTemperature,
+    ToggleButton,
+  },
+  methods: {
+    toggleTemperatureType() {
+      this.$store.commit("toggleTemperatureType");
+    },
+  },
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
   },
   created() {
     this.$store.dispatch("fetchForecast");

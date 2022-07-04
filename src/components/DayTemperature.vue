@@ -1,8 +1,12 @@
 <template>
   <div class="card">
-    <h3 class="day heading-tertiary">{{ dayName }}</h3>
-    <img class="margin-btm--sm" :src="weatherImage" :alt="weatherCondition" />
-    <div class="temperature margin-btm--md">
+    <h3 class="day heading--tertiary margin-bottom--sm">{{ dayName }}</h3>
+    <img
+      class="weather-image margin-bottom--md"
+      :src="weatherImage"
+      :alt="weatherCondition"
+    />
+    <div class="temperature">
       <p class="temperature__high">H: {{ highTemp }}</p>
       <p class="temperature__low">L: {{ lowTemp }}</p>
     </div>
@@ -28,35 +32,35 @@ export default {
   },
   computed: {
     ...mapState({
-      nextDays: (state) => state.nextDays,
+      forecast: (state) => state.forecast,
       temperatureType: (state) => state.temperatureType,
     }),
     dayName() {
-      return this.getDayName(this.nextDays[this.currentDayId].date, "en-US");
+      return this.getDayName(this.forecast[this.currentDayId].date, "en-US");
     },
     highTemp() {
       return this.temperatureType === "C"
-        ? `${this.nextDays[this.currentDayId].day.maxtemp_c}°${
+        ? `${this.forecast[this.currentDayId].day.maxtemp_c}°${
             this.temperatureType
           }`
-        : `${this.nextDays[this.currentDayId].day.maxtemp_f}°${
+        : `${this.forecast[this.currentDayId].day.maxtemp_f}°${
             this.temperatureType
           }`;
     },
     lowTemp() {
       return this.temperatureType === "C"
-        ? `${this.nextDays[this.currentDayId].day.mintemp_c}°${
+        ? `${this.forecast[this.currentDayId].day.mintemp_c}°${
             this.temperatureType
           }`
-        : `${this.nextDays[this.currentDayId].day.mintemp_f}°${
+        : `${this.forecast[this.currentDayId].day.mintemp_f}°${
             this.temperatureType
           }`;
     },
     weatherCondition() {
-      return this.nextDays[this.currentDayId].day.condition.text;
+      return this.forecast[this.currentDayId].day.condition.text;
     },
     weatherImage() {
-      return this.nextDays[this.currentDayId].day.condition.icon;
+      return this.forecast[this.currentDayId].day.condition.icon;
     },
   },
   mounted() {
@@ -94,7 +98,11 @@ export default {
   @include glass-morph();
 }
 
-.temperature {
+.heading--tertiary {
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+> .temperature {
   display: flex;
   gap: 1.6rem;
 

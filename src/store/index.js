@@ -8,16 +8,32 @@ export default createStore({
     city: "Sibiu",
     country: "Romania",
     temperatureType: "C",
+    isCelsius: true,
     windSpeedType: "km/h",
     precipitationType: "mm",
     pressureType: "mb",
     visibilityType: "km",
-    nextDays: [],
+    forecast: [],
   },
   getters: {},
   mutations: {
-    setNextDays(state, nextDays) {
-      state.nextDays = nextDays;
+    setForecast(state, forecast) {
+      state.forecast = forecast;
+    },
+    toggleTemperatureType(state) {
+      state.temperatureType = state.temperatureType === "C" ? "F" : "C";
+      state.isCelsius = !state.isCelsius;
+      localStorage.setItem("temperatureType", state.temperatureType);
+      localStorage.setItem("isCelsius", state.isCelsius);
+      console.log(state.isCelsius);
+    },
+    initialiseStore(state) {
+      if (localStorage.getItem("temperatureType")) {
+        state.temperatureType = localStorage.getItem("temperatureType");
+      }
+      if (localStorage.getItem("isCelsius")) {
+        state.isCelsius = JSON.parse(localStorage.getItem("isCelsius"));
+      }
     },
   },
   actions: {
@@ -27,7 +43,7 @@ export default createStore({
       )
         .then((response) => {
           console.log(response.data);
-          commit("setNextDays", response.data.forecast.forecastday);
+          commit("setForecast", response.data.forecast.forecastday);
         })
         .catch((error) => {
           throw new Error(`API ${error}`);
