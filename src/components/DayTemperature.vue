@@ -6,7 +6,7 @@
       :src="weatherImage"
       :alt="weatherCondition"
     />
-    <div class="temperature">
+    <div class="temperature margin-bottom--sm">
       <p class="temperature__high">H: {{ highTemp }}</p>
       <p class="temperature__low">L: {{ lowTemp }}</p>
     </div>
@@ -82,6 +82,7 @@ export default {
 
 .card {
   color: #f1f3f5;
+  width: 12rem;
   @include flex-column();
   @include card();
   @include glass-morph();
