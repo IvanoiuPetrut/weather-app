@@ -13,19 +13,21 @@ export default createStore({
     isMm: true,
     isMb: true,
     forecast: [],
+    astronomy: [],
   },
   getters: {},
   mutations: {
+    setCurrentDate(state) {
+      state.date = new Date().toISOString().slice(0, 10);
+    },
     setForecast(state, forecast) {
       state.forecast = forecast;
     },
-    setCurrentDate(state) {
-      state.date = new Date().toISOString().slice(0, 10);
-      console.log(state.date);
+    setAstronomy(state, astronomy) {
+      state.astronomy = astronomy;
     },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
-      console.log(state.isCelsius);
     },
     initialiseStore(state) {
       if (localStorage.getItem("store")) {
@@ -37,16 +39,21 @@ export default createStore({
   },
   actions: {
     fetchForecast({ commit }) {
-      axios(
-        "http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=sibiu&days=6&aqi=no&alerts=no"
-      )
-        .then((response) => {
-          console.log(response.data);
-          commit("setForecast", response.data.forecast.forecastday);
-        })
-        .catch((error) => {
-          throw new Error(`API ${error}`);
-        });
+      axios
+        .all([
+          axios.get(
+            `http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=no&alerts=no`
+          ),
+          axios.get(
+            `https://api.weatherapi.com/v1/astronomy.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&dt=${this.state.date}`
+          ),
+        ])
+        .then(
+          axios.spread((forecast, astronomy) => {
+            commit("setForecast", forecast.data.forecast.forecastday);
+            commit("setAstronomy", astronomy.data.astronomy.astro);
+          })
+        );
     },
   },
   modules: {},
