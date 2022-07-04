@@ -14,6 +14,7 @@ export default createStore({
     isMb: true,
     forecast: [],
     astronomy: [],
+    currentWeather: [],
   },
   getters: {},
   mutations: {
@@ -25,6 +26,9 @@ export default createStore({
     },
     setAstronomy(state, astronomy) {
       state.astronomy = astronomy;
+    },
+    setCurrentWeather(state, currentWeather) {
+      state.currentWeather = currentWeather;
     },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
@@ -47,13 +51,21 @@ export default createStore({
           axios.get(
             `https://api.weatherapi.com/v1/astronomy.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&dt=${this.state.date}`
           ),
+          axios.get(
+            `https://api.weatherapi.com/v1/current.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&aqi=yes`
+          ),
         ])
         .then(
-          axios.spread((forecast, astronomy) => {
+          axios.spread((forecast, astronomy, currentWeather) => {
             commit("setForecast", forecast.data.forecast.forecastday);
             commit("setAstronomy", astronomy.data.astronomy.astro);
+            commit("setCurrentWeather", currentWeather.data);
+            console.log(currentWeather.data);
           })
-        );
+        )
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   modules: {},
