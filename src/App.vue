@@ -13,10 +13,12 @@
       :currentDayId="index"
     ></DayTemperature>
   </div>
+  <MoonPhase></MoonPhase>
 </template>
 
 <script>
 import DayTemperature from "./components/DayTemperature.vue";
+import MoonPhase from "./components/MoonPhase.vue";
 import ToggleButton from "./components/ToggleButton.vue";
 
 export default {
@@ -24,6 +26,7 @@ export default {
   components: {
     DayTemperature,
     ToggleButton,
+    MoonPhase,
   },
   methods: {
     toggleTemperatureType() {

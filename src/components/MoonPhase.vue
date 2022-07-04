@@ -12,3 +12,9 @@
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+* {
+  color: #fff;
+}
+</style>
