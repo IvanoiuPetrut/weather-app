@@ -7,6 +7,7 @@ export default createStore({
     weatherType: "forecast",
     city: "Sibiu",
     country: "Romania",
+    date: "2020-01-01",
     isCelsius: true,
     isKmH: true,
     isMm: true,
@@ -17,6 +18,10 @@ export default createStore({
   mutations: {
     setForecast(state, forecast) {
       state.forecast = forecast;
+    },
+    setCurrentDate(state) {
+      state.date = new Date().toISOString().slice(0, 10);
+      console.log(state.date);
     },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;

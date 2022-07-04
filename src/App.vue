@@ -5,7 +5,7 @@
     firstOption="C°"
     secondOption="F°"
   ></ToggleButton>
-  <button @click="$store.dispatch('fetchForecast')">Refresh</button>
+  <button @click="$store.commit('setCurrentDate')">Refresh</button>
   <div class="days-temperature container">
     <DayTemperature
       v-for="(day, index) in $store.state.forecast"
@@ -32,11 +32,15 @@ export default {
     toggleTemperatureType() {
       this.$store.commit("toggleTemperatureType");
     },
+    getCurrentDate() {
+      return new Date().toISOString().slice(0, 10);
+    },
   },
   beforeCreate() {
     this.$store.commit("initialiseStore");
   },
   created() {
+    this.$store.commit("setCurrentDate");
     this.$store.dispatch("fetchForecast");
     this.$store.subscribe((mutation, state) => {
       let store = {
