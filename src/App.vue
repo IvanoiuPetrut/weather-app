@@ -1,6 +1,7 @@
 <template>
   <ToggleButton
     :onClick="toggleTemperatureType"
+    :isOptionActive="this.$store.state.isCelsius"
     firstOption="C°"
     secondOption="F°"
   ></ToggleButton>
@@ -28,6 +29,9 @@ export default {
     toggleTemperatureType() {
       this.$store.commit("toggleTemperatureType");
     },
+  },
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
   },
   created() {
     this.$store.dispatch("fetchForecast");

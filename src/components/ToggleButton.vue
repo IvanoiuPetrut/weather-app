@@ -2,14 +2,14 @@
   <div class="btn-group">
     <button
       class="btn btn--toggle btn--left"
-      :class="{ active: optionOneIsActive }"
+      :class="{ active: isOptionActive }"
       @click="toggle"
     >
       {{ firstOption }}
     </button>
     <button
       class="btn btn--toggle btn--right"
-      :class="{ active: optionTwoIsActive }"
+      :class="{ active: !isOptionActive }"
       @click="toggle"
     >
       {{ secondOption }}
@@ -23,6 +23,10 @@ export default {
   props: {
     onClick: {
       type: Function,
+      required: true,
+    },
+    isOptionActive: {
+      type: Boolean,
       required: true,
     },
     firstOption: {
