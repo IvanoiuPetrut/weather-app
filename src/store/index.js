@@ -7,12 +7,10 @@ export default createStore({
     weatherType: "forecast",
     city: "Sibiu",
     country: "Romania",
-    temperatureType: "C",
     isCelsius: true,
-    windSpeedType: "km/h",
-    precipitationType: "mm",
-    pressureType: "mb",
-    visibilityType: "km",
+    isKmH: true,
+    isMm: true,
+    isMb: true,
     forecast: [],
   },
   getters: {},
@@ -21,18 +19,14 @@ export default createStore({
       state.forecast = forecast;
     },
     toggleTemperatureType(state) {
-      state.temperatureType = state.temperatureType === "C" ? "F" : "C";
       state.isCelsius = !state.isCelsius;
-      localStorage.setItem("temperatureType", state.temperatureType);
-      localStorage.setItem("isCelsius", state.isCelsius);
       console.log(state.isCelsius);
     },
     initialiseStore(state) {
-      if (localStorage.getItem("temperatureType")) {
-        state.temperatureType = localStorage.getItem("temperatureType");
-      }
-      if (localStorage.getItem("isCelsius")) {
-        state.isCelsius = JSON.parse(localStorage.getItem("isCelsius"));
+      if (localStorage.getItem("store")) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+        );
       }
     },
   },

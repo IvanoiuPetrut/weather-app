@@ -33,28 +33,20 @@ export default {
   computed: {
     ...mapState({
       forecast: (state) => state.forecast,
-      temperatureType: (state) => state.temperatureType,
+      isCelsius: (state) => state.isCelsius,
     }),
     dayName() {
       return this.getDayName(this.forecast[this.currentDayId].date, "en-US");
     },
     highTemp() {
-      return this.temperatureType === "C"
-        ? `${this.forecast[this.currentDayId].day.maxtemp_c}°${
-            this.temperatureType
-          }`
-        : `${this.forecast[this.currentDayId].day.maxtemp_f}°${
-            this.temperatureType
-          }`;
+      return this.isCelsius
+        ? `${this.forecast[this.currentDayId].day.maxtemp_c}°C`
+        : `${this.forecast[this.currentDayId].day.maxtemp_f}°F`;
     },
     lowTemp() {
-      return this.temperatureType === "C"
-        ? `${this.forecast[this.currentDayId].day.mintemp_c}°${
-            this.temperatureType
-          }`
-        : `${this.forecast[this.currentDayId].day.mintemp_f}°${
-            this.temperatureType
-          }`;
+      return this.isCelsius
+        ? `${this.forecast[this.currentDayId].day.mintemp_c}°C`
+        : `${this.forecast[this.currentDayId].day.mintemp_f}°F`;
     },
     weatherCondition() {
       return this.forecast[this.currentDayId].day.condition.text;
@@ -62,9 +54,6 @@ export default {
     weatherImage() {
       return this.forecast[this.currentDayId].day.condition.icon;
     },
-  },
-  mounted() {
-    console.log(this.temperatureType);
   },
 };
 </script>
