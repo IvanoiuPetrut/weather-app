@@ -14,7 +14,7 @@ export default createStore({
     isMb: true,
     forecast: [],
     astronomy: [],
-    currentWeather: [],
+    currentWeather: null,
   },
   getters: {},
   mutations: {

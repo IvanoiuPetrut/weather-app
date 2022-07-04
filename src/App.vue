@@ -14,7 +14,9 @@
     ></DayTemperature>
   </div>
   <MoonPhase></MoonPhase>
-  <CurrentTemperature></CurrentTemperature>
+  <CurrentTemperature
+    v-if="this.$store.state.currentWeather"
+  ></CurrentTemperature>
 </template>
 
 <script>
@@ -45,6 +47,7 @@ export default {
   created() {
     this.$store.commit("setCurrentDate");
     this.$store.dispatch("fetchForecast");
+    console.log(this.$store.state.currentWeather);
     this.$store.subscribe((mutation, state) => {
       let store = {
         isCelsius: state.isCelsius,
