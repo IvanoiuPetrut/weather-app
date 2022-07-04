@@ -44,9 +44,19 @@ html {
 
 // HEADINGS
 
-.heading--tertiary {
-  font-size: 1.4rem;
+%headings {
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.5px;
+}
+
+.heading--tertiary {
+  @extend %headings;
+  font-size: 1.4rem;
+}
+
+.heading--secondary {
+  @extend %headings;
+  font-size: 3rem;
 }

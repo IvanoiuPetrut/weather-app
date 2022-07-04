@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h2 class="location">{{ city }}, {{ country }}</h2>
+    <h2 class="heading--secondary">{{ city }}, {{ country }}</h2>
     <div class="temperature__wrapper">
       <img
         class="temperature__image"
@@ -10,10 +10,13 @@
       <div class="temperature">
         <div>
           <p class="temperature__now">{{ temperature }}</p>
-          <p class="temperature_feels-like">{{ feelsLikeTemp }}</p>
+          <span class="temperature_feels-like"
+            >Feels like:
+            <p>{{ feelsLikeTemp }}</p></span
+          >
         </div>
         <div>
-          <p class="temperature__high">H: {{ highTemp }}</p>
+          <p class="temperature__high margin-bottom--sm">H: {{ highTemp }}</p>
           <p class="temperature__low">L: {{ lowTemp }}</p>
         </div>
       </div>
@@ -68,7 +71,61 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  color: #fff;
+@mixin card($theme: DarkGray) {
+  background-color: $theme;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@mixin glass-morph {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.card {
+  color: #f1f3f5;
+  // width: 12rem;
+  @include flex-column();
+  @include card(none);
+}
+.temperature__wrapper {
+  @include flex-row();
+}
+.temperature__image {
+  width: 10rem;
+  height: auto;
+}
+
+.temperature {
+  @include flex-row();
+  gap: 2.8rem;
+}
+
+.temperature__now {
+  display: block;
+  font-size: 3.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.temperature_feels-like {
+  display: block;
+  font-size: 1.2rem;
+  text-align: center;
 }
 </style>
