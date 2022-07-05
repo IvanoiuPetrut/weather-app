@@ -35,9 +35,9 @@ export default createStore({
       state.isCelsius = !state.isCelsius;
     },
     initialiseStore(state) {
-      if (localStorage.getItem("store")) {
+      if (localStorage.getItem("settings")) {
         this.replaceState(
-          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+          Object.assign(state, JSON.parse(localStorage.getItem("settings")))
         );
       }
     },

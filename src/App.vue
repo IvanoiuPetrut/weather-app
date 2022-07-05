@@ -1,7 +1,11 @@
 <template>
+  <nav>
+    <Meniu></Meniu>
+    <Settings></Settings>
+  </nav>
   <ToggleButton
     :onClick="toggleTemperatureType"
-    :isOptionActive="this.$store.state.isCelsius"
+    :isOptionOneActive="this.$store.state.isCelsius"
     firstOption="C°"
     secondOption="F°"
   ></ToggleButton>
@@ -22,6 +26,8 @@
 import DayTemperature from "./components/DayTemperature.vue";
 import ToggleButton from "./components/ToggleButton.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
+import Meniu from "./components/Meniu.vue";
+import Settings from "./components/Settings.vue";
 
 export default {
   name: "App",
@@ -29,6 +35,8 @@ export default {
     DayTemperature,
     ToggleButton,
     CurrentWeather,
+    Meniu,
+    Settings,
   },
   methods: {
     toggleTemperatureType() {
@@ -46,14 +54,14 @@ export default {
     this.$store.dispatch("fetchForecast");
     console.log(this.$store.state.currentWeather);
     this.$store.subscribe((mutation, state) => {
-      let store = {
+      let settings = {
         isCelsius: state.isCelsius,
         isKmH: state.isKmH,
         isMm: state.isMmm,
         isMb: state.isMb,
       };
 
-      localStorage.setItem("store", JSON.stringify(store));
+      localStorage.setItem("settings", JSON.stringify(settings));
     });
   },
 };

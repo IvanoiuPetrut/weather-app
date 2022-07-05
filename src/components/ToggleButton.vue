@@ -2,14 +2,14 @@
   <div class="btn-group">
     <button
       class="btn btn--toggle btn--left"
-      :class="{ active: isOptionActive }"
+      :class="{ active: isOptionOneActive }"
       @click="toggle"
     >
       {{ firstOption }}
     </button>
     <button
       class="btn btn--toggle btn--right"
-      :class="{ active: !isOptionActive }"
+      :class="{ active: !isOptionOneActive }"
       @click="toggle"
     >
       {{ secondOption }}
@@ -25,7 +25,7 @@ export default {
       type: Function,
       required: true,
     },
-    isOptionActive: {
+    isOptionOneActive: {
       type: Boolean,
       required: true,
     },
@@ -38,16 +38,8 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      optionOneIsActive: true,
-      optionTwoIsActive: false,
-    };
-  },
   methods: {
     toggle() {
-      this.optionOneIsActive = !this.optionOneIsActive;
-      this.optionTwoIsActive = !this.optionTwoIsActive;
       this.onClick();
     },
   },
