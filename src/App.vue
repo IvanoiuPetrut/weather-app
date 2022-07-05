@@ -1,7 +1,6 @@
 <template>
   <nav>
     <Meniu></Meniu>
-    <Settings></Settings>
   </nav>
   <CurrentWeather></CurrentWeather>
   <div class="forecast container">
@@ -20,7 +19,6 @@
 import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
-import Settings from "./components/Settings.vue";
 
 export default {
   name: "App",
@@ -28,7 +26,6 @@ export default {
     DayTemperature,
     CurrentWeather,
     Meniu,
-    Settings,
   },
   methods: {
     toggleTemperatureType() {
