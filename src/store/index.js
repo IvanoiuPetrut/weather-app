@@ -12,6 +12,7 @@ export default createStore({
     isKmH: true,
     isMm: true,
     isMb: true,
+    isKm: true,
     forecast: [],
     astronomy: [],
     currentWeather: null,

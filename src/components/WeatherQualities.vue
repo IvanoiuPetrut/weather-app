@@ -2,30 +2,100 @@
   <div class="card">
     <div>
       <p class="margin-bottom--sm">Air Quality</p>
-      <p>22</p>
+      <p>{{ airQuality }}</p>
     </div>
     <div>
       <p class="margin-bottom--sm">Precipitation</p>
-      <p>22</p>
+      <p>{{ precipitation }}</p>
     </div>
     <div>
       <p class="margin-bottom--sm">Wind</p>
-      <p>22</p>
+      <p>{{ wind }}</p>
     </div>
     <div>
       <p class="margin-bottom--sm">Pressure</p>
-      <p>22</p>
+      <p>{{ pressure }}</p>
     </div>
     <div>
       <p class="margin-bottom--sm">Visibility</p>
-      <p>22</p>
+      <p>{{ visibility }}</p>
     </div>
     <div>
       <p class="margin-bottom--sm">UV Index</p>
-      <p>2</p>
+      <p>{{ uvIndex }}</p>
+      <p>{{ howGoodIsUvIndex }}</p>
     </div>
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex";
+export default {
+  name: "WeatherQualities",
+  data() {
+    return {
+      uvIndexTable: [
+        {
+          index: 2,
+          description: "Low",
+        },
+        {
+          index: 5,
+          description: "Moderate",
+        },
+        {
+          index: 7,
+          description: "High",
+        },
+        {
+          index: 10,
+          description: "Very High",
+        },
+      ],
+    };
+  },
+  computed: {
+    ...mapState({
+      currentWeather: (state) => state.currentWeather,
+      isKmH: (state) => state.isKmH,
+      isMm: (state) => state.isMm,
+      isMb: (state) => state.isMb,
+      isKm: (state) => state.isKm,
+    }),
+    airQuality() {
+      return `${Math.trunc(this.currentWeather.current.air_quality.co)} co`;
+    },
+    precipitation() {
+      return this.isMm
+        ? `${this.currentWeather.current.precip_mm} mm`
+        : `${this.currentWeather.current.precip_in} in`;
+    },
+    wind() {
+      return this.isKmH
+        ? `${this.currentWeather.current.wind_kph} km/h`
+        : `${this.currentWeather.current.wind_mph} mph`;
+    },
+    pressure() {
+      return this.isMb
+        ? `${this.currentWeather.current.pressure_mb} mb`
+        : `${this.currentWeather.current.pressure_in} in`;
+    },
+    visibility() {
+      return this.isKm
+        ? `${this.currentWeather.current.vis_km} km`
+        : `${this.currentWeather.current.vis_mi} mi`;
+    },
+    uvIndex() {
+      return this.currentWeather.current.uv;
+    },
+    howGoodIsUvIndex() {
+      return this.uvIndexTable.find(
+        (item) => item.index >= this.currentWeather.current.uv
+      ).description;
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @mixin card($theme: DarkGray) {

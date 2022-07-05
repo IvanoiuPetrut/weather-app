@@ -6,7 +6,9 @@
     secondOption="F°"
   ></ToggleButton>
   <div class="current-weather">
-    <WeatherQualities></WeatherQualities>
+    <WeatherQualities
+      v-if="this.$store.state.currentWeather"
+    ></WeatherQualities>
     <CurrentTemperature
       v-if="this.$store.state.currentWeather"
     ></CurrentTemperature>
