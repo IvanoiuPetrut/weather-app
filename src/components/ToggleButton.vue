@@ -38,16 +38,8 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      optionOneIsActive: true,
-      optionTwoIsActive: false,
-    };
-  },
   methods: {
     toggle() {
-      this.optionOneIsActive = !this.optionOneIsActive;
-      this.optionTwoIsActive = !this.optionTwoIsActive;
       this.onClick();
     },
   },
