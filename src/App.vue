@@ -36,14 +36,14 @@ export default {
   created() {
     this.$store.dispatch("fetchForecast");
     this.$store.subscribe((mutation, state) => {
-      let store = {
+      let settings = {
         isCelsius: state.isCelsius,
         isKmH: state.isKmH,
         isMm: state.isMmm,
         isMb: state.isMb,
       };
 
-      localStorage.setItem("store", JSON.stringify(store));
+      localStorage.setItem("settings", JSON.stringify(settings));
     });
   },
 };
