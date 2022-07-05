@@ -1,5 +1,5 @@
 <template>
-  <div class="weather">
+  <div class="weather" v-if="this.$store.state.currentWeather">
     <WeatherQualities></WeatherQualities>
     <CurrentTemperature></CurrentTemperature>
     <MoonPhase></MoonPhase>
