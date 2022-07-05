@@ -1,55 +1,57 @@
 <template>
-  <p>Settings</p>
-  <div class="settings">
-    <div>
-      <span>Temperature</span>
-      <ToggleButton
-        class="btn"
-        :onClick="toggleTemperatureType"
-        :isOptionOneActive="this.$store.state.isCelsius"
-        firstOption="°C"
-        secondOption="°F"
-      ></ToggleButton>
-    </div>
-    <div>
-      <span>Speed</span>
-      <ToggleButton
-        class="btn"
-        :onClick="toggleSpeedType"
-        :isOptionOneActive="this.$store.state.isKmH"
-        firstOption="Km/h"
-        secondOption="Mp/h"
-      ></ToggleButton>
-    </div>
-    <div>
-      <span>Supraface</span>
-      <ToggleButton
-        class="btn"
-        :onClick="toggleSuprafaceType"
-        :isOptionOneActive="this.$store.state.isMm"
-        firstOption="mm"
-        secondOption="inch"
-      ></ToggleButton>
-    </div>
-    <div>
-      <span>Pressure</span>
-      <ToggleButton
-        class="btn"
-        :onClick="togglePressureType"
-        :isOptionOneActive="this.$store.state.isMb"
-        firstOption="millibar"
-        secondOption="inch"
-      ></ToggleButton>
-    </div>
-    <div>
-      <span>Distance</span>
-      <ToggleButton
-        class="btn"
-        :onClick="toggleDistanceType"
-        :isOptionOneActive="this.$store.state.isKm"
-        firstOption="Km"
-        secondOption="Miles"
-      ></ToggleButton>
+  <div class="card">
+    <p>Settings</p>
+    <div class="settings">
+      <div>
+        <span>Temperature</span>
+        <ToggleButton
+          class="btn"
+          :onClick="toggleTemperatureType"
+          :isOptionOneActive="this.$store.state.isCelsius"
+          firstOption="°C"
+          secondOption="°F"
+        ></ToggleButton>
+      </div>
+      <div>
+        <span>Speed</span>
+        <ToggleButton
+          class="btn"
+          :onClick="toggleSpeedType"
+          :isOptionOneActive="this.$store.state.isKmH"
+          firstOption="Km/h"
+          secondOption="Mp/h"
+        ></ToggleButton>
+      </div>
+      <div>
+        <span>Supraface</span>
+        <ToggleButton
+          class="btn"
+          :onClick="toggleSuprafaceType"
+          :isOptionOneActive="this.$store.state.isMm"
+          firstOption="mm"
+          secondOption="inch"
+        ></ToggleButton>
+      </div>
+      <div>
+        <span>Pressure</span>
+        <ToggleButton
+          class="btn"
+          :onClick="togglePressureType"
+          :isOptionOneActive="this.$store.state.isMb"
+          firstOption="millibar"
+          secondOption="inch"
+        ></ToggleButton>
+      </div>
+      <div>
+        <span>Distance</span>
+        <ToggleButton
+          class="btn"
+          :onClick="toggleDistanceType"
+          :isOptionOneActive="this.$store.state.isKm"
+          firstOption="Km"
+          secondOption="Miles"
+        ></ToggleButton>
+      </div>
     </div>
   </div>
 </template>
@@ -83,13 +85,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
+.card {
   color: #fff;
+  padding: 0.6rem;
 }
 
 .settings {
-  span {
-    margin-right: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 15.6rem;
+  padding: 0.6rem;
+  div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
