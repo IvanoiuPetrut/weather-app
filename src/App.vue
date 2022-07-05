@@ -3,12 +3,6 @@
     <Meniu></Meniu>
     <Settings></Settings>
   </nav>
-  <ToggleButton
-    :onClick="toggleTemperatureType"
-    :isOptionOneActive="this.$store.state.isCelsius"
-    firstOption="C°"
-    secondOption="F°"
-  ></ToggleButton>
   <CurrentWeather></CurrentWeather>
   <div class="forecast container">
     <h2 class="heading--tertiary">3-day forecast</h2>
@@ -24,7 +18,6 @@
 
 <script>
 import DayTemperature from "./components/DayTemperature.vue";
-import ToggleButton from "./components/ToggleButton.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
 import Settings from "./components/Settings.vue";
@@ -33,7 +26,6 @@ export default {
   name: "App",
   components: {
     DayTemperature,
-    ToggleButton,
     CurrentWeather,
     Meniu,
     Settings,
