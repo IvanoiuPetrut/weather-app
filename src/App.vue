@@ -1,7 +1,7 @@
 <template>
   <ToggleButton
     :onClick="toggleTemperatureType"
-    :isOptionActive="this.$store.state.isCelsius"
+    :isOptionOneActive="this.$store.state.isCelsius"
     firstOption="C°"
     secondOption="F°"
   ></ToggleButton>
