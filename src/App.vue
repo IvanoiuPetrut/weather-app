@@ -6,6 +6,7 @@
     secondOption="F°"
   ></ToggleButton>
   <div class="current-weather">
+    <WeatherQualities></WeatherQualities>
     <CurrentTemperature
       v-if="this.$store.state.currentWeather"
     ></CurrentTemperature>
@@ -28,6 +29,7 @@ import DayTemperature from "./components/DayTemperature.vue";
 import MoonPhase from "./components/MoonPhase.vue";
 import ToggleButton from "./components/ToggleButton.vue";
 import CurrentTemperature from "./components/CurrentTemperature.vue";
+import WeatherQualities from "./components/WeatherQualities.vue";
 
 export default {
   name: "App",
@@ -36,6 +38,7 @@ export default {
     ToggleButton,
     MoonPhase,
     CurrentTemperature,
+    WeatherQualities,
   },
   methods: {
     toggleTemperatureType() {
