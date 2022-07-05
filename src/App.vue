@@ -1,26 +1,66 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ToggleButton
+    :onClick="toggleTemperatureType"
+    :isOptionOneActive="this.$store.state.isCelsius"
+    firstOption="C°"
+    secondOption="F°"
+  ></ToggleButton>
+  <button @click="$store.dispatch('fetchForecast')">Refresh</button>
+  <div class="days-temperature container">
+    <DayTemperature
+      v-for="(day, index) in $store.state.forecast"
+      :key="index"
+      :currentDayId="index"
+    ></DayTemperature>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DayTemperature from "./components/DayTemperature.vue";
+import ToggleButton from "./components/ToggleButton.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    DayTemperature,
+    ToggleButton,
+  },
+  methods: {
+    toggleTemperatureType() {
+      this.$store.commit("toggleTemperatureType");
+    },
+  },
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
+  },
+  created() {
+    this.$store.dispatch("fetchForecast");
+    this.$store.subscribe((mutation, state) => {
+      let settings = {
+        isCelsius: state.isCelsius,
+        isKmH: state.isKmH,
+        isMm: state.isMmm,
+        isMb: state.isMb,
+      };
+
+      localStorage.setItem("settings", JSON.stringify(settings));
+    });
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.days-temperature {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
 }
 </style>
