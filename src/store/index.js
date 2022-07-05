@@ -1,10 +1,11 @@
 import { createStore } from "vuex";
 import axios from "axios";
 
+axios.defaults.baseURL =
+  "http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=sibiu&days=6&aqi=no&alerts=no";
+
 export default createStore({
   state: {
-    baseUrl: "http://api.weatherapi.com/v1/",
-    weatherType: "forecast",
     city: "Sibiu",
     country: "Romania",
     isCelsius: true,
@@ -23,7 +24,7 @@ export default createStore({
       console.log(state.isCelsius);
     },
     initialiseStore(state) {
-      if (localStorage.getItem("store")) {
+      if (localStorage.getItem("settings")) {
         this.replaceState(
           Object.assign(state, JSON.parse(localStorage.getItem("store")))
         );
@@ -32,15 +33,13 @@ export default createStore({
   },
   actions: {
     fetchForecast({ commit }) {
-      axios(
-        "http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=sibiu&days=6&aqi=no&alerts=no"
-      )
+      axios
+        .get("forecast")
         .then((response) => {
-          console.log(response.data);
           commit("setForecast", response.data.forecast.forecastday);
         })
         .catch((error) => {
-          throw new Error(`API ${error}`);
+          console.log(error);
         });
     },
   },
