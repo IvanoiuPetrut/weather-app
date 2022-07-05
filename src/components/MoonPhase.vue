@@ -1,5 +1,6 @@
 <template>
   <div class="card">
+    <p class="img">{{ moonPhaseIcon }}</p>
     <p class="date margin-bottom--sm">{{ currentDate }}</p>
     <p class="moon-phase margin-bottom--md">{{ moonPhase }}</p>
     <div class="astro">
@@ -19,6 +20,44 @@
 import { mapState } from "vuex";
 export default {
   name: "MoonPhase",
+  data() {
+    return {
+      moonPhaseTable: [
+        {
+          phase: "New Moon",
+          icon: "🌑",
+        },
+        {
+          phase: "Waxing Crescent",
+          icon: "🌒",
+        },
+        {
+          phase: "First Quarter",
+          icon: "🌓",
+        },
+        {
+          phase: "Waxing Gibbous",
+          icon: "🌔",
+        },
+        {
+          phase: "Full Moon",
+          icon: "🌕",
+        },
+        {
+          phase: "Waning Gibbous",
+          icon: "🌖",
+        },
+        {
+          phase: "Last Quarter",
+          icon: "🌗",
+        },
+        {
+          phase: "Waning Crescent",
+          icon: "🌘",
+        },
+      ],
+    };
+  },
   methods: {
     formatDate(dateStr) {
       var date = new Date(dateStr);
@@ -39,6 +78,11 @@ export default {
     },
     moonPhase() {
       return this.astronomy.moon_phase;
+    },
+    moonPhaseIcon() {
+      return this.moonPhaseTable.find((moonPhase) => {
+        return moonPhase.phase === this.moonPhase;
+      }).icon;
     },
     sunRise() {
       return this.astronomy.sunrise;
@@ -88,6 +132,10 @@ export default {
 .date {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.img {
+  font-size: 3.2rem;
 }
 
 .astro {
