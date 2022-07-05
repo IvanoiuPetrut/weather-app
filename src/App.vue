@@ -2,7 +2,7 @@
   <nav>
     <Meniu></Meniu>
   </nav>
-  <CurrentWeather></CurrentWeather>
+  <CurrentWeather class="current-weather"></CurrentWeather>
   <div class="forecast container">
     <h2 class="heading--tertiary">3-day forecast</h2>
     <div class="days-temperature">
@@ -69,6 +69,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.current-weather {
+  margin-top: 4.8rem;
 }
 
 .forecast {
