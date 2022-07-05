@@ -83,7 +83,7 @@ export default {
     visibility() {
       return this.isKm
         ? `${this.currentWeather.current.vis_km} km`
-        : `${this.currentWeather.current.vis_mi} mi`;
+        : `${this.currentWeather.current.vis_miles} miles`;
     },
     uvIndex() {
       return this.currentWeather.current.uv;

@@ -34,6 +34,18 @@ export default createStore({
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
     },
+    toggleSpeedType(state) {
+      state.isKmH = !state.isKmH;
+    },
+    toggleSuprafaceType(state) {
+      state.isMm = !state.isMm;
+    },
+    togglePressureType(state) {
+      state.isMb = !state.isMb;
+    },
+    toggleDistanceType(state) {
+      state.isKm = !state.isKm;
+    },
     initialiseStore(state) {
       if (localStorage.getItem("settings")) {
         this.replaceState(

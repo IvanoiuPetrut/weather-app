@@ -57,8 +57,9 @@ export default {
       let settings = {
         isCelsius: state.isCelsius,
         isKmH: state.isKmH,
-        isMm: state.isMmm,
+        isMm: state.isMm,
         isMb: state.isMb,
+        isKm: state.isKm,
       };
 
       localStorage.setItem("settings", JSON.stringify(settings));
