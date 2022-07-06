@@ -31,6 +31,9 @@ export default createStore({
     setCurrentWeather(state, currentWeather) {
       state.currentWeather = currentWeather;
     },
+    setCity(state, city) {
+      state.city = city;
+    },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
     },

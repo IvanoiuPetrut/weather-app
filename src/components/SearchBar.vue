@@ -1,5 +1,10 @@
 <template>
-  <input type="text" v-model="searchText" placeholder="Enter city" />
+  <input
+    type="text"
+    @keyup.enter="setCity"
+    v-model="searchText"
+    placeholder="Enter city"
+  />
 </template>
 
 <script>
@@ -13,6 +18,13 @@ export default {
   methods: {
     search() {
       this.$store.dispatch("search", this.searchText);
+    },
+    setCity() {
+      this.$store.commit("setCity", this.searchText);
+      this.fetchWeather();
+    },
+    fetchWeather() {
+      this.$store.dispatch("fetchForecast");
     },
   },
 };
