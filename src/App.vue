@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <SearchBar></SearchBar>
     <Meniu></Meniu>
   </nav>
   <CurrentWeather class="current-weather"></CurrentWeather>
@@ -19,6 +20,7 @@
 import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
+import SearchBar from "./components/SearchBar.vue";
 
 export default {
   name: "App",
@@ -26,6 +28,7 @@ export default {
     DayTemperature,
     CurrentWeather,
     Meniu,
+    SearchBar,
   },
   methods: {
     toggleTemperatureType() {
