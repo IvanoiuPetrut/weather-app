@@ -71,6 +71,9 @@ export default createStore({
           Object.assign(state, JSON.parse(localStorage.getItem("settings")))
         );
       }
+      if (localStorage.getItem("location")) {
+        Object.assign(state, JSON.parse(localStorage.getItem("location")));
+      }
     },
   },
   actions: {

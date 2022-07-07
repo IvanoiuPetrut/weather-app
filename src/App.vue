@@ -53,7 +53,11 @@ export default {
         isMb: state.isMb,
         isKm: state.isKm,
       };
+      let location = {
+        city: state.city,
+      };
 
+      localStorage.setItem("location", JSON.stringify(location));
       localStorage.setItem("settings", JSON.stringify(settings));
     });
   },
