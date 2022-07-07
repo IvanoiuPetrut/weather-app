@@ -1,6 +1,9 @@
 <template>
   <div class="card">
-    <h2 class="heading--secondary">{{ city }}, {{ country }}</h2>
+    <h2 class="heading--secondary">
+      <span v-if="name !== region">{{ name }},</span> {{ region }},
+      {{ country }}
+    </h2>
     <div class="temperature__wrapper">
       <img
         class="temperature__image"
@@ -34,6 +37,12 @@ export default {
       forecast: (state) => state.forecast,
       isCelsius: (state) => state.isCelsius,
     }),
+    name() {
+      return this.currentWeather.location.name;
+    },
+    region() {
+      return this.currentWeather.location.region;
+    },
     city() {
       return this.currentWeather.location.name;
     },

@@ -6,7 +6,7 @@
       :key="index"
       @click="getCity(item)"
     >
-      {{ item }}
+      {{ item.name }}, {{ item.region }}, {{ item.country }}
     </li>
   </ul>
 </template>

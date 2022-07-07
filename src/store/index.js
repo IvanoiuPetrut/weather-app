@@ -20,7 +20,8 @@ export default createStore({
   getters: {
     getSearchList: (state) => {
       if (state.searchCities) {
-        return new Set(state.searchCities.map((item) => item.region));
+        // return new Set(state.searchCities.map((item) => item.name));
+        return state.searchCities;
       }
     },
   },

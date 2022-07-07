@@ -39,7 +39,15 @@
       </button>
     </div>
     <div class="search__list">
-      <SearchList :list="this.searchList" @get-city="setCity"></SearchList>
+      <SearchList
+        :list="this.searchList"
+        @get-city="
+          setCity(this.searchText);
+          fetchWeather();
+          clearSearchText();
+          clearCities();
+        "
+      ></SearchList>
     </div>
   </div>
 </template>
@@ -135,6 +143,7 @@ export default {
   &__list {
     position: absolute;
     width: 300px;
+    z-index: 9999;
   }
 }
 </style>
