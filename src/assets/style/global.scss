@@ -8,6 +8,12 @@ $font-stack: "Open Sans", sans-serif;
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+  // shadow
+  box-shadow: 0 0 0 5px rgba(51, 155, 240, 0.6);
+}
+
 ul {
   list-style: none;
 }
