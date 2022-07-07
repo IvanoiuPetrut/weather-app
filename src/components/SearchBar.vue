@@ -5,11 +5,11 @@
         type="text"
         class="search__input"
         @keyup="handleChange"
-        @keyup.enter="setCity"
+        @keyup.enter="setCity(this.searchText)"
         v-model="searchText"
         placeholder="Enter city"
       />
-      <button class="search__btn">
+      <button class="search__btn" @click="setCity(this.searchText)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="icon"
@@ -27,7 +27,7 @@
       </button>
     </div>
     <div class="search__list">
-      <SearchList :list="this.searchList"></SearchList>
+      <SearchList :list="this.searchList" @get-city="setCity"></SearchList>
     </div>
   </div>
 </template>
@@ -47,9 +47,6 @@ export default {
     };
   },
   methods: {
-    search() {
-      this.$store.dispatch("search", this.searchText);
-    },
     handleChange() {
       if (this.searchText.length > 1) {
         console.log(this.searchText);
@@ -57,12 +54,23 @@ export default {
         this.$store.dispatch("fetchSearchList");
       }
     },
-    setCity() {
-      this.$store.commit("setCity", this.searchText);
-      this.fetchWeather();
+    setCity(city) {
+      if (this.searchText.length > 1) {
+        this.$store.commit("setCity", city);
+        this.fetchWeather();
+      }
+      this.clearSearchText();
+      this.clearCities();
+      console.log(this.$store.state.searchCities);
     },
     fetchWeather() {
       this.$store.dispatch("fetchForecast");
+    },
+    clearCities() {
+      this.$store.commit("clearCities");
+    },
+    clearSearchText() {
+      this.searchText = "";
     },
   },
   computed: {
@@ -93,7 +101,7 @@ export default {
     width: 100%;
   }
   &__btn {
-    width: 40px;
+    width: 60px;
     height: 40px;
     background-color: #339af0;
     border: none;

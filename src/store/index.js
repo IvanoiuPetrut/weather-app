@@ -40,6 +40,9 @@ export default createStore({
     setSearchCities(state, searchCities) {
       state.searchCities = searchCities;
     },
+    clearCities(state) {
+      state.searchCities = null;
+    },
     setSearchCity(state, searchCity) {
       state.searchCity = searchCity;
     },

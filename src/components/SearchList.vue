@@ -1,6 +1,11 @@
 <template>
   <ul v-if="this.searchCities" class="list">
-    <li v-for="(item, index) in list" :key="index">
+    <li
+      class="list__element"
+      v-for="(item, index) in list"
+      :key="index"
+      @click="getCity(item)"
+    >
       {{ item }}
     </li>
   </ul>
@@ -14,6 +19,12 @@ export default {
   props: {
     list: {
       required: true,
+    },
+  },
+  methods: {
+    getCity(city) {
+      this.$emit("get-city", city);
+      console.log(city);
     },
   },
   computed: {
@@ -48,7 +59,14 @@ export default {
   @include glass-morph();
   @include flex-column();
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 0.2rem;
   padding: 0.6rem;
+  &__element {
+    padding: 0.2rem 0.4rem;
+    cursor: pointer;
+    &:hover {
+      color: #339af0;
+    }
+  }
 }
 </style>
