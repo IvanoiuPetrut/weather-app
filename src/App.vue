@@ -43,7 +43,7 @@ export default {
   },
   created() {
     this.$store.commit("setCurrentDate");
-    this.$store.dispatch("fetchForecast");
+    this.$store.dispatch("fetchWeather");
     console.log(this.$store.state.currentWeather);
     this.$store.subscribe((mutation, state) => {
       let settings = {

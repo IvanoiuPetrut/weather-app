@@ -73,7 +73,7 @@ export default createStore({
     },
   },
   actions: {
-    fetchForecast({ commit }) {
+    fetchWeather({ commit }) {
       axios
         .all([
           axios.get(

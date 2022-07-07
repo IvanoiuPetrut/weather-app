@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="this.searchCities" class="list">
+  <ul v-if="this.searchCities && this.searchCities.length > 1" class="list">
     <li
       class="list__element"
       v-for="(item, index) in list"

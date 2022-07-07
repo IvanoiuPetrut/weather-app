@@ -46,12 +46,18 @@ export default {
       searchText: "",
     };
   },
+  watch: {
+    searchText() {
+      console.log(this.searchText);
+      if (this.searchText.length > 1) {
+        this.getSearchList();
+      }
+    },
+  },
   methods: {
     handleChange() {
       if (this.searchText.length > 1) {
-        console.log(this.searchText);
-        this.$store.commit("setSearchCity", this.searchText);
-        this.$store.dispatch("fetchSearchList");
+        // console.log(this.searchText);
       }
     },
     setCity(city) {
@@ -62,9 +68,14 @@ export default {
       this.clearSearchText();
       this.clearCities();
       console.log(this.$store.state.searchCities);
+      console.log(this.searchText);
+    },
+    getSearchList() {
+      this.$store.commit("setSearchCity", this.searchText);
+      this.$store.dispatch("fetchSearchList");
     },
     fetchWeather() {
-      this.$store.dispatch("fetchForecast");
+      this.$store.dispatch("fetchWeather");
     },
     clearCities() {
       this.$store.commit("clearCities");
