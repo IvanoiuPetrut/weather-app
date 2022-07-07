@@ -4,12 +4,24 @@
       <input
         type="text"
         class="search__input"
-        @keyup="handleChange"
-        @keyup.enter="setCity(this.searchText)"
+        @keyup.enter="
+          setCity(this.searchText);
+          fetchWeather();
+          clearSearchText();
+          clearCities();
+        "
         v-model="searchText"
         placeholder="Enter city"
       />
-      <button class="search__btn" @click="setCity(this.searchText)">
+      <button
+        class="search__btn"
+        @click="
+          setCity(this.searchText);
+          fetchWeather();
+          clearSearchText();
+          clearCities();
+        "
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="icon"
@@ -48,34 +60,26 @@ export default {
   },
   watch: {
     searchText() {
-      console.log(this.searchText);
       if (this.searchText.length > 1) {
-        this.getSearchList();
+        this.setSearchCity(this.searchText);
+        this.fetchSearchList();
       }
     },
   },
   methods: {
-    handleChange() {
-      if (this.searchText.length > 1) {
-        // console.log(this.searchText);
-      }
-    },
     setCity(city) {
       if (this.searchText.length > 1) {
         this.$store.commit("setCity", city);
-        this.fetchWeather();
       }
-      this.clearSearchText();
-      this.clearCities();
-      console.log(this.$store.state.searchCities);
-      console.log(this.searchText);
     },
-    getSearchList() {
-      this.$store.commit("setSearchCity", this.searchText);
-      this.$store.dispatch("fetchSearchList");
+    setSearchCity(city) {
+      this.$store.commit("setSearchCity", city);
     },
     fetchWeather() {
       this.$store.dispatch("fetchWeather");
+    },
+    fetchSearchList() {
+      this.$store.dispatch("fetchSearchList");
     },
     clearCities() {
       this.$store.commit("clearCities");
