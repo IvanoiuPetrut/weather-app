@@ -1,15 +1,14 @@
 <template>
-  <p>the list</p>
-  <ul>
-    items
+  <ul v-if="this.searchCities" class="list">
     <li v-for="(item, index) in list" :key="index">
       {{ item }}
     </li>
   </ul>
-  <!-- <p>{{ this.$store.state.autocomplete }}</p> -->
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "SearchList",
   props: {
@@ -17,11 +16,39 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapState({
+      searchCities: (state) => state.searchCities,
+    }),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 * {
   color: #fff;
+}
+
+@mixin glass-morph {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list {
+  @include glass-morph();
+  @include flex-column();
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 0.6rem;
 }
 </style>
