@@ -3,9 +3,8 @@ import axios from "axios";
 
 export default createStore({
   state: {
-    baseUrl: "http://api.weatherapi.com/v1/",
-    weatherType: "forecast",
     city: "Sibiu",
+    searchCity: "",
     country: "Romania",
     date: "2020-01-01",
     isCelsius: true,
@@ -16,8 +15,15 @@ export default createStore({
     forecast: [],
     astronomy: [],
     currentWeather: null,
+    searchCities: null,
   },
-  getters: {},
+  getters: {
+    getSearchList: (state) => {
+      if (state.searchCities) {
+        return new Set(state.searchCities.map((item) => item.region));
+      }
+    },
+  },
   mutations: {
     setCurrentDate(state) {
       state.date = new Date().toISOString().slice(0, 10);
@@ -30,6 +36,12 @@ export default createStore({
     },
     setCurrentWeather(state, currentWeather) {
       state.currentWeather = currentWeather;
+    },
+    setSearchCities(state, searchCities) {
+      state.searchCities = searchCities;
+    },
+    setSearchCity(state, searchCity) {
+      state.searchCity = searchCity;
     },
     setCity(state, city) {
       state.city = city;
@@ -79,6 +91,19 @@ export default createStore({
             console.log(currentWeather.data);
           })
         )
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    fetchSearchList({ commit }) {
+      axios
+        .get(
+          `https://api.weatherapi.com/v1/search.json?key=c48712edce2441edae5122038222706&q=${this.state.searchCity}`
+        )
+        .then((response) => {
+          commit("setSearchCities", response.data);
+          console.log(response.data);
+        })
         .catch((error) => {
           console.log(error);
         });
