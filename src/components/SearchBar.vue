@@ -4,9 +4,11 @@
       <input
         type="text"
         class="search__input"
-        @keyup.enter="fetchAndResetWeather(this.searchText)"
-        v-model="searchText"
         placeholder="Enter city"
+        v-model="searchText"
+        @keyup.enter="fetchAndResetWeather(this.searchText)"
+        @focus="toggleVisibility"
+        @blur="toggleVisibility"
       />
       <button
         class="search__btn"
@@ -31,6 +33,7 @@
     <div class="search__list">
       <SearchList
         :list="this.searchList"
+        :isVisible="this.isVisible"
         @get-city="fetchAndResetWeather"
       ></SearchList>
     </div>
@@ -39,7 +42,7 @@
 
 <script>
 import SearchList from "./SearchList.vue";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "SearchBar",
@@ -49,6 +52,7 @@ export default {
   data() {
     return {
       searchText: "",
+      isVisible: false,
     };
   },
   watch: {
@@ -56,6 +60,10 @@ export default {
       if (this.searchText.length > 1) {
         this.setSearchCity(this.searchText);
         this.fetchSearchList();
+      }
+      if (this.searchText.length === 0) {
+        this.clearCities();
+        this.clearSearchText();
       }
     },
   },
@@ -85,10 +93,16 @@ export default {
       this.clearSearchText();
       this.clearCities();
     },
+    toggleVisibility() {
+      // add a timer
+      setTimeout(() => {
+        this.isVisible = !this.isVisible;
+      }, 400);
+    },
   },
   computed: {
-    ...mapGetters({
-      searchList: "getSearchList",
+    ...mapState({
+      searchList: (state) => state.searchCities,
     }),
   },
 };

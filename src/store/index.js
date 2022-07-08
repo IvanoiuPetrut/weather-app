@@ -17,14 +17,7 @@ export default createStore({
     currentWeather: null,
     searchCities: null,
   },
-  getters: {
-    getSearchList: (state) => {
-      if (state.searchCities) {
-        // return new Set(state.searchCities.map((item) => item.name));
-        return state.searchCities;
-      }
-    },
-  },
+  getters: {},
   mutations: {
     setCurrentDate(state) {
       state.date = new Date().toISOString().slice(0, 10);

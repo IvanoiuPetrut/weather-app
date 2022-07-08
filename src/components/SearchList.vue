@@ -1,5 +1,8 @@
 <template>
-  <ul v-if="this.searchCities && this.searchCities.length > 1" class="list">
+  <ul
+    v-if="this.searchCities && this.searchCities.length > 1 && this.isVisible"
+    class="list"
+  >
     <li
       class="list__element"
       v-for="(item, index) in list"
@@ -18,6 +21,10 @@ export default {
   name: "SearchList",
   props: {
     list: {
+      required: true,
+    },
+    isVisible: {
+      type: Boolean,
       required: true,
     },
   },
