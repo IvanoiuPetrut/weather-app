@@ -4,7 +4,7 @@
       class="list__element"
       v-for="(item, index) in list"
       :key="index"
-      @click="getCity(item)"
+      @click="getCity(item.name)"
     >
       {{ item.name }}, {{ item.region }}, {{ item.country }}
     </li>

@@ -4,23 +4,13 @@
       <input
         type="text"
         class="search__input"
-        @keyup.enter="
-          setCity(this.searchText);
-          fetchWeather();
-          clearSearchText();
-          clearCities();
-        "
+        @keyup.enter="fetchAndResetWeather(this.searchText)"
         v-model="searchText"
         placeholder="Enter city"
       />
       <button
         class="search__btn"
-        @click="
-          setCity(this.searchText);
-          fetchWeather();
-          clearSearchText();
-          clearCities();
-        "
+        @click="fetchAndResetWeather(this.searchText)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,12 +31,7 @@
     <div class="search__list">
       <SearchList
         :list="this.searchList"
-        @get-city="
-          setCity(this.searchText);
-          fetchWeather();
-          clearSearchText();
-          clearCities();
-        "
+        @get-city="fetchAndResetWeather"
       ></SearchList>
     </div>
   </div>
@@ -76,9 +61,8 @@ export default {
   },
   methods: {
     setCity(city) {
-      if (this.searchText.length > 1) {
-        this.$store.commit("setCity", city);
-      }
+      this.$store.commit("setCity", city);
+      console.log(`city` + this.$store.state.city);
     },
     setSearchCity(city) {
       this.$store.commit("setSearchCity", city);
@@ -94,6 +78,12 @@ export default {
     },
     clearSearchText() {
       this.searchText = "";
+    },
+    fetchAndResetWeather(city) {
+      this.setCity(city);
+      this.fetchWeather();
+      this.clearSearchText();
+      this.clearCities();
     },
   },
   computed: {
