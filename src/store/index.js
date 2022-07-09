@@ -16,7 +16,7 @@ export default createStore({
     astronomy: [],
     currentWeather: null,
     searchCities: null,
-    cities: [],
+    favoriteCities: [],
   },
   getters: {},
   mutations: {
@@ -46,22 +46,24 @@ export default createStore({
     },
     addCity(state) {
       if (typeof state.currentWeather.location.name !== "undefined") {
-        if (state.cities.length === 0) {
-          state.cities.push(state.currentWeather.location.name);
-          console.log(state.cities);
-        } else if (!state.cities.includes(state.currentWeather.location.name)) {
-          state.cities.push(state.currentWeather.location.name);
-          console.log(state.cities);
+        if (state.favoriteCities.length === 0) {
+          state.favoriteCities.push(state.currentWeather.location.name);
+          console.log(state.favoriteCities);
+        } else if (
+          !state.favoriteCities.includes(state.currentWeather.location.name)
+        ) {
+          state.favoriteCities.push(state.currentWeather.location.name);
+          console.log(state.favoriteCities);
         }
       }
     },
     removeCity(state, index) {
       if (index > -1) {
-        state.cities.splice(index, 1);
+        state.favoriteCities.splice(index, 1);
       }
     },
     setCurrentCity(state, index) {
-      state.city = state.cities[index];
+      state.city = state.favoriteCities[index];
     },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
@@ -87,8 +89,11 @@ export default createStore({
       if (localStorage.getItem("location")) {
         Object.assign(state, JSON.parse(localStorage.getItem("location")));
       }
-      if (localStorage.getItem("cities")) {
-        Object.assign(state, JSON.parse(localStorage.getItem("cities")));
+      if (localStorage.getItem("favoriteCities")) {
+        Object.assign(
+          state,
+          JSON.parse(localStorage.getItem("favoriteCities"))
+        );
       }
     },
   },

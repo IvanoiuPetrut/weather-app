@@ -34,7 +34,7 @@
   <div class="menu" :class="{ active: isMenuOpen }">
     <Settings></Settings>
     <ModularList
-      :list="cities"
+      :list="favoriteCities"
       @remove-item="removeItem"
       @set-item="setItem"
     ></ModularList>
@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     ...mapState({
-      cities: (state) => state.cities,
+      favoriteCities: (state) => state.favoriteCities,
     }),
     ...mapMutations({
       removeCity: "removeCity",

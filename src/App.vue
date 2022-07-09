@@ -59,13 +59,13 @@ export default {
       let location = {
         city: state.city,
       };
-      let cities = {
-        cities: state.cities,
+      let favoriteCities = {
+        favoriteCities: state.favoriteCities,
       };
 
       localStorage.setItem("location", JSON.stringify(location));
       localStorage.setItem("settings", JSON.stringify(settings));
-      localStorage.setItem("cities", JSON.stringify(cities));
+      localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
     });
   },
 };
