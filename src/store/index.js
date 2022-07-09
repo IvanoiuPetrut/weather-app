@@ -45,8 +45,17 @@ export default createStore({
       state.city = city;
     },
     addCity(state) {
-      state.cities.push(state.city);
-      console.log(state.cities);
+      if (typeof state.currentWeather.location.name !== "undefined") {
+        // check if city already exists in cities
+        // if (!state.cties.includes(state.currentWeather.location.name)) {
+        if (state.cities.length === 0) {
+          state.cities.push(state.currentWeather.location.name);
+          console.log(state.cities);
+        } else if (!state.cities.includes(state.currentWeather.location.name)) {
+          state.cities.push(state.currentWeather.location.name);
+          console.log(state.cities);
+        }
+      }
     },
     removeCity(state, index) {
       if (index > -1) {
