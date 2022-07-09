@@ -3,6 +3,7 @@
     <SearchBar></SearchBar>
     <Meniu></Meniu>
   </nav>
+  <ButtonPrimary :onClick="addCity">Add city</ButtonPrimary>
   <CurrentWeather class="current-weather"></CurrentWeather>
   <div class="forecast container">
     <h2 class="heading--tertiary">3-day forecast</h2>
@@ -21,6 +22,7 @@ import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
 import SearchBar from "./components/SearchBar.vue";
+import ButtonPrimary from "./components/ButtonPrimary.vue";
 
 export default {
   name: "App",
@@ -29,13 +31,14 @@ export default {
     CurrentWeather,
     Meniu,
     SearchBar,
+    ButtonPrimary,
   },
   methods: {
-    toggleTemperatureType() {
-      this.$store.commit("toggleTemperatureType");
-    },
     getCurrentDate() {
       return new Date().toISOString().slice(0, 10);
+    },
+    addCity() {
+      this.$store.commit("addCity");
     },
   },
   beforeCreate() {

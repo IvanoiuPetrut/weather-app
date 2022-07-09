@@ -16,6 +16,7 @@ export default createStore({
     astronomy: [],
     currentWeather: null,
     searchCities: null,
+    cities: [],
   },
   getters: {},
   mutations: {
@@ -42,6 +43,10 @@ export default createStore({
     },
     setCity(state, city) {
       state.city = city;
+    },
+    addCity(state) {
+      state.cities.push(state.city);
+      console.log(state.cities);
     },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
