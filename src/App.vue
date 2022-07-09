@@ -3,7 +3,7 @@
     <SearchBar></SearchBar>
     <Meniu></Meniu>
   </nav>
-  <ButtonPrimary :onClick="addCity">Add city</ButtonPrimary>
+  <PrimaryButton :onClick="addCity">Add city</PrimaryButton>
   <CurrentWeather class="current-weather"></CurrentWeather>
   <div class="forecast container">
     <h2 class="heading--tertiary">3-day forecast</h2>
@@ -22,7 +22,7 @@ import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
 import SearchBar from "./components/SearchBar.vue";
-import ButtonPrimary from "./components/ButtonPrimary.vue";
+import PrimaryButton from "./components/PrimaryButton.vue";
 
 export default {
   name: "App",
@@ -31,7 +31,7 @@ export default {
     CurrentWeather,
     Meniu,
     SearchBar,
-    ButtonPrimary,
+    PrimaryButton,
   },
   methods: {
     getCurrentDate() {
