@@ -1,7 +1,8 @@
 <template>
   <ul>
     <li class="item" v-for="(item, index) in list" :key="index">
-      {{ item }} <button @click="removeItem(index)">remove</button>
+      {{ item }} <button @click="removeItem(index)">Remove</button>
+      <button @click="setItem(index)">Set City</button>
     </li>
   </ul>
 </template>
@@ -9,15 +10,15 @@
 <script>
 export default {
   name: "ModularList",
-  emits: ["remove-item"],
+  emits: ["remove-item", "set-item"],
   props: {
     list: {
       required: true,
     },
   },
   methods: {
-    setItem(item) {
-      this.$emit("set-item", item);
+    setItem(index) {
+      this.$emit("set-item", index);
     },
     removeItem(index) {
       this.$emit("remove-item", index);

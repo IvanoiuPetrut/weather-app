@@ -33,7 +33,11 @@
   </button>
   <div class="menu" :class="{ active: isMenuOpen }">
     <Settings></Settings>
-    <ModularList :list="cities" @remove-item="removeItem"></ModularList>
+    <ModularList
+      :list="cities"
+      @remove-item="removeItem"
+      @set-item="setItem"
+    ></ModularList>
   </div>
 </template>
 
@@ -45,7 +49,7 @@ import ModularList from "./ModularList.vue";
 
 export default {
   name: "MeniuHamburger",
-  emits: ["remove-item"],
+  emits: ["remove-item", "set-item"],
   components: {
     Settings,
     ModularList,
@@ -62,6 +66,10 @@ export default {
     removeItem(index) {
       console.log(index);
       this.$store.commit("removeCity", index);
+    },
+    setItem(index) {
+      this.$store.commit("setCurrentCity", index);
+      this.$store.dispatch("fetchWeather");
     },
   },
   computed: {

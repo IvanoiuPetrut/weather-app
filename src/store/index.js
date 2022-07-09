@@ -49,10 +49,12 @@ export default createStore({
       console.log(state.cities);
     },
     removeCity(state, index) {
-      console.log("index " + index);
       if (index > -1) {
         state.cities.splice(index, 1);
       }
+    },
+    setCurrentCity(state, index) {
+      state.city = state.cities[index];
     },
     toggleTemperatureType(state) {
       state.isCelsius = !state.isCelsius;
