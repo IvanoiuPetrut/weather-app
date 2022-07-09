@@ -33,17 +33,19 @@
   </button>
   <div class="menu" :class="{ active: isMenuOpen }">
     <Settings></Settings>
-    <ModularList :list="cities"></ModularList>
+    <ModularList :list="cities" @remove-item="removeItem"></ModularList>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { mapMutations } from "vuex";
 import Settings from "./Settings.vue";
 import ModularList from "./ModularList.vue";
 
 export default {
   name: "MeniuHamburger",
+  emits: ["remove-item"],
   components: {
     Settings,
     ModularList,
@@ -57,10 +59,17 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+    removeItem(index) {
+      console.log(index);
+      this.$store.commit("removeCity", index);
+    },
   },
   computed: {
     ...mapState({
       cities: (state) => state.cities,
+    }),
+    ...mapMutations({
+      removeCity: "removeCity",
     }),
   },
 };
