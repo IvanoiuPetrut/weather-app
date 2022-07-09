@@ -46,8 +46,6 @@ export default createStore({
     },
     addCity(state) {
       if (typeof state.currentWeather.location.name !== "undefined") {
-        // check if city already exists in cities
-        // if (!state.cties.includes(state.currentWeather.location.name)) {
         if (state.cities.length === 0) {
           state.cities.push(state.currentWeather.location.name);
           console.log(state.cities);
@@ -88,6 +86,9 @@ export default createStore({
       }
       if (localStorage.getItem("location")) {
         Object.assign(state, JSON.parse(localStorage.getItem("location")));
+      }
+      if (localStorage.getItem("cities")) {
+        Object.assign(state, JSON.parse(localStorage.getItem("cities")));
       }
     },
   },

@@ -59,9 +59,13 @@ export default {
       let location = {
         city: state.city,
       };
+      let cities = {
+        cities: state.cities,
+      };
 
       localStorage.setItem("location", JSON.stringify(location));
       localStorage.setItem("settings", JSON.stringify(settings));
+      localStorage.setItem("cities", JSON.stringify(cities));
     });
   },
 };
