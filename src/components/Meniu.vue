@@ -33,16 +33,20 @@
   </button>
   <div class="menu" :class="{ active: isMenuOpen }">
     <Settings></Settings>
+    <ModularList :list="cities"></ModularList>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Settings from "./Settings.vue";
+import ModularList from "./ModularList.vue";
 
 export default {
   name: "MeniuHamburger",
   components: {
     Settings,
+    ModularList,
   },
   data() {
     return {
@@ -53,6 +57,11 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
+  },
+  computed: {
+    ...mapState({
+      cities: (state) => state.cities,
+    }),
   },
 };
 </script>
