@@ -57,10 +57,10 @@ export default {
   computed: {
     ...mapState({
       currentWeather: (state) => state.currentWeather,
-      isKmH: (state) => state.isKmH,
-      isMm: (state) => state.isMm,
-      isMb: (state) => state.isMb,
-      isKm: (state) => state.isKm,
+      isKmH: (state) => state.settings.isKmH,
+      isMm: (state) => state.settings.isMm,
+      isMb: (state) => state.settings.isMb,
+      isKm: (state) => state.settings.isKm,
     }),
     airQuality() {
       return `${Math.trunc(this.currentWeather.current.air_quality.co)} co`;

@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
+import settings from "./modules/settings";
 
 export default createStore({
   state: {
@@ -7,11 +8,6 @@ export default createStore({
     searchCity: "",
     country: "Romania",
     date: "2020-01-01",
-    isCelsius: true,
-    isKmH: true,
-    isMm: true,
-    isMb: true,
-    isKm: true,
     forecast: [],
     astronomy: [],
     currentWeather: null,
@@ -63,27 +59,7 @@ export default createStore({
     setCurrentCity(state, index) {
       state.city = state.cities[index];
     },
-    toggleTemperatureType(state) {
-      state.isCelsius = !state.isCelsius;
-    },
-    toggleSpeedType(state) {
-      state.isKmH = !state.isKmH;
-    },
-    toggleSuprafaceType(state) {
-      state.isMm = !state.isMm;
-    },
-    togglePressureType(state) {
-      state.isMb = !state.isMb;
-    },
-    toggleDistanceType(state) {
-      state.isKm = !state.isKm;
-    },
     initialiseStore(state) {
-      if (localStorage.getItem("settings")) {
-        this.replaceState(
-          Object.assign(state, JSON.parse(localStorage.getItem("settings")))
-        );
-      }
       if (localStorage.getItem("location")) {
         Object.assign(state, JSON.parse(localStorage.getItem("location")));
       }
@@ -132,5 +108,7 @@ export default createStore({
         });
     },
   },
-  modules: {},
+  modules: {
+    settings,
+  },
 });

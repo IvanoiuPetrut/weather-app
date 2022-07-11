@@ -33,7 +33,7 @@ export default {
   computed: {
     ...mapState({
       forecast: (state) => state.forecast,
-      isCelsius: (state) => state.isCelsius,
+      isCelsius: (state) => state.settings.isCelsius,
     }),
     dayName() {
       return this.getDayName(this.forecast[this.currentDayId].date, "en-US");

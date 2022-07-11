@@ -7,7 +7,7 @@
         <ToggleButton
           class="btn"
           :onClick="toggleTemperatureType"
-          :isOptionOneActive="this.$store.state.isCelsius"
+          :isOptionOneActive="isCelsius"
           firstOption="°C"
           secondOption="°F"
         ></ToggleButton>
@@ -17,7 +17,7 @@
         <ToggleButton
           class="btn"
           :onClick="toggleSpeedType"
-          :isOptionOneActive="this.$store.state.isKmH"
+          :isOptionOneActive="isKmH"
           firstOption="Km/h"
           secondOption="Mp/h"
         ></ToggleButton>
@@ -27,7 +27,7 @@
         <ToggleButton
           class="btn"
           :onClick="toggleSuprafaceType"
-          :isOptionOneActive="this.$store.state.isMm"
+          :isOptionOneActive="isMm"
           firstOption="mm"
           secondOption="inch"
         ></ToggleButton>
@@ -37,7 +37,7 @@
         <ToggleButton
           class="btn"
           :onClick="togglePressureType"
-          :isOptionOneActive="this.$store.state.isMb"
+          :isOptionOneActive="isMb"
           firstOption="millibar"
           secondOption="inch"
         ></ToggleButton>
@@ -47,7 +47,7 @@
         <ToggleButton
           class="btn"
           :onClick="toggleDistanceType"
-          :isOptionOneActive="this.$store.state.isKm"
+          :isOptionOneActive="isKm"
           firstOption="Km"
           secondOption="Miles"
         ></ToggleButton>
@@ -58,6 +58,7 @@
 
 <script>
 import ToggleButton from "./ToggleButton.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "SettingsWeather",
@@ -66,20 +67,30 @@ export default {
   },
   methods: {
     toggleTemperatureType() {
-      this.$store.commit("toggleTemperatureType");
+      this.$store.dispatch("settings/toggleTemperatureType");
     },
     toggleSpeedType() {
-      this.$store.commit("toggleSpeedType");
+      this.$store.dispatch("settings/toggleSpeedType");
     },
     toggleSuprafaceType() {
-      this.$store.commit("toggleSuprafaceType");
+      this.$store.dispatch("settings/toggleSuprafaceType");
     },
     togglePressureType() {
-      this.$store.commit("togglePressureType");
+      this.$store.dispatch("settings/togglePressureType");
     },
     toggleDistanceType() {
-      this.$store.commit("toggleDistanceType");
+      this.$store.dispatch("settings/toggleDistanceType");
     },
+  },
+  computed: {
+    ...mapState({
+      isCelsius: (state) => state.settings.isCelsius,
+      isKmH: (state) => state.settings.isKmH,
+      isMm: (state) => state.settings.isMm,
+      isMb: (state) => state.settings.isMb,
+      isKm: (state) => state.settings.isKm,
+      isMiles: (state) => state.settings.isMiles,
+    }),
   },
 };
 </script>
