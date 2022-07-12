@@ -1,6 +1,16 @@
 <template>
   <ul class="hours">
-    <li v-for="(hour, index) in hours" :key="index">{{ temperature(hour) }}</li>
+    <li
+      v-for="(hour, index) in hours"
+      :key="index"
+      @click="
+        deactivateAllHours();
+        toggleActiveHour(index);
+      "
+      :class="{ active: isActiveHour[index] }"
+    >
+      {{ temperature(hour) }}
+    </li>
   </ul>
   <Hours :hours="hours"></Hours>
 </template>
@@ -18,6 +28,7 @@ export default {
     return {
       hours: [],
       currentDayId: 0,
+      isActiveHour: [],
     };
   },
   methods: {
@@ -26,6 +37,12 @@ export default {
         ? `${this.forecast[this.currentDayId].hour[hour].temp_c}°C`
         : `${this.forecast[this.currentDayId].hour[hour].temp_f}°F`;
     },
+    toggleActiveHour(index) {
+      this.isActiveHour[index] = !this.isActiveHour[index];
+    },
+    deactivateAllHours() {
+      this.isActiveHour = this.isActiveHour.map(() => false);
+    },
     getCurrentHour() {
       let date = new Date();
       let hour = date.getHours();
@@ -33,12 +50,11 @@ export default {
     },
     getNextHours(amount) {
       let currentHour = this.getCurrentHour();
-      for (var i = 0; i < amount; i++) {
+      for (let i = 0; i < amount; i++) {
         let hour = currentHour + i;
-        if (hour > 23) {
-          hour = hour - 24;
-        }
+        hour > 23 ? (hour = hour - 24) : hour;
         this.hours.push(hour);
+        i === 0 ? this.isActiveHour.push(true) : this.isActiveHour.push(false);
       }
     },
   },
@@ -70,5 +86,9 @@ export default {
       cursor: pointer;
     }
   }
+}
+.active {
+  color: #339af0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
