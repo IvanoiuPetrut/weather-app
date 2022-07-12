@@ -1,8 +1,11 @@
 <template>
   <div class="weather" v-if="this.$store.state.currentWeather">
-    <WeatherQualities></WeatherQualities>
-    <CurrentTemperature></CurrentTemperature>
-    <MoonPhase></MoonPhase>
+    <div class="weather__row">
+      <WeatherQualities></WeatherQualities>
+      <CurrentTemperature></CurrentTemperature>
+      <MoonPhase></MoonPhase>
+    </div>
+    <HourlyWeather></HourlyWeather>
   </div>
 </template>
 
@@ -10,6 +13,7 @@
 import WeatherQualities from "./WeatherQualities.vue";
 import CurrentTemperature from "./CurrentTemperature.vue";
 import MoonPhase from "./MoonPhase.vue";
+import HourlyWeather from "./HourlyWeather/HourlyWeather.vue";
 
 export default {
   name: "CurrentWeather",
@@ -17,6 +21,7 @@ export default {
     WeatherQualities,
     CurrentTemperature,
     MoonPhase,
+    HourlyWeather,
   },
 };
 </script>
@@ -24,8 +29,13 @@ export default {
 <style lang="scss" scoped>
 .weather {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4.8rem;
+  flex-direction: column;
+  gap: 1.2rem;
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  }
 }
 </style>
