@@ -35,7 +35,7 @@ export default {
     ...mapState({
       currentWeather: (state) => state.currentWeather,
       forecast: (state) => state.forecast,
-      isCelsius: (state) => state.isCelsius,
+      isCelsius: (state) => state.settings.isCelsius,
     }),
     name() {
       return this.currentWeather.location.name;

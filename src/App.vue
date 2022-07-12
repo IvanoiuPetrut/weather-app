@@ -42,19 +42,19 @@ export default {
     },
   },
   beforeCreate() {
+    this.$store.dispatch("settings/initialiseSettings");
     this.$store.commit("initialiseStore");
   },
   created() {
     this.$store.commit("setCurrentDate");
     this.$store.dispatch("fetchWeather");
-    console.log(this.$store.state.currentWeather);
     this.$store.subscribe((mutation, state) => {
       let settings = {
-        isCelsius: state.isCelsius,
-        isKmH: state.isKmH,
-        isMm: state.isMm,
-        isMb: state.isMb,
-        isKm: state.isKm,
+        isCelsius: state.settings.isCelsius,
+        isKmH: state.settings.isKmH,
+        isMm: state.settings.isMm,
+        isMb: state.settings.isMb,
+        isKm: state.settings.isKm,
       };
       let location = {
         city: state.city,
