@@ -25,6 +25,8 @@
 
 <script>
 import { mapState } from "vuex";
+// import geoLocation from "./geoLocation";
+import { geoLocation } from "./helpers/geoLocation";
 import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
@@ -40,6 +42,7 @@ export default {
     SearchBar,
     PrimaryButton,
   },
+  mixins: [geoLocation],
   methods: {
     getCurrentDate() {
       return new Date().toISOString().slice(0, 10);
@@ -55,23 +58,23 @@ export default {
     }),
   },
   beforeCreate() {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser");
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.$store.commit(
-            "setCity",
-            `${position.coords.latitude},${position.coords.longitude}`
-          );
-          console.log(this.$store.state.city);
-          this.$store.dispatch("fetchWeather");
-        },
-        (error) => {
-          alert(error.message);
-        }
-      );
-    }
+    // if (!navigator.geolocation) {
+    //   alert("Geolocation is not supported by your browser");
+    // } else {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       this.$store.commit(
+    //         "setCity",
+    //         `${position.coords.latitude},${position.coords.longitude}`
+    //       );
+    //       console.log(this.$store.state.city);
+    //       this.$store.dispatch("fetchWeather");
+    //     },
+    //     (error) => {
+    //       alert(error.message);
+    //     }
+    //   );
+    // }
     this.$store.dispatch("settings/initialiseSettings");
     this.$store.commit("initialiseStore");
   },
