@@ -8,6 +8,7 @@ export default createStore({
     searchCity: "",
     country: "Romania",
     date: "2020-01-01",
+    hourIndex: 0,
     forecast: [],
     astronomy: [],
     currentWeather: null,
@@ -27,6 +28,10 @@ export default createStore({
     },
     setCurrentWeather(state, currentWeather) {
       state.currentWeather = currentWeather;
+    },
+    setHourIndex(state, hourIndex) {
+      state.hourIndex = hourIndex;
+      console.log(state.hourIndex);
     },
     setSearchCities(state, searchCities) {
       state.searchCities = searchCities;
@@ -78,7 +83,7 @@ export default createStore({
       axios
         .all([
           axios.get(
-            `http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=no&alerts=no`
+            `http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=yes&alerts=no`
           ),
           axios.get(
             `https://api.weatherapi.com/v1/astronomy.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&dt=${this.state.date}`
@@ -111,6 +116,9 @@ export default createStore({
         .catch((error) => {
           console.log(error);
         });
+    },
+    setHourIndex({ commit }, hourIndex) {
+      commit("setHourIndex", hourIndex);
     },
   },
   modules: {

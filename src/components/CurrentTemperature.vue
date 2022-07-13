@@ -31,11 +31,17 @@
 import { mapState } from "vuex";
 export default {
   name: "CurrentTemperature",
+  data() {
+    return {
+      currentDayId: 0,
+    };
+  },
   computed: {
     ...mapState({
       currentWeather: (state) => state.currentWeather,
       forecast: (state) => state.forecast,
       isCelsius: (state) => state.settings.isCelsius,
+      hourIndex: (state) => state.hourIndex,
     }),
     name() {
       return this.currentWeather.location.name;
@@ -43,27 +49,30 @@ export default {
     region() {
       return this.currentWeather.location.region;
     },
-    city() {
-      return this.currentWeather.location.name;
-    },
     country() {
       return this.currentWeather.location.country;
     },
     weatherImage() {
-      return this.currentWeather.current.condition.icon;
+      return this.forecast[this.currentDayId].hour[this.hourIndex].condition
+        .icon;
     },
     weatherCondition() {
-      return this.currentWeather.current.condition.text;
+      return this.forecast[this.currentDayId].hour[this.hourIndex].condition
+        .text;
     },
     temperature() {
       return this.isCelsius
-        ? `${this.currentWeather.current.temp_c}°C`
-        : `${this.currentWeather.current.temp_f}°F`;
+        ? `${this.forecast[this.currentDayId].hour[this.hourIndex].temp_c}°C`
+        : `${this.forecast[this.currentDayId].hour[this.hourIndex].temp_f}°F`;
     },
     feelsLikeTemp() {
       return this.isCelsius
-        ? `${this.currentWeather.current.feelslike_c}°C`
-        : `${this.currentWeather.current.feelslike_f}°F`;
+        ? `${
+            this.forecast[this.currentDayId].hour[this.hourIndex].feelslike_c
+          }°C`
+        : `${
+            this.forecast[this.currentDayId].hour[this.hourIndex].feelslike_f
+          }°F`;
     },
     highTemp() {
       return this.isCelsius

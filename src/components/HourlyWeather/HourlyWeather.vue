@@ -5,7 +5,7 @@
       :key="index"
       @click="
         deactivateAllHours();
-        toggleActiveHour(index);
+        activateHour(index);
       "
       :class="{ active: isActiveHour[index] }"
     >
@@ -17,7 +17,7 @@
 
 <script>
 import Hours from "./Hours.vue";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "HourlyWeather",
@@ -32,13 +32,15 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["setHourIndex"]),
     temperature(hour) {
       return this.isCelsius
         ? `${this.forecast[this.currentDayId].hour[hour].temp_c}°C`
         : `${this.forecast[this.currentDayId].hour[hour].temp_f}°F`;
     },
-    toggleActiveHour(index) {
+    activateHour(index) {
       this.isActiveHour[index] = !this.isActiveHour[index];
+      this.setHourIndex(this.hours[index]);
     },
     deactivateAllHours() {
       this.isActiveHour = this.isActiveHour.map(() => false);
@@ -61,11 +63,13 @@ export default {
   computed: {
     ...mapState({
       forecast: (state) => state.forecast,
+      hourIndex: (state) => state.hourIndex,
       isCelsius: (state) => state.settings.isCelsius,
     }),
   },
   created() {
     this.getNextHours(8);
+    this.setHourIndex(this.hours[0]);
   },
 };
 </script>
