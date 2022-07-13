@@ -4,10 +4,10 @@ import settings from "./modules/settings";
 
 export default createStore({
   state: {
-    city: "Sibiu",
+    city: "",
     searchCity: "",
-    country: "Romania",
-    date: "2020-01-01",
+    country: "",
+    date: "",
     hourIndex: 0,
     dayIndex: 0,
     forecast: [],
@@ -70,9 +70,6 @@ export default createStore({
       state.city = state.favoriteCities[index];
     },
     initialiseStore(state) {
-      if (localStorage.getItem("location")) {
-        Object.assign(state, JSON.parse(localStorage.getItem("location")));
-      }
       if (localStorage.getItem("favoriteCities")) {
         Object.assign(
           state,

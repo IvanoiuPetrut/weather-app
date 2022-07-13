@@ -3,18 +3,23 @@
     <SearchBar></SearchBar>
     <Meniu></Meniu>
   </nav>
-  <PrimaryButton :onClick="addCity">Add city</PrimaryButton>
-  <CurrentWeather class="current-weather"></CurrentWeather>
-  <div class="forecast container">
-    <h2 class="heading--tertiary">3-day forecast</h2>
-    <div class="days-temperature">
-      <DayTemperature
-        v-for="(day, index) in $store.state.forecast"
-        :key="index"
-        :currentDayId="index"
-        :dayIndex="this.dayIndex"
-      ></DayTemperature>
+  <div v-if="this.city.length > 0">
+    <PrimaryButton :onClick="addCity">Add city</PrimaryButton>
+    <CurrentWeather class="current-weather"></CurrentWeather>
+    <div class="forecast container">
+      <h2 class="heading--tertiary">3-day forecast</h2>
+      <div class="days-temperature">
+        <DayTemperature
+          v-for="(day, index) in $store.state.forecast"
+          :key="index"
+          :currentDayId="index"
+          :dayIndex="this.dayIndex"
+        ></DayTemperature>
+      </div>
     </div>
+  </div>
+  <div v-else>
+    <h2 class="heading--tertiary">Please enter a city</h2>
   </div>
 </template>
 
@@ -46,15 +51,35 @@ export default {
   computed: {
     ...mapState({
       dayIndex: (state) => state.dayIndex,
+      city: (state) => state.city,
     }),
   },
   beforeCreate() {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser");
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.$store.commit(
+            "setCity",
+            `${position.coords.latitude},${position.coords.longitude}`
+          );
+          console.log(this.$store.state.city);
+          this.$store.dispatch("fetchWeather");
+        },
+        (error) => {
+          alert(error.message);
+        }
+      );
+    }
     this.$store.dispatch("settings/initialiseSettings");
     this.$store.commit("initialiseStore");
   },
   created() {
     this.$store.commit("setCurrentDate");
-    this.$store.dispatch("fetchWeather");
+    if (this.$store.state.city.length > 0) {
+      this.$store.dispatch("fetchWeather");
+    }
     this.$store.subscribe((mutation, state) => {
       let settings = {
         isCelsius: state.settings.isCelsius,
@@ -63,14 +88,11 @@ export default {
         isMb: state.settings.isMb,
         isKm: state.settings.isKm,
       };
-      let location = {
-        city: state.city,
-      };
+
       let favoriteCities = {
         favoriteCities: state.favoriteCities,
       };
 
-      localStorage.setItem("location", JSON.stringify(location));
       localStorage.setItem("settings", JSON.stringify(settings));
       localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
     });
