@@ -12,12 +12,14 @@
         v-for="(day, index) in $store.state.forecast"
         :key="index"
         :currentDayId="index"
+        :dayIndex="this.dayIndex"
       ></DayTemperature>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
@@ -40,6 +42,11 @@ export default {
     addCity() {
       this.$store.commit("addCity");
     },
+  },
+  computed: {
+    ...mapState({
+      dayIndex: (state) => state.dayIndex,
+    }),
   },
   beforeCreate() {
     this.$store.dispatch("settings/initialiseSettings");
@@ -72,6 +79,15 @@ export default {
 </script>
 
 <style lang="scss">
+@mixin glass-morph {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 body {
   background-image: linear-gradient(
       to bottom,
@@ -97,6 +113,7 @@ body {
 }
 
 .days-temperature {
+  @include glass-morph();
   display: flex;
   justify-content: center;
   gap: 0.8rem;

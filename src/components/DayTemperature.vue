@@ -1,21 +1,23 @@
 <template>
-  <div class="card">
-    <h3 class="day heading--tertiary margin-bottom--sm">{{ dayName }}</h3>
-    <img
-      class="weather-image margin-bottom--md"
-      :src="weatherImage"
-      :alt="weatherCondition"
-    />
-    <div class="temperature margin-bottom--sm">
-      <p class="temperature__high">H: {{ highTemp }}</p>
-      <p class="temperature__low">L: {{ lowTemp }}</p>
+  <div
+    class="card"
+    @click="activateDay"
+    :class="{ active: currentDayId === dayIndex }"
+  >
+    <h3 class="heading--tertiary margin-bottom--sm">{{ dayName }}</h3>
+    <div class="weather margin-bottom--sm">
+      <img class="weather__image" :src="weatherImage" :alt="weatherCondition" />
+      <div class="weather__temperature">
+        <p class="temperature__high">{{ highTemp }}</p>
+        <p class="temperature__low">{{ lowTemp }}</p>
+      </div>
     </div>
     <p class="weather">{{ weatherCondition }}</p>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "DayTemperature",
   props: {
@@ -23,8 +25,16 @@ export default {
       type: Number,
       required: true,
     },
+    dayIndex: {
+      type: Number,
+      required: true,
+    },
   },
   methods: {
+    ...mapActions(["setDayIndex"]),
+    activateDay() {
+      this.setDayIndex(this.currentDayId);
+    },
     getDayName(dateStr, locale) {
       var date = new Date(dateStr);
       return date.toLocaleDateString(locale, { weekday: "long" });
@@ -59,48 +69,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin card($theme: DarkGray) {
-  background-color: $theme;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
 @mixin flex-column {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-@mixin glass-morph {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
 .card {
+  @include flex-column();
   color: #f1f3f5;
   width: 12rem;
-  @include flex-column();
-  @include card();
-  @include glass-morph();
+  padding: 0.8rem;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}
+
+.active {
+  .heading--tertiary {
+    color: #339af0;
+  }
+  transform: scale(1);
 }
 
 .heading--tertiary {
+  font-size: 1.4rem;
   text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-> .temperature {
-  display: flex;
-  gap: 1.6rem;
-
-  letter-spacing: 0.5px;
-}
-
 .weather {
-  color: #e9ecef;
+  display: flex;
+  gap: 0.8rem;
   font-size: 1rem;
   letter-spacing: 0.5px;
 }

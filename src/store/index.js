@@ -9,6 +9,7 @@ export default createStore({
     country: "Romania",
     date: "2020-01-01",
     hourIndex: 0,
+    dayIndex: 0,
     forecast: [],
     astronomy: [],
     currentWeather: null,
@@ -31,7 +32,9 @@ export default createStore({
     },
     setHourIndex(state, hourIndex) {
       state.hourIndex = hourIndex;
-      console.log(state.hourIndex);
+    },
+    setDayIndex(state, dayIndex) {
+      state.dayIndex = dayIndex;
     },
     setSearchCities(state, searchCities) {
       state.searchCities = searchCities;
@@ -119,6 +122,9 @@ export default createStore({
     },
     setHourIndex({ commit }, hourIndex) {
       commit("setHourIndex", hourIndex);
+    },
+    setDayIndex({ commit }, dayIndex) {
+      commit("setDayIndex", dayIndex);
     },
   },
   modules: {

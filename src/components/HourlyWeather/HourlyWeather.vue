@@ -27,8 +27,8 @@ export default {
   data() {
     return {
       hours: [],
-      currentDayId: 0,
       isActiveHour: [],
+      currentDayId: 0,
     };
   },
   methods: {

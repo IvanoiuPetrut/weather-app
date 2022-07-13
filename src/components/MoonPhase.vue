@@ -70,14 +70,14 @@ export default {
   },
   computed: {
     ...mapState({
-      date: (state) => state.date,
-      astronomy: (state) => state.astronomy,
+      forecast: (state) => state.forecast,
+      dayIndex: (state) => state.dayIndex,
     }),
     currentDate() {
-      return this.formatDate(this.date);
+      return this.formatDate(this.forecast[this.dayIndex].date);
     },
     moonPhase() {
-      return this.astronomy.moon_phase;
+      return this.forecast[this.dayIndex].astro.moon_phase;
     },
     moonPhaseIcon() {
       return this.moonPhaseTable.find((moonPhase) => {
@@ -85,16 +85,16 @@ export default {
       }).icon;
     },
     sunRise() {
-      return this.astronomy.sunrise;
+      return this.forecast[this.dayIndex].astro.sunrise;
     },
     sunSet() {
-      return this.astronomy.sunset;
+      return this.forecast[this.dayIndex].astro.sunset;
     },
     moonRise() {
-      return this.astronomy.moonrise;
+      return this.forecast[this.dayIndex].astro.moonrise;
     },
     moonSet() {
-      return this.astronomy.moonset;
+      return this.forecast[this.dayIndex].astro.moonset;
     },
   },
 };
