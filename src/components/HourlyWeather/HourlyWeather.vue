@@ -35,8 +35,8 @@ export default {
     ...mapActions(["setHourIndex"]),
     temperature(hour) {
       return this.isCelsius
-        ? `${this.forecast[this.currentDayId].hour[hour].temp_c}°C`
-        : `${this.forecast[this.currentDayId].hour[hour].temp_f}°F`;
+        ? `${this.forecast[this.dayIndex].hour[hour].temp_c}°C`
+        : `${this.forecast[this.dayIndex].hour[hour].temp_f}°F`;
     },
     activateHour(index) {
       this.isActiveHour[index] = !this.isActiveHour[index];
@@ -63,8 +63,9 @@ export default {
   computed: {
     ...mapState({
       forecast: (state) => state.forecast,
-      hourIndex: (state) => state.hourIndex,
       isCelsius: (state) => state.settings.isCelsius,
+      hourIndex: (state) => state.hourIndex,
+      dayIndex: (state) => state.dayIndex,
     }),
   },
   created() {
