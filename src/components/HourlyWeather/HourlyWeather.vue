@@ -12,17 +12,20 @@
       {{ temperature(hour) }}
     </li>
   </ul>
+  <GraphicTemp></GraphicTemp>
   <Hours :hours="hours"></Hours>
 </template>
 
 <script>
-import Hours from "./Hours.vue";
 import { mapActions, mapState } from "vuex";
+import Hours from "./Hours.vue";
+import GraphicTemp from "../GraphicTemp.vue";
 
 export default {
   name: "HourlyWeather",
   components: {
     Hours,
+    GraphicTemp,
   },
   data() {
     return {
