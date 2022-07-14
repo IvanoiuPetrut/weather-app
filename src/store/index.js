@@ -80,26 +80,22 @@ export default createStore({
   },
   actions: {
     fetchWeather({ commit }) {
-      axios
-        .all([
-          axios.get(
-            `http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=yes&alerts=no`
-          ),
-          axios.get(
-            `https://api.weatherapi.com/v1/astronomy.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&dt=${this.state.date}`
-          ),
-          axios.get(
-            `https://api.weatherapi.com/v1/current.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&aqi=yes`
-          ),
-        ])
-        .then(
-          axios.spread((forecast, astronomy, currentWeather) => {
-            commit("setForecast", forecast.data.forecast.forecastday);
-            commit("setAstronomy", astronomy.data.astronomy.astro);
-            commit("setCurrentWeather", currentWeather.data);
-            console.log(currentWeather.data);
-          })
-        )
+      Promise.all([
+        axios.get(
+          `http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=yes&alerts=no`
+        ),
+        axios.get(
+          `https://api.weatherapi.com/v1/astronomy.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&dt=${this.state.date}`
+        ),
+        axios.get(
+          `https://api.weatherapi.com/v1/current.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&aqi=yes`
+        ),
+      ])
+        .then(([forecast, astronomy, currentWeather]) => {
+          commit("setForecast", forecast.data.forecast.forecastday);
+          commit("setAstronomy", astronomy.data.astronomy.astro);
+          commit("setCurrentWeather", currentWeather.data);
+        })
         .catch((error) => {
           console.log(error);
         });
