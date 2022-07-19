@@ -26,7 +26,6 @@ export default {
   },
   data() {
     return {
-      temp: [23, 23, 50, 70, 23, 23, 23, 23],
       hours: [],
       isActiveHour: [],
       currentDayId: 0,

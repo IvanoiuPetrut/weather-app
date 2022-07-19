@@ -108,10 +108,6 @@ body {
   background-attachment: fixed;
 }
 
-.current-weather {
-  margin-top: 4.8rem;
-}
-
 .forecast {
   display: flex;
   flex-direction: column;

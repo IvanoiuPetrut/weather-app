@@ -1,36 +1,73 @@
 <template>
-  <div class="card">
-    <h2 class="heading--secondary">
-      <span v-if="name !== region">{{ name }},</span> {{ region }},
-      {{ country }}
-    </h2>
-    <div class="temperature__wrapper">
-      <img
-        class="temperature__image"
-        :src="weatherImage"
-        :alt="weatherCondition"
-      />
-      <div class="temperature">
-        <div>
-          <p class="temperature__now">{{ temperature }}</p>
-          <span class="temperature_feels-like"
-            >Feels like:
-            <p>{{ feelsLikeTemp }}</p></span
-          >
-        </div>
-        <div>
-          <p class="temperature__high margin-bottom--sm">H: {{ highTemp }}</p>
-          <p class="temperature__low">L: {{ lowTemp }}</p>
-        </div>
+  <div class="temperature">
+    <img
+      class="temperature__image"
+      :src="weatherImage"
+      :alt="weatherCondition"
+    />
+    <div class="weather">
+      <p class="temperature__current-temp">{{ temperature }}</p>
+      <div class="temperature__wrapper">
+        <p class="temperature__high">High: {{ highTemp }}</p>
+        <hr />
+        <p class="temperature__low">Low: {{ lowTemp }}</p>
       </div>
+    </div>
+    <p class="temperature__feels-like margin-bottom--sm">
+      Feels like: {{ feelsLikeTemp }}
+    </p>
+    <p class="temperature__condition margin-bottom--md">
+      Weather Condition: {{ weatherCondition }}
+    </p>
+    <hr class="margin-bottom--md hr--secondary" />
+    <div class="region__wrapper">
+      <h2 class="heading--secondary margin-bottom--sm">
+        <span v-if="name !== region">{{ name }},</span> {{ region }},
+        {{ country }}
+      </h2>
+      <PrimaryButton :onClick="addCity" class="btn">+</PrimaryButton>
+    </div>
+    <div class="date__wrapper">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
+      </svg>
+      <p class="temperature__date">{{ currentDate }}</p>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import PrimaryButton from "./PrimaryButton.vue";
 export default {
   name: "CurrentTemperature",
+  components: {
+    PrimaryButton,
+  },
+  methods: {
+    addCity() {
+      this.$store.commit("addCity");
+    },
+    formatDate(dateStr) {
+      var date = new Date(dateStr);
+      return date.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+    },
+  },
   computed: {
     ...mapState({
       currentWeather: (state) => state.currentWeather,
@@ -47,6 +84,9 @@ export default {
     },
     country() {
       return this.currentWeather.location.country;
+    },
+    currentDate() {
+      return this.formatDate(this.forecast[this.dayIndex].date);
     },
     weatherImage() {
       return this.forecast[this.dayIndex].hour[this.hourIndex].condition.icon;
@@ -66,74 +106,97 @@ export default {
     },
     highTemp() {
       return this.isCelsius
-        ? `${this.forecast[0].day.maxtemp_c}°C`
-        : `${this.forecast[0].day.maxtemp_f}°F`;
+        ? `${this.forecast[this.dayIndex].day.maxtemp_c}°C`
+        : `${this.forecast[this.dayIndex].day.maxtemp_f}°F`;
     },
     lowTemp() {
       return this.isCelsius
-        ? `${this.forecast[0].day.mintemp_c}°C`
-        : `${this.forecast[0].day.mintemp_f}°F`;
+        ? `${this.forecast[this.dayIndex].day.mintemp_c}°C`
+        : `${this.forecast[this.dayIndex].day.mintemp_f}°F`;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@mixin card($theme: DarkGray) {
-  background-color: $theme;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-@mixin flex-column {
+@use "../assets/style/colors.scss";
+.temperature {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 1rem;
+  height: 100vh;
+  background-color: colors.$primary-color;
+  &__image {
+    width: 80%;
+    height: auto;
+    align-self: center;
+  }
+  &__current-temp {
+    font-size: 3.2rem;
+    color: colors.$text-color;
+  }
+  &__feels-like {
+    color: colors.$secondary-color;
+    font-weight: 600;
+  }
+  &__condition {
+    color: colors.$text-color;
+  }
+
+  .weather {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    .temperature__high {
+      color: colors.$secondary-color;
+    }
+    .temperature__low {
+      color: colors.$secondary-color;
+    }
+  }
 }
 
-@mixin flex-row {
+.region__wrapper {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.8;
+  .heading--secondary {
+    color: colors.$text-color;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+  .btn {
+    color: colors.$primary-color;
+    background-color: colors.$text-color;
+    font-size: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 11%;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
-@mixin glass-morph {
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(34, 34, 35, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-.card {
-  color: #f1f3f5;
-  // width: 12rem;
-  @include flex-column();
-  @include card(none);
-}
-.temperature__wrapper {
-  @include flex-row();
-}
-.temperature__image {
-  width: 10rem;
-  height: auto;
+.date__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
-.temperature {
-  @include flex-row();
-  gap: 2.8rem;
+.hr--secondary {
+  border-color: colors.$secondary-color;
 }
 
-.temperature__now {
-  display: block;
-  font-size: 3.2rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.temperature_feels-like {
-  display: block;
-  font-size: 1.2rem;
-  text-align: center;
+.heading--secondary {
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 </style>
