@@ -25,7 +25,7 @@
         <span v-if="name !== region">{{ name }},</span> {{ region }},
         {{ country }}
       </h2>
-      <PrimaryButton :onClick="addCity" class="btn">+</PrimaryButton>
+      <PrimaryButton :onClick="addCity" :tooltip="tooltip">+</PrimaryButton>
     </div>
     <div class="date__wrapper">
       <svg
@@ -54,6 +54,11 @@ export default {
   name: "CurrentTemperature",
   components: {
     PrimaryButton,
+  },
+  data() {
+    return {
+      tooltip: "Add city",
+    };
   },
   methods: {
     addCity() {
@@ -170,18 +175,6 @@ export default {
     color: colors.$text-color;
     font-size: 1.6rem;
     font-weight: 600;
-  }
-  .btn {
-    color: colors.$primary-color;
-    background-color: colors.$text-color;
-    font-size: 1rem;
-    width: 1.6rem;
-    height: 1.6rem;
-    border-radius: 11%;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      transform: scale(1.1);
-    }
   }
 }
 
