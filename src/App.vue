@@ -4,7 +4,6 @@
     <Meniu></Meniu>
   </nav>
   <div v-if="this.city.length > 0">
-    <PrimaryButton :onClick="addCity">Add city</PrimaryButton>
     <CurrentWeather class="current-weather"></CurrentWeather>
     <div class="forecast container">
       <h2 class="heading--tertiary">3-day forecast</h2>
@@ -30,7 +29,6 @@ import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
 import SearchBar from "./components/SearchBar.vue";
-import PrimaryButton from "./components/PrimaryButton.vue";
 
 export default {
   name: "App",
@@ -39,15 +37,11 @@ export default {
     CurrentWeather,
     Meniu,
     SearchBar,
-    PrimaryButton,
   },
   mixins: [geoLocation],
   methods: {
     getCurrentDate() {
       return new Date().toISOString().slice(0, 10);
-    },
-    addCity() {
-      this.$store.commit("addCity");
     },
   },
   computed: {
