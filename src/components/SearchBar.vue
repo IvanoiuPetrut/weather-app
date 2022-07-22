@@ -110,9 +110,8 @@ export default {
 
 <style lang="scss" scoped>
 .search {
-  margin: 0.6rem 0 0 7.2rem;
   height: 40px;
-  width: 300px;
+  width: 100%;
 
   &__bar {
     display: flex;

@@ -1,5 +1,6 @@
 <template>
   <div class="temperature">
+    <SearchBar class="temperature__search-bar"></SearchBar>
     <img
       class="temperature__image"
       :src="weatherImage"
@@ -52,10 +53,12 @@
 <script>
 import { mapState } from "vuex";
 import PrimaryButton from "./PrimaryButton.vue";
+import SearchBar from "./SearchBar.vue";
 export default {
   name: "CurrentTemperature",
   components: {
     PrimaryButton,
+    SearchBar,
   },
   data() {
     return {
@@ -133,6 +136,11 @@ export default {
   padding: 1rem;
   height: 100vh;
   background-color: colors.$primary-color;
+
+  // &__search-bar {
+  //   align-self: center;
+  // }
+
   &__image {
     width: 80%;
     height: auto;
