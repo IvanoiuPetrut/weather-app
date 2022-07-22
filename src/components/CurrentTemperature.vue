@@ -20,12 +20,14 @@
       Weather Condition: {{ weatherCondition }}
     </p>
     <hr class="margin-bottom--md hr--secondary" />
-    <div class="region__wrapper">
-      <h2 class="heading--secondary margin-bottom--sm">
-        <span v-if="name !== region">{{ name }},</span> {{ region }},
-        {{ country }}
-      </h2>
-      <PrimaryButton :onClick="addCity" :tooltip="tooltip">+</PrimaryButton>
+    <div class="margin-bottom--sm">
+      <p class="country margin-bottom--sm">{{ country }}</p>
+      <div class="region__wrapper margin-bottom--sm">
+        <h2 class="heading--secondary">
+          <span v-if="name !== region">{{ name }},</span> {{ region }}
+        </h2>
+        <PrimaryButton :onClick="addCity" :tooltip="tooltip">+</PrimaryButton>
+      </div>
     </div>
     <div class="date__wrapper">
       <svg
@@ -165,12 +167,19 @@ export default {
     }
   }
 }
+.country {
+  display: inline-block;
+  font-weight: bold;
+  color: colors.$primary-color;
+  background-color: colors.$secondary-color;
+  padding: 0.1rem 0.6rem;
+  border-radius: 7px;
+}
 
 .region__wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8;
   .heading--secondary {
     color: colors.$text-color;
     font-size: 1.6rem;
