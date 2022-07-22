@@ -109,6 +109,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "../assets/style/colors.scss";
+
 .search {
   height: 40px;
   width: 100%;

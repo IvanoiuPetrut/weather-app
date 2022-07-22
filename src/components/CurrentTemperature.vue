@@ -137,10 +137,6 @@ export default {
   height: 100vh;
   background-color: colors.$primary-color;
 
-  // &__search-bar {
-  //   align-self: center;
-  // }
-
   &__image {
     width: 80%;
     height: auto;
