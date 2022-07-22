@@ -1,6 +1,5 @@
 <template>
   <nav>
-    <SearchBar></SearchBar>
     <Meniu></Meniu>
   </nav>
   <div v-if="this.city.length > 0">
@@ -28,7 +27,6 @@ import { geoLocation } from "./helpers/geoLocation";
 import DayTemperature from "./components/DayTemperature.vue";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import Meniu from "./components/Meniu.vue";
-import SearchBar from "./components/SearchBar.vue";
 
 export default {
   name: "App",
@@ -36,7 +34,6 @@ export default {
     DayTemperature,
     CurrentWeather,
     Meniu,
-    SearchBar,
   },
   mixins: [geoLocation],
   methods: {
