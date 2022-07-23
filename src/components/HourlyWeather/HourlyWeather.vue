@@ -9,7 +9,7 @@
       "
       :class="{ active: isActiveHour[index] }"
     >
-      {{ temperature(hour) }}
+      <p class="hours__temperature">{{ temperature(hour) }}</p>
       <WeatherImg :hourIndex="hours[index]"></WeatherImg>
       <Hours :hours="hours" :hourIndex="index"></Hours>
     </li>
@@ -92,11 +92,16 @@ export default {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   gap: 1.2rem;
+  &__temperature {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
   li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.2rem 0.4rem;
+    background-color: colors.$primary-color;
+    padding: 0.6rem 1.2rem;
     border-radius: 7px;
     &:hover {
       color: #339af0;
@@ -107,6 +112,5 @@ export default {
 }
 .active {
   color: #339af0;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>

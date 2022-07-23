@@ -147,7 +147,7 @@ export default {
     color: colors.$text-color;
   }
   &__feels-like {
-    color: colors.$secondary-color;
+    color: colors.$text-color-secondary;
     font-weight: 600;
   }
   &__condition {
@@ -164,10 +164,10 @@ export default {
     flex-direction: column;
     gap: 0.2rem;
     .temperature__high {
-      color: colors.$secondary-color;
+      color: colors.$text-color-secondary;
     }
     .temperature__low {
-      color: colors.$secondary-color;
+      color: colors.$text-color-secondary;
     }
   }
 }
@@ -175,7 +175,7 @@ export default {
   display: inline-block;
   font-weight: bold;
   color: colors.$primary-color;
-  background-color: colors.$secondary-color;
+  background-color: colors.$text-color-secondary;
   padding: 0.1rem 0.6rem;
   border-radius: 7px;
 }
@@ -198,7 +198,7 @@ export default {
 }
 
 .hr--secondary {
-  border-color: colors.$secondary-color;
+  border-color: colors.$text-color-secondary;
 }
 
 .heading--secondary {
