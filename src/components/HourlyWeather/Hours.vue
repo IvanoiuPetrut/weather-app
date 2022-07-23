@@ -1,7 +1,5 @@
 <template>
-  <ul class="hours">
-    <li v-for="(hour, index) in hours" :key="index">{{ hour }}:00</li>
-  </ul>
+  <p>{{ hours[hourIndex] }}:00</p>
 </template>
 
 <script>
@@ -10,6 +8,10 @@ export default {
   props: {
     hours: {
       type: Array,
+      required: true,
+    },
+    hourIndex: {
+      type: Number,
       required: true,
     },
   },

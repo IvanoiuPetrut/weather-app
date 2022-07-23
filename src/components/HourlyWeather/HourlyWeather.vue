@@ -10,9 +10,9 @@
       :class="{ active: isActiveHour[index] }"
     >
       {{ temperature(hour) }}
+      <Hours :hours="hours" :hourIndex="index"></Hours>
     </li>
   </ul>
-  <Hours :hours="hours"></Hours>
 </template>
 
 <script>
