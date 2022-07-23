@@ -76,10 +76,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "../../assets/style/colors.scss";
 .hours {
+  font-size: 1.4rem;
   color: #fff;
   display: grid;
-  grid-template-columns: repeat(8, 3.2rem);
+  grid-template-columns: repeat(8, 1fr);
   gap: 1.2rem;
   li {
     justify-self: center;

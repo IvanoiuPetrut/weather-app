@@ -1,11 +1,11 @@
 <template>
   <div class="weather" v-if="this.$store.state.currentWeather">
-    <div class="weather__row">
+    <CurrentTemperature></CurrentTemperature>
+    <div class="weather__widgets">
+      <HourlyWeather></HourlyWeather>
       <WeatherQualities></WeatherQualities>
-      <CurrentTemperature></CurrentTemperature>
       <MoonPhase></MoonPhase>
     </div>
-    <HourlyWeather></HourlyWeather>
   </div>
 </template>
 
@@ -27,15 +27,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "../assets/style/colors.scss";
 .weather {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  &__row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  &__widgets {
+    background-color: colors.$secondary-color;
+    padding: 3.2rem 4.8rem;
   }
 }
 </style>

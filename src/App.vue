@@ -112,11 +112,4 @@ body {
   justify-content: center;
   gap: 0.8rem;
 }
-
-.current-weather {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4.8rem;
-}
 </style>
