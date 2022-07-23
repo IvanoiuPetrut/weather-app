@@ -148,6 +148,7 @@ export default {
     transition: 0.3s all ease-in-out;
     &:hover {
       background-color: colors.$accent-color;
+      border-color: colors.$accent-color;
     }
     .icon {
       width: 1.4rem;

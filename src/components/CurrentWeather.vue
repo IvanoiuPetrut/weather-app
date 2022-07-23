@@ -2,8 +2,14 @@
   <div class="weather" v-if="this.$store.state.currentWeather">
     <CurrentTemperature></CurrentTemperature>
     <div class="weather__widgets">
-      <HourlyWeather></HourlyWeather>
-      <WeatherQualities></WeatherQualities>
+      <div class="weather__hourly">
+        <p class="weather__title">Hourly Weather</p>
+        <HourlyWeather></HourlyWeather>
+      </div>
+      <div class="weather__qualities">
+        <p class="weather__title">Today's Higlights</p>
+        <WeatherQualities></WeatherQualities>
+      </div>
       <MoonPhase></MoonPhase>
     </div>
   </div>
@@ -32,8 +38,22 @@ export default {
   display: grid;
   grid-template-columns: 1fr 3fr;
   &__widgets {
-    background-color: colors.$secondary-color;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    height: 100vh;
+    overflow-y: auto;
     padding: 3.2rem 4.8rem;
+    background-color: colors.$secondary-color;
+  }
+  &__title {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 7px;
+    font-weight: bold;
+    background-color: colors.$primary-color;
+    margin-bottom: 1.6rem;
   }
 }
 </style>

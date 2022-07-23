@@ -104,13 +104,13 @@ export default {
     padding: 0.6rem 1.2rem;
     border-radius: 7px;
     &:hover {
-      color: #339af0;
+      color: colors.$accent-color;
       background-color: rgba(0, 0, 0, 0.5);
       cursor: pointer;
     }
   }
 }
 .active {
-  color: #339af0;
+  color: colors.$accent-color;
 }
 </style>
