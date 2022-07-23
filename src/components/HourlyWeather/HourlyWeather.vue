@@ -10,6 +10,7 @@
       :class="{ active: isActiveHour[index] }"
     >
       {{ temperature(hour) }}
+      <img :src="weatherImage" :alt="weatherCondition" />
       <Hours :hours="hours" :hourIndex="index"></Hours>
     </li>
   </ul>
@@ -67,6 +68,12 @@ export default {
       hourIndex: (state) => state.hourIndex,
       dayIndex: (state) => state.dayIndex,
     }),
+    weatherImage() {
+      return this.forecast[this.dayIndex].hour[this.hourIndex].condition.icon;
+    },
+    weatherCondition() {
+      return this.forecast[this.dayIndex].hour[this.hourIndex].condition.text;
+    },
   },
   created() {
     this.getNextHours(8);
@@ -84,7 +91,9 @@ export default {
   grid-template-columns: repeat(8, 1fr);
   gap: 1.2rem;
   li {
-    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0.2rem 0.4rem;
     border-radius: 7px;
     &:hover {

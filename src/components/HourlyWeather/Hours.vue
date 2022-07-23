@@ -17,14 +17,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.hours {
-  color: #fff;
-  display: grid;
-  grid-template-columns: repeat(8, 3.2rem);
-  li {
-    justify-self: center;
-  }
-}
-</style>
