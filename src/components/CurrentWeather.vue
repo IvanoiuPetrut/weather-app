@@ -11,15 +11,28 @@
         <WeatherQualities></WeatherQualities>
       </div>
       <MoonPhase></MoonPhase>
+      <div>
+        <p class="weather__title">Forecast</p>
+        <div class="weather__forecast">
+          <DayTemperature
+            v-for="(day, index) in $store.state.forecast"
+            :key="index"
+            :currentDayId="index"
+            :dayIndex="this.dayIndex"
+          ></DayTemperature>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import WeatherQualities from "./WeatherQualities.vue";
 import CurrentTemperature from "./CurrentTemperature.vue";
 import MoonPhase from "./MoonPhase.vue";
 import HourlyWeather from "./HourlyWeather/HourlyWeather.vue";
+import DayTemperature from "./DayTemperature.vue";
 
 export default {
   name: "CurrentWeather",
@@ -28,6 +41,12 @@ export default {
     CurrentTemperature,
     MoonPhase,
     HourlyWeather,
+    DayTemperature,
+  },
+  computed: {
+    ...mapState({
+      dayIndex: (state) => state.dayIndex,
+    }),
   },
 };
 </script>
@@ -54,6 +73,10 @@ export default {
     font-weight: bold;
     background-color: colors.$primary-color;
     margin-bottom: 1.6rem;
+  }
+  &__forecast {
+    display: flex;
+    gap: 0.2rem;
   }
 }
 </style>
