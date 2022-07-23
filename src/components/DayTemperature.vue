@@ -69,6 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "../assets/style/colors.scss";
+
 @mixin flex-column {
   display: flex;
   flex-direction: column;
@@ -78,7 +80,9 @@ export default {
   @include flex-column();
   color: #f1f3f5;
   width: 12rem;
-  padding: 0.8rem;
+  padding: 0.8rem 0.4rem;
+  border-radius: 7px;
+  background-color: colors.$primary-color;
   transition: all 0.3s ease-in-out;
   &:hover {
     transform: scale(1.05);
@@ -88,7 +92,7 @@ export default {
 
 .active {
   .heading--tertiary {
-    color: #339af0;
+    color: colors.$accent-color;
   }
   transform: scale(1);
 }

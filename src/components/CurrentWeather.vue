@@ -7,19 +7,20 @@
         <HourlyWeather></HourlyWeather>
       </div>
       <div class="weather__qualities">
-        <p class="weather__title">Today's Higlights</p>
-        <WeatherQualities></WeatherQualities>
-      </div>
-      <MoonPhase></MoonPhase>
-      <div>
-        <p class="weather__title">Forecast</p>
-        <div class="weather__forecast">
-          <DayTemperature
-            v-for="(day, index) in $store.state.forecast"
-            :key="index"
-            :currentDayId="index"
-            :dayIndex="this.dayIndex"
-          ></DayTemperature>
+        <p class="weather__title">Weather Highlights</p>
+        <div class="grid">
+          <div class="flex">
+            <div class="weather__forecast">
+              <DayTemperature
+                v-for="(day, index) in $store.state.forecast"
+                :key="index"
+                :currentDayId="index"
+                :dayIndex="this.dayIndex"
+              ></DayTemperature>
+            </div>
+            <WeatherQualities class="weather__highlights"></WeatherQualities>
+          </div>
+          <MoonPhase class="weather__moon-phase"></MoonPhase>
         </div>
       </div>
     </div>
@@ -74,9 +75,29 @@ export default {
     background-color: colors.$primary-color;
     margin-bottom: 1.6rem;
   }
+  &__qualities {
+    .flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3.2rem;
+    }
+  }
   &__forecast {
     display: flex;
-    gap: 0.2rem;
+    gap: 1.6rem;
+    place-self: center;
+  }
+  &__highlights {
+    place-self: start;
+  }
+  &__moon-phase {
+    justify-self: center;
+    align-self: start;
   }
 }
 </style>
