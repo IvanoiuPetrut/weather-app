@@ -94,7 +94,6 @@ export default {
       this.clearCities();
     },
     toggleVisibility() {
-      // add a timer
       setTimeout(() => {
         this.isVisible = !this.isVisible;
       }, 400);
@@ -124,20 +123,31 @@ export default {
     border-radius: 9px 0 0 9px;
     padding: 0 10px;
     font-size: 1rem;
-    color: #000;
+    background-color: colors.$secondary-color;
+    color: colors.$accent-color;
     height: 40px;
     width: 100%;
+    border: 1px solid colors.$text-color-secondary;
+  }
+  &__input::placeholder {
+    color: colors.$text-color-secondary;
+  }
+  &__input:focus {
+    box-shadow: none;
+    border: 1px solid colors.$accent-color;
   }
   &__btn {
     width: 60px;
     height: 40px;
-    background-color: #339af0;
+    background-color: colors.$secondary-color;
     border: none;
     border-radius: 0 9px 9px 0;
+    border: 1px solid colors.$text-color-secondary;
+    border-left: 0;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
     &:hover {
-      background-color: #2072b5;
+      background-color: colors.$accent-color;
     }
     .icon {
       width: 1.4rem;
