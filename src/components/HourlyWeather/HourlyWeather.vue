@@ -10,7 +10,7 @@
       :class="{ active: isActiveHour[index] }"
     >
       {{ temperature(hour) }}
-      <img :src="weatherImage" :alt="weatherCondition" />
+      <WeatherImg :hourIndex="hours[index]"></WeatherImg>
       <Hours :hours="hours" :hourIndex="index"></Hours>
     </li>
   </ul>
@@ -19,11 +19,13 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import Hours from "./Hours.vue";
+import WeatherImg from "./WeatherImg.vue";
 
 export default {
   name: "HourlyWeather",
   components: {
     Hours,
+    WeatherImg,
   },
   data() {
     return {
