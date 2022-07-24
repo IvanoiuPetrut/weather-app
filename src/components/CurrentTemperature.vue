@@ -33,17 +33,23 @@
     <div class="date__wrapper">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="icon"
-        fill="none"
+        class="icon icon-tabler icon-tabler-calendar"
+        width="44"
+        height="44"
         viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
+        stroke-width="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-        />
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <line x1="16" y1="3" x2="16" y2="7" />
+        <line x1="8" y1="3" x2="8" y2="7" />
+        <line x1="4" y1="11" x2="20" y2="11" />
+        <line x1="11" y1="15" x2="12" y2="15" />
+        <line x1="12" y1="15" x2="12" y2="18" />
       </svg>
       <p class="temperature__date">{{ currentDate }}</p>
     </div>
@@ -137,6 +143,9 @@ export default {
   height: 100vh;
   background-color: colors.$primary-color;
 
+  &__search-bar {
+    padding: 0.6rem 2.4rem;
+  }
   &__image {
     width: 80%;
     height: auto;

@@ -16,17 +16,19 @@
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="icon"
-          fill="none"
+          class="icon icon-tabler icon-tabler-search"
+          width="44"
+          height="44"
           viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+          stroke-width="1.5"
+          stroke="#2c3e50"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <circle cx="10" cy="10" r="7" />
+          <line x1="21" y1="21" x2="15" y2="15" />
         </svg>
       </button>
     </div>
@@ -152,7 +154,7 @@ export default {
     }
     .icon {
       width: 1.4rem;
-      color: #fff;
+      stroke: colors.$text-color;
       transform: rotate(90deg);
     }
   }

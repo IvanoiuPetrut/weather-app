@@ -73,7 +73,9 @@ export default {
     border-radius: 7px;
     font-weight: bold;
     background-color: colors.$primary-color;
+    letter-spacing: 0.8px;
     margin-bottom: 1.6rem;
+    position: relative;
   }
   &__qualities {
     .flex {
