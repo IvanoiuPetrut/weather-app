@@ -9,18 +9,19 @@
       <div class="weather__qualities">
         <p class="weather__title">Weather Highlights</p>
         <div class="grid">
-          <div class="flex">
+          <div class="flex--column">
             <div class="weather__forecast">
               <DayTemperature
                 v-for="(day, index) in $store.state.forecast"
                 :key="index"
                 :currentDayId="index"
                 :dayIndex="this.dayIndex"
+                class="weather__day"
               ></DayTemperature>
             </div>
-            <WeatherQualities class="weather__highlights"></WeatherQualities>
+            <MoonPhase class="weather__moon-phase"></MoonPhase>
           </div>
-          <MoonPhase class="weather__moon-phase"></MoonPhase>
+          <WeatherQualities class="weather__highlights"></WeatherQualities>
         </div>
       </div>
     </div>
@@ -80,26 +81,35 @@ export default {
   &__qualities {
     .flex {
       display: flex;
+      gap: 1.6rem;
+    }
+
+    .flex--column {
+      display: flex;
       flex-direction: column;
       gap: 1.6rem;
     }
+
     .grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 3.2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
     }
   }
   &__forecast {
     display: flex;
     gap: 1.6rem;
-    place-self: center;
+    // place-self: center;
+  }
+  &__day {
+    align-self: flex-start;
   }
   &__highlights {
-    place-self: center;
+    align-self: start;
+    justify-self: center;
   }
   &__moon-phase {
-    justify-self: center;
-    align-self: start;
+    align-self: flex-start;
   }
 }
 </style>

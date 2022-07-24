@@ -211,9 +211,8 @@ export default {
 
 .card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 1.2rem 1.6rem;
   border-radius: 7px;
   div {
     text-align: center;
