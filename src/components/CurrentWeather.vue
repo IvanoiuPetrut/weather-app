@@ -93,7 +93,7 @@ export default {
     place-self: center;
   }
   &__highlights {
-    place-self: start;
+    place-self: center;
   }
   &__moon-phase {
     justify-self: center;
