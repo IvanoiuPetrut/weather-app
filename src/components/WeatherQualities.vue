@@ -23,7 +23,7 @@
         <circle cx="14.5" cy="19.5" r="1" />
         <circle cx="19.5" cy="14.5" r="1" />
       </svg>
-      <p class="">Air Quality</p>
+      <p class="description">Air Quality</p>
       <p>{{ airQuality }}</p>
     </div>
     <div>
@@ -42,7 +42,7 @@
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M6.8 11a6 6 0 1 0 10.396 0l-5.197 -8l-5.2 8z" />
       </svg>
-      <p class="">Precipitation</p>
+      <p class="description">Precipitation</p>
       <p>{{ precipitation }}</p>
     </div>
     <div>
@@ -63,7 +63,7 @@
         <path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24" />
         <path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24" />
       </svg>
-      <p class="">Wind</p>
+      <p class="description">Wind</p>
       <p>{{ wind }}</p>
     </div>
     <div>
@@ -83,7 +83,7 @@
         <polyline points="7 7 12 12 17 7" />
         <polyline points="7 13 12 18 17 13" />
       </svg>
-      <p class="">Pressure</p>
+      <p class="description">Pressure</p>
       <p>{{ pressure }}</p>
     </div>
     <div>
@@ -105,7 +105,7 @@
           d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"
         />
       </svg>
-      <p class="">Visibility</p>
+      <p class="description">Visibility</p>
       <p>{{ visibility }}</p>
     </div>
     <div>
@@ -125,7 +125,7 @@
         <path d="M10 13.5a4 4 0 1 0 4 0v-8.5a2 2 0 0 0 -4 0v8.5" />
         <line x1="10" y1="9" x2="14" y2="9" />
       </svg>
-      <p class="">UV Index</p>
+      <p class="description">UV Index</p>
       <p>{{ howGoodIsUvIndex }}</p>
     </div>
   </div>
@@ -220,6 +220,9 @@ export default {
     background-color: colors.$primary-color;
     padding: 0.5rem;
     border-radius: 7px;
+    .description {
+      font-weight: 400;
+    }
   }
 }
 .icon {

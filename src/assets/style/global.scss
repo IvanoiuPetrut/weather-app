@@ -1,6 +1,29 @@
 @use "./colors.scss";
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/roboto_regular_macroman/Roboto-Regular-webfont.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
-$font-stack: "Open Sans", sans-serif;
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/roboto_light_macroman/Roboto-Light-webfont.woff")
+    format("woff");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/roboto_bold_macroman/Roboto-Bold-webfont.woff")
+    format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+$font-stack: "roboto", sans-serif;
 
 *,
 *::before,
@@ -12,7 +35,6 @@ $font-stack: "Open Sans", sans-serif;
 
 *:focus {
   outline: none;
-  // shadow
   box-shadow: 0 0 0 5px rgba(51, 155, 240, 0.6);
 }
 
