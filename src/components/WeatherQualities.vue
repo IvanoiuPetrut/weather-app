@@ -24,7 +24,7 @@
         <circle cx="19.5" cy="14.5" r="1" />
       </svg>
       <p class="description">Air Quality</p>
-      <p>{{ airQuality }}</p>
+      <p class="amount">{{ airQuality }}</p>
     </div>
     <div>
       <svg
@@ -43,7 +43,7 @@
         <path d="M6.8 11a6 6 0 1 0 10.396 0l-5.197 -8l-5.2 8z" />
       </svg>
       <p class="description">Precipitation</p>
-      <p>{{ precipitation }}</p>
+      <p class="amount">{{ precipitation }}</p>
     </div>
     <div>
       <svg
@@ -64,7 +64,7 @@
         <path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24" />
       </svg>
       <p class="description">Wind</p>
-      <p>{{ wind }}</p>
+      <p class="amount">{{ wind }}</p>
     </div>
     <div>
       <svg
@@ -84,7 +84,7 @@
         <polyline points="7 13 12 18 17 13" />
       </svg>
       <p class="description">Pressure</p>
-      <p>{{ pressure }}</p>
+      <p class="amount">{{ pressure }}</p>
     </div>
     <div>
       <svg
@@ -106,7 +106,7 @@
         />
       </svg>
       <p class="description">Visibility</p>
-      <p>{{ visibility }}</p>
+      <p class="amount">{{ visibility }}</p>
     </div>
     <div>
       <svg
@@ -126,7 +126,7 @@
         <line x1="10" y1="9" x2="14" y2="9" />
       </svg>
       <p class="description">UV Index</p>
-      <p>{{ howGoodIsUvIndex }}</p>
+      <p class="amount">{{ howGoodIsUvIndex }}</p>
     </div>
   </div>
 </template>
@@ -218,10 +218,13 @@ export default {
   div {
     text-align: center;
     background-color: colors.$primary-color;
-    padding: 0.5rem;
+    padding: 0.6rem 1rem;
     border-radius: 7px;
     .description {
-      font-weight: 400;
+      font-weight: lighter;
+    }
+    .amount {
+      font-weight: bold;
     }
   }
 }

@@ -10,7 +10,6 @@
       <p class="temperature__current-temp">{{ temperature }}</p>
       <div class="temperature__wrapper">
         <p class="temperature__high">High: {{ highTemp }}</p>
-        <hr />
         <p class="temperature__low">Low: {{ lowTemp }}</p>
       </div>
     </div>
@@ -139,12 +138,12 @@ export default {
 .temperature {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1.6rem;
   height: 100vh;
   background-color: colors.$primary-color;
 
   &__search-bar {
-    padding: 0.6rem 2.4rem;
+    padding: 0 2.4rem;
   }
   &__image {
     width: 80%;
@@ -152,40 +151,41 @@ export default {
     align-self: center;
   }
   &__current-temp {
-    font-size: 3.2rem;
+    font-size: 3.6rem;
     color: colors.$text-color;
   }
   &__feels-like {
+    font-size: 1.2rem;
+    font-weight: bold;
     color: colors.$text-color-secondary;
-    font-weight: 600;
   }
   &__condition {
     color: colors.$text-color;
+    font-size: 1.4rem;
   }
 
   .weather {
     display: flex;
     align-items: center;
-    gap: 2.4rem;
+    justify-content: space-between;
   }
   &__wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    .temperature__high {
-      color: colors.$text-color-secondary;
-    }
-    .temperature__low {
-      color: colors.$text-color-secondary;
-    }
+    font-size: 1.2rem;
+    background-color: colors.$secondary-color;
+    padding: 0.4rem 0.8rem;
+    border-radius: 7px;
   }
 }
 .country {
   display: inline-block;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: colors.$primary-color;
-  background-color: colors.$text-color-secondary;
-  padding: 0.1rem 0.6rem;
+  letter-spacing: 1px;
+  background-color: colors.$secondary-color;
+  padding: 0.2rem 0.8rem;
   border-radius: 7px;
 }
 
@@ -195,8 +195,9 @@ export default {
   justify-content: space-between;
   .heading--secondary {
     color: colors.$text-color;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
   }
 }
 
@@ -204,6 +205,9 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  .temperature__date {
+    font-size: 1.2rem;
+  }
 }
 
 .hr--secondary {
