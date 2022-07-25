@@ -21,6 +21,7 @@
       </svg>
       <h1 class="heading--primary">Weather</h1>
     </div>
+    <SearchBar class="nav__search-bar"></SearchBar>
     <div class="nav__elements">
       <div class="nav__element">
         <p class="element__title">Favorite Cities</p>
@@ -43,6 +44,7 @@
 import { mapState, mapMutations } from "vuex";
 import ModularList from "./ModularList.vue";
 import Settings from "./Settings.vue";
+import SearchBar from "./SearchBar.vue";
 
 export default {
   name: "PrimaryNavigation",
@@ -50,6 +52,7 @@ export default {
   components: {
     ModularList,
     Settings,
+    SearchBar,
   },
   methods: {
     removeItem(index) {
@@ -86,6 +89,10 @@ export default {
   &__elements {
     display: flex;
     gap: 1.6rem;
+  }
+
+  &__search-bar {
+    width: 30%;
   }
   .logo {
     display: flex;
