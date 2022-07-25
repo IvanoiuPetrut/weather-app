@@ -32,8 +32,9 @@
         </svg>
       </button>
     </div>
-    <div class="search__list">
+    <div>
       <SearchList
+        class="search__list"
         :list="this.searchList"
         :isVisible="this.isVisible"
         @get-city="fetchAndResetWeather"

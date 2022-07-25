@@ -28,6 +28,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "../assets/style/colors.scss";
+
+ul {
+  background-color: colors.$primary-color;
+}
 .item {
   color: #fff;
 }
