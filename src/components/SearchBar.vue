@@ -149,7 +149,7 @@ export default {
     cursor: pointer;
     transition: 0.3s all ease-in-out;
     &:hover {
-      background-color: colors.$accent-color;
+      background-color: colors.$transparent-primary-color;
       border-color: colors.$accent-color;
     }
     .icon {
