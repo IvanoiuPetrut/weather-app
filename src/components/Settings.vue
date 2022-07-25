@@ -1,6 +1,5 @@
 <template>
   <div class="card">
-    <p>Settings</p>
     <div class="settings">
       <div>
         <span>Temperature</span>

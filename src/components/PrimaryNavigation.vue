@@ -21,14 +21,20 @@
       </svg>
       <h1 class="heading--primary">Weather</h1>
     </div>
-    <div class="nav__element">
-      <p class="element__title">Favorite Cities</p>
-      <ModularList
-        :list="favoriteCities"
-        @remove-item="removeItem"
-        @set-item="setItem"
-        class="element__list element__list--active"
-      ></ModularList>
+    <div class="nav__elements">
+      <div class="nav__element">
+        <p class="element__title">Favorite Cities</p>
+        <ModularList
+          :list="favoriteCities"
+          @remove-item="removeItem"
+          @set-item="setItem"
+          class="element__list element__list--active"
+        ></ModularList>
+      </div>
+      <div class="nav__element">
+        <p class="element__title">Weather Preferences</p>
+        <settings class="element__list element__list--active"></settings>
+      </div>
     </div>
   </nav>
 </template>
@@ -36,12 +42,14 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import ModularList from "./ModularList.vue";
+import Settings from "./Settings.vue";
 
 export default {
   name: "PrimaryNavigation",
   emits: ["remove-item", "set-item"],
   components: {
     ModularList,
+    Settings,
   },
   methods: {
     removeItem(index) {
@@ -70,10 +78,15 @@ export default {
 .nav {
   display: flex;
   align-items: center;
-  gap: 2.8rem;
+  gap: 3.6rem;
   background-color: colors.$primary-color;
   padding: 0.6rem 1.6rem;
   font-size: 1rem;
+
+  &__elements {
+    display: flex;
+    gap: 1.6rem;
+  }
   .logo {
     display: flex;
     align-items: center;
