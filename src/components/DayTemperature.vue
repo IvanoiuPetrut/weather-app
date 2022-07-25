@@ -12,7 +12,7 @@
         <p class="temperature__low">{{ lowTemp }}</p>
       </div>
     </div>
-    <p class="weather">{{ weatherCondition }}</p>
+    <p class="weather__condition">{{ weatherCondition }}</p>
   </div>
 </template>
 
@@ -80,20 +80,50 @@ export default {
   @include flex-column();
   color: #f1f3f5;
   width: 12rem;
-  padding: 0.8rem 0.4rem;
+  padding: 1.8rem 0.4rem 0.8rem 0.4rem;
+  border: 1px solid colors.$transparent-color-neutral;
   border-radius: 7px;
   background-color: colors.$primary-color;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
+  position: relative;
   &:hover {
     transform: scale(1.05);
     cursor: pointer;
+  }
+  .heading--tertiary {
+    background-color: colors.$secondary-color;
+    border: 1px solid colors.$transparent-color-neutral;
+    padding: 0.2rem 1rem;
+    border-radius: 100px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+
+    position: absolute;
+    top: 0;
+    transform: translate(0, -50%);
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  .weather__condition {
+    position: relative;
+  }
+  .weather__condition::before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: colors.$transparent-color-neutral;
+    position: absolute;
+    bottom: -2px;
   }
 }
 
 .active {
   .heading--tertiary {
     color: colors.$accent-color;
+    // border-color: colors.$accent-color;
   }
+  border-color: colors.$accent-color;
   transform: scale(1);
 }
 

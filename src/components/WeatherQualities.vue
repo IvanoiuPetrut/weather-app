@@ -214,9 +214,12 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   border-radius: 7px;
+  // background-color: colors.$primary-color;
+  // padding: 1rem 1.2rem;
   div {
     text-align: center;
     background-color: colors.$primary-color;
+    border: 1px solid colors.$transparent-color-neutral;
     padding: 0.6rem 1rem;
     border-radius: 7px;
     .description {

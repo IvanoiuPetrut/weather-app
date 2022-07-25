@@ -9,7 +9,7 @@
           <HourlyWeather></HourlyWeather>
         </div>
         <div class="weather__qualities">
-          <p class="weather__title">Weather Highlights</p>
+          <p class="weather__title margin-bottom--bg">Weather Highlights</p>
           <div class="grid">
             <div class="flex--column">
               <div class="weather__forecast">
@@ -86,6 +86,7 @@ export default {
     margin-bottom: 1.6rem;
     position: relative;
   }
+
   &__qualities {
     .flex {
       display: flex;
@@ -120,7 +121,8 @@ export default {
     align-self: flex-start;
   }
 }
-// .nav {
-//   height: auto;
-// }
+
+.margin-bottom--bg {
+  margin-bottom: 3.2rem;
+}
 </style>
