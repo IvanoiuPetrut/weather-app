@@ -1,27 +1,29 @@
 <template>
   <nav class="nav">
-    <div class="logo">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-cloud-fog"
-        width="44"
-        height="44"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="#2c3e50"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path
-          d="M7 16a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12"
-        />
-        <line x1="5" y1="20" x2="19" y2="20" />
-      </svg>
-      <h1 class="heading--primary">Weather</h1>
+    <div class="nav__section">
+      <div class="logo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-cloud-fog"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#2c3e50"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M7 16a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12"
+          />
+          <line x1="5" y1="20" x2="19" y2="20" />
+        </svg>
+        <h1 class="heading--primary">Weather</h1>
+      </div>
+      <SearchBar class="nav__search-bar"></SearchBar>
     </div>
-    <SearchBar class="nav__search-bar"></SearchBar>
     <div class="nav__elements">
       <div class="nav__element">
         <p class="element__title">Favorite Cities</p>
@@ -34,7 +36,7 @@
       </div>
       <div class="nav__element">
         <p class="element__title">Weather Preferences</p>
-        <settings class="element__list element__list--active"></settings>
+        <settings class="element__list element__list--active right"></settings>
       </div>
     </div>
   </nav>
@@ -81,10 +83,17 @@ export default {
 .nav {
   display: flex;
   align-items: center;
-  gap: 3.6rem;
+  justify-content: space-between;
   background-color: colors.$primary-color;
   padding: 0.6rem 1.6rem;
   font-size: 1rem;
+
+  &__section {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+    justify-content: space-between;
+  }
 
   &__elements {
     display: flex;
@@ -92,7 +101,7 @@ export default {
   }
 
   &__search-bar {
-    width: 30%;
+    width: 100%;
   }
   .logo {
     display: flex;
@@ -133,8 +142,12 @@ export default {
     border-radius: 7px;
     position: absolute;
     padding: 0.2rem 0.8rem;
-    left: 0;
+    // left: 0;
     top: 105%;
+  }
+  .right {
+    left: -100%;
+    transform: translate(25%, 0);
   }
 }
 </style>
