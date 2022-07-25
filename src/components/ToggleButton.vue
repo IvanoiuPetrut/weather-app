@@ -47,15 +47,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "../assets/style/colors.scss";
+
 .btn--toggle {
   padding: 0.2rem 0.6rem;
-  background-color: #fff;
+  color: colors.$text-color;
+  background-color: colors.$secondary-color;
   transition: all 0.15s ease-in-out;
+  border: 1px solid colors.$transparent-color-neutral;
 }
 
 .btn--toggle:hover {
-  background-color: #339af0;
-  color: #fff;
+  background-color: colors.$transparent-primary-color;
+  border-color: colors.$accent-color;
 }
 
 .btn--right {
@@ -67,7 +71,7 @@ export default {
 }
 
 .active {
-  background-color: #339af0;
-  color: #fff;
+  background-color: colors.$transparent-primary-color;
+  border-color: colors.$accent-color;
 }
 </style>
