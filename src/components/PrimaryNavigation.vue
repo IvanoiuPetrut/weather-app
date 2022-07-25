@@ -141,13 +141,12 @@ export default {
     border: 1px solid colors.$transparent-color-neutral;
     border-radius: 7px;
     position: absolute;
-    padding: 0.2rem 0.8rem;
-    // left: 0;
+    padding: 0.8rem 1.2rem;
     top: 105%;
   }
   .right {
     left: -100%;
-    transform: translate(25%, 0);
+    transform: translate(20%, 0);
   }
 }
 </style>

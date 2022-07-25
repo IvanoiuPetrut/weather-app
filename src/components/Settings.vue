@@ -105,7 +105,6 @@ export default {
   flex-direction: column;
   gap: 0.6rem;
   width: 15.6rem;
-  padding: 0.6rem;
   div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
