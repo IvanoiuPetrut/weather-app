@@ -85,11 +85,11 @@ html {
 // HEADINGS
 
 %headings {
-  font-size: 1.6rem;
+  display: inline-block;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: 0.5px;
-  color: #fff;
+  color: colors.$text-color;
 }
 
 .heading--tertiary {
