@@ -122,7 +122,7 @@ export default {
     align-self: flex-start;
   }
   &__highlights {
-    align-self: start;
+    align-self: end;
     justify-self: center;
   }
   &__moon-phase {
