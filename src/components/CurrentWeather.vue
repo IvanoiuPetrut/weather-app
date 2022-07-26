@@ -60,11 +60,19 @@ export default {
 
 <style lang="scss" scoped>
 @use "../assets/style/colors.scss";
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 .weather {
   display: grid;
   grid-template-columns: 1fr 3fr;
   &__current {
-    height: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
   &__widgets {
     display: flex;

@@ -144,6 +144,7 @@ export default {
 
   &__search-bar {
     padding: 0 2.4rem;
+    display: none;
   }
   &__image {
     width: 80%;

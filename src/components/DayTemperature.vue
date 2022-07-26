@@ -121,7 +121,6 @@ export default {
 .active {
   .heading--tertiary {
     color: colors.$accent-color;
-    // border-color: colors.$accent-color;
   }
   border-color: colors.$accent-color;
   transform: scale(1);
