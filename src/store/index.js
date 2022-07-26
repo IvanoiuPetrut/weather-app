@@ -11,7 +11,6 @@ export default createStore({
     hourIndex: 0,
     dayIndex: 0,
     forecast: [],
-    astronomy: [],
     currentWeather: null,
     searchCities: null,
     favoriteCities: [],
@@ -23,9 +22,6 @@ export default createStore({
     },
     setForecast(state, forecast) {
       state.forecast = forecast;
-    },
-    setAstronomy(state, astronomy) {
-      state.astronomy = astronomy;
     },
     setCurrentWeather(state, currentWeather) {
       state.currentWeather = currentWeather;
@@ -87,10 +83,29 @@ export default createStore({
         axios.get(
           `https://api.weatherapi.com/v1/current.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&aqi=yes`
         ),
+        axios.get(
+          `https://api.weatherapi.com/v1/timezone.json?key=c48712edce2441edae5122038222706&q=${this.state.city}`
+        ),
       ])
-        .then(([forecast, currentWeather]) => {
+        .then(([forecast, currentWeather, timmeZone]) => {
           commit("setForecast", forecast.data.forecast.forecastday);
           commit("setCurrentWeather", currentWeather.data);
+          console.log(timmeZone.data.location.localtime);
+          // take the last part of the timezone
+          console.log(
+            timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
+          );
+          console.log(
+            typeof parseInt(
+              timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
+            )
+          );
+          commit(
+            "setHourIndex",
+            parseInt(
+              timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
+            )
+          );
         })
         .catch((error) => {
           console.log(error);
