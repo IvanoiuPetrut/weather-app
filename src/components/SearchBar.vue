@@ -128,9 +128,10 @@ export default {
     font-size: 1rem;
     background-color: colors.$secondary-color;
     color: colors.$accent-color;
+    border: 1px solid colors.$transparent-color-neutral;
     height: 40px;
     width: 100%;
-    border: 1px solid colors.$text-color-secondary;
+    transition: all 0.3s ease-in-out;
   }
   &__input::placeholder {
     color: colors.$text-color-secondary;
@@ -145,7 +146,7 @@ export default {
     background-color: colors.$secondary-color;
     border: none;
     border-radius: 0 9px 9px 0;
-    border: 1px solid colors.$text-color-secondary;
+    border: 1px solid colors.$transparent-color-neutral;
     border-left: 0;
     cursor: pointer;
     transition: 0.3s all ease-in-out;

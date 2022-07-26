@@ -55,11 +55,9 @@ export default {
   background-color: colors.$secondary-color;
   transition: all 0.15s ease-in-out;
   border: 1px solid colors.$transparent-color-neutral;
-}
-
-.btn--toggle:hover {
-  background-color: colors.$transparent-primary-color;
-  border-color: colors.$accent-color;
+  &:hover {
+    border-color: colors.$accent-color;
+  }
 }
 
 .btn--right {

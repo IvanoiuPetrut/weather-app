@@ -47,12 +47,12 @@ export default {
 .btn__wrapper {
   display: inline-block;
   position: relative;
-  background-color: greenyellow;
   border-radius: 11px;
 }
 .btn {
-  color: colors.$primary-color;
-  background-color: colors.$text-color;
+  color: colors.$text-color;
+  border: 1px solid colors.$transparent-color-neutral;
+  background-color: none;
   font-size: 1rem;
   width: 1.6rem;
   height: 1.6rem;
@@ -60,6 +60,8 @@ export default {
   transition: all 0.3s ease-in-out;
   z-index: 999;
   &:hover {
+    border-color: colors.$accent-color;
+    background-color: colors.$transparent-primary-color;
     transform: scale(1.1);
   }
 }
@@ -67,10 +69,11 @@ export default {
 .tooltip {
   opacity: 0;
   pointer-events: none;
-  color: colors.$primary-color;
-  background-color: colors.$text-color;
+  color: colors.$text-color;
+  background-color: colors.$secondary-color;
+  border: 1px solid colors.$transparent-color-neutral;
   border-radius: 7px;
-  padding: 0rem 0.2rem;
+  padding: 0.2rem 0.4rem;
   font-size: 0.8rem;
   font-weight: bold;
   white-space: nowrap;
@@ -83,6 +86,6 @@ export default {
 
 .active.tooltip {
   opacity: 1;
-  transform: translate(50%, -120%);
+  transform: translate(50%, -130%);
 }
 </style>

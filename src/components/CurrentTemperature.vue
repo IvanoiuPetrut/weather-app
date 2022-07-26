@@ -155,8 +155,7 @@ export default {
     color: colors.$text-color;
   }
   &__feels-like {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.1rem;
     color: colors.$text-color-secondary;
   }
   &__condition {
@@ -175,6 +174,8 @@ export default {
     gap: 0.2rem;
     font-size: 1.2rem;
     background-color: colors.$secondary-color;
+    border: 1px solid colors.$transparent-color-neutral;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
     padding: 0.4rem 0.8rem;
     border-radius: 7px;
   }
@@ -185,6 +186,8 @@ export default {
   font-weight: bold;
   letter-spacing: 1px;
   background-color: colors.$secondary-color;
+  border: 1px solid colors.$transparent-color-neutral;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   padding: 0.2rem 0.8rem;
   border-radius: 7px;
 }
