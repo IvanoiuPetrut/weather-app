@@ -9,6 +9,13 @@ export default createStore({
     country: "",
     date: "",
     hourIndex: 0,
+    hours: [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+      21, 22, 23,
+    ],
+    activeHour: [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
     dayIndex: 0,
     forecast: [],
     currentWeather: null,
@@ -28,6 +35,9 @@ export default createStore({
     },
     setHourIndex(state, hourIndex) {
       state.hourIndex = hourIndex;
+    },
+    setActiveHour(state, hourIndex) {
+      state.activeHour[hourIndex] = 1;
     },
     setDayIndex(state, dayIndex) {
       state.dayIndex = dayIndex;
@@ -90,16 +100,6 @@ export default createStore({
         .then(([forecast, currentWeather, timmeZone]) => {
           commit("setForecast", forecast.data.forecast.forecastday);
           commit("setCurrentWeather", currentWeather.data);
-          console.log(timmeZone.data.location.localtime);
-          // take the last part of the timezone
-          console.log(
-            timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
-          );
-          console.log(
-            typeof parseInt(
-              timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
-            )
-          );
           commit(
             "setHourIndex",
             parseInt(

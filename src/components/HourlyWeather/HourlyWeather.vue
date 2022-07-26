@@ -7,7 +7,7 @@
         deactivateAllHours();
         activateHour(index);
       "
-      :class="{ active: isActiveHour[index] }"
+      :class="{ active: activeHour[index] }"
     >
       <p class="hours__temperature">{{ temperature(hour) }}</p>
       <WeatherImg :hourIndex="hours[index]"></WeatherImg>
@@ -29,7 +29,6 @@ export default {
   },
   data() {
     return {
-      hours: [],
       isActiveHour: [],
       currentDayId: 0,
     };
@@ -54,12 +53,19 @@ export default {
       return hour;
     },
     getNextHours(amount) {
-      let currentHour = this.getCurrentHour();
       for (let i = 0; i < amount; i++) {
-        let hour = currentHour + i;
+        let hour = this.hourIndex + i;
+        console.log(hour);
         hour > 23 ? (hour = hour - 24) : hour;
         this.hours.push(hour);
         i === 0 ? this.isActiveHour.push(true) : this.isActiveHour.push(false);
+      }
+    },
+    findActiveHour(hours, hourIndex) {
+      for (let i = 0; i < hours.length; i++) {
+        i === hourIndex
+          ? this.isActiveHour.push(true)
+          : this.isActiveHour.push(false);
       }
     },
   },
@@ -69,6 +75,8 @@ export default {
       isCelsius: (state) => state.settings.isCelsius,
       hourIndex: (state) => state.hourIndex,
       dayIndex: (state) => state.dayIndex,
+      hours: (state) => state.hours,
+      activeHour: (state) => state.activeHour,
     }),
     weatherImage() {
       return this.forecast[this.dayIndex].hour[this.hourIndex].condition.icon;
@@ -78,8 +86,7 @@ export default {
     },
   },
   created() {
-    this.getNextHours(8);
-    // this.setHourIndex(this.hours[0]);
+    this.$store.commit("setActiveHour", this.hourIndex);
   },
 };
 </script>
