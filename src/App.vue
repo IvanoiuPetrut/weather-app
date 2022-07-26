@@ -1,7 +1,4 @@
 <template>
-  <nav>
-    <Meniu></Meniu>
-  </nav>
   <div v-if="this.city.length > 0">
     <CurrentWeather class="current-weather"></CurrentWeather>
   </div>
@@ -14,13 +11,11 @@
 import { mapState } from "vuex";
 import { geoLocation } from "./helpers/geoLocation";
 import CurrentWeather from "./components/CurrentWeather.vue";
-import Meniu from "./components/Meniu.vue";
 
 export default {
   name: "App",
   components: {
     CurrentWeather,
-    Meniu,
   },
   mixins: [geoLocation],
   methods: {
