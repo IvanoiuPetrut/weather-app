@@ -79,7 +79,7 @@ export default {
   },
   created() {
     this.getNextHours(8);
-    this.setHourIndex(this.hours[0]);
+    // this.setHourIndex(this.hours[0]);
   },
 };
 </script>
