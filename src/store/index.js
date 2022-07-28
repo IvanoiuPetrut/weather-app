@@ -38,6 +38,10 @@ export default createStore({
     },
     setActiveHour(state, hourIndex) {
       state.activeHour[hourIndex] = 1;
+      console.log(hourIndex);
+    },
+    deactivateAllHours(state) {
+      state.activeHour = state.activeHour.map(() => 0);
     },
     setDayIndex(state, dayIndex) {
       state.dayIndex = dayIndex;
@@ -105,6 +109,20 @@ export default createStore({
             parseInt(
               timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
             )
+          );
+          commit("deactivateAllHours");
+          commit(
+            "setActiveHour",
+            parseInt(
+              timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
+            )
+          );
+
+          console.log(
+            "from store " +
+              parseInt(
+                timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
+              )
           );
         })
         .catch((error) => {

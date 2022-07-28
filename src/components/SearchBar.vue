@@ -105,6 +105,7 @@ export default {
   computed: {
     ...mapState({
       searchList: (state) => state.searchCities,
+      hourIndex: (state) => state.hourIndex,
     }),
   },
 };

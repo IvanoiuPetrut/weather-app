@@ -41,11 +41,12 @@ export default {
         : `${this.forecast[this.dayIndex].hour[hour].temp_f}°F`;
     },
     activateHour(index) {
-      this.isActiveHour[index] = !this.isActiveHour[index];
       this.setHourIndex(this.hours[index]);
+      this.$store.commit("setActiveHour", index);
+      // console.log(this.hourIndex);
     },
     deactivateAllHours() {
-      this.isActiveHour = this.isActiveHour.map(() => false);
+      this.$store.commit("deactivateAllHours");
     },
     getCurrentHour() {
       let date = new Date();
