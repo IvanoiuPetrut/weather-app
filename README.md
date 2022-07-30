@@ -1,38 +1,32 @@
-<a href="https://aimeos.org/">
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-fog" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M7 16a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />
-  <line x1="5" y1="20" x2="19" y2="20" />
-</svg>
-    <img src="https://aimeos.org/fileadmin/template/icons/logo.png" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
+<a href="#">
+    <img src="https://postimg.cc/MnnZxVbL" alt="Weather app logo" align="right" height="60" />
 </a>
 
 # Weather App
 
-## Project setup
+Weather App is a simple weather app that allows you to search for a city and get the current weather. You can also get the weather for the next 3 days and see hourly weather for the next 24 hours.
 
-```
-yarn install
-```
+## Features
 
-### Compiles and hot-reloads for development
+- Search for a city with auto-completion
+- Get the current weather
+- Get the weather for the next 3 days
+- Get the weather for the next 24 hours
+- Save favorite cities
+- Preferences (units)
+- Preferences and favorite cities persistence on page reload (localStorage)
+- Localization with GeoLocation
 
-```
-yarn serve
-```
+## Technologies
 
-### Compiles and minifies for production
+- VueJS
+- Vuex
+- Axios
+- HTML5
+- SASS
 
-```
-yarn build
-```
+## Build process
 
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- yarn install (to install dependencies)
+- yarn serve (to run the app)
+- yarn build (for production)
