@@ -1,10 +1,12 @@
 <a href="#">
-    <img src="https://postimg.cc/MnnZxVbL" alt="Weather app logo" align="right" height="60" />
+    <img src="https://i.postimg.cc/P54CWMLd/weather.png" alt="Weather app logo" align="right" height="60" />
 </a>
 
 # Weather App
 
 Weather App is a simple weather app that allows you to search for a city and get the current weather. You can also get the weather for the next 3 days and see hourly weather for the next 24 hours.
+
+<a href="#"> Weather app live here </a>
 
 ## Features
 
@@ -13,8 +15,9 @@ Weather App is a simple weather app that allows you to search for a city and get
 - Get the weather for the next 3 days
 - Get the weather for the next 24 hours
 - Save favorite cities
+  - Persistance on page reload
 - Preferences (units)
-- Preferences and favorite cities persistence on page reload (localStorage)
+  - Persistance on page reload
 - Localization with GeoLocation
 
 ## Technologies
@@ -27,6 +30,6 @@ Weather App is a simple weather app that allows you to search for a city and get
 
 ## Build process
 
-- yarn install (to install dependencies)
-- yarn serve (to run the app)
-- yarn build (for production)
+- `yarn install` (to install dependencies)
+- `yarn serve` (to run the app)
+- `yarn build` (for production)
