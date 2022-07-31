@@ -1,5 +1,5 @@
 <template>
-  <ul class="hours">
+  <ul class="hourly-weather">
     <li
       v-for="(hour, index) in hours"
       :key="index"
@@ -9,9 +9,16 @@
       "
       :class="{ active: activeHour[index] }"
     >
-      <p class="hours__temperature">{{ temperature(hour) }}</p>
-      <WeatherImg :hourIndex="hours[index]"></WeatherImg>
-      <Hours :hours="hours" :hourIndex="index"></Hours>
+      <p class="hourly-weather__temperature">{{ temperature(hour) }}</p>
+      <WeatherImg
+        :hourIndex="hours[index]"
+        class="hourly-weather__img"
+      ></WeatherImg>
+      <Hours
+        :hours="hours"
+        :hourIndex="index"
+        class="hourly-weather__hour"
+      ></Hours>
     </li>
   </ul>
 </template>
@@ -43,7 +50,6 @@ export default {
     activateHour(index) {
       this.setHourIndex(this.hours[index]);
       this.$store.commit("setActiveHour", index);
-      // console.log(this.hourIndex);
     },
     deactivateAllHours() {
       this.$store.commit("deactivateAllHours");
@@ -94,23 +100,33 @@ export default {
 
 <style lang="scss" scoped>
 @use "../../assets/style/colors.scss";
-.hours {
-  font-size: 1.4rem;
-  color: #fff;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
+.hourly-weather {
+  width: 65vw;
+  display: flex;
+  overflow-x: scroll;
   gap: 1.2rem;
+  align-self: center;
+  font-size: 1.4rem;
   &__temperature {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
     font-weight: bold;
+  }
+  &__hour {
+    font-size: 1rem;
+  }
+  &__img {
+    width: 2.4rem;
+    height: 2.4rem;
   }
   li {
     display: flex;
     flex-direction: column;
+    gap: 0.2rem;
     align-items: center;
     background-color: colors.$primary-color;
-    padding: 0.6rem 1.2rem;
-    border-radius: 7px;
+    padding: 0.6rem 0.8rem;
+    border-radius: 13px;
+    border: 1px solid colors.$transparent-color-neutral;
     &:hover {
       color: colors.$accent-color;
       background-color: rgba(0, 0, 0, 0.5);
@@ -119,6 +135,12 @@ export default {
   }
 }
 .active {
-  color: colors.$accent-color;
+  // color: colors.$accent-color;
+  border: 1px solid red;
+  .hourly-weather {
+    &__temperature {
+      color: colors.$accent-color;
+    }
+  }
 }
 </style>

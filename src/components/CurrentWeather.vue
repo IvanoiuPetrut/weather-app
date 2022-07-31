@@ -3,10 +3,10 @@
     <CurrentTemperature class="weather__current"></CurrentTemperature>
     <div>
       <PrimaryNavigation class="nav"></PrimaryNavigation>
-      <div class="weather__widgets">
+      <main class="weather__widgets">
         <div class="weather__hourly">
           <p class="weather__title">Hourly Weather</p>
-          <HourlyWeather></HourlyWeather>
+          <HourlyWeather class="hourly__wrapper"></HourlyWeather>
         </div>
         <div class="weather__qualities">
           <p class="weather__title margin-bottom--bg">Weather Highlights</p>
@@ -26,7 +26,7 @@
             <WeatherQualities class="weather__highlights"></WeatherQualities>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   </div>
 </template>
@@ -73,12 +73,12 @@ export default {
     position: sticky;
     top: 0;
     z-index: 1;
+    border-right: 1px solid colors.$transparent-color-neutral;
   }
   &__widgets {
     display: flex;
     flex-direction: column;
     gap: 3.2rem;
-    // height: 100vh;
     overflow-y: auto;
     padding: 3.2rem 4.8rem;
     background-color: colors.$secondary-color;
@@ -96,11 +96,6 @@ export default {
   }
 
   &__qualities {
-    .flex {
-      display: flex;
-      gap: 1.6rem;
-    }
-
     .flex--column {
       display: flex;
       flex-direction: column;
@@ -116,7 +111,6 @@ export default {
   &__forecast {
     display: flex;
     gap: 1.6rem;
-    // place-self: center;
   }
   &__day {
     align-self: flex-start;
