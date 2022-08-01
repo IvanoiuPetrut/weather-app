@@ -54,27 +54,6 @@ export default {
     deactivateAllHours() {
       this.$store.commit("deactivateAllHours");
     },
-    getCurrentHour() {
-      let date = new Date();
-      let hour = date.getHours();
-      return hour;
-    },
-    getNextHours(amount) {
-      for (let i = 0; i < amount; i++) {
-        let hour = this.hourIndex + i;
-        console.log(hour);
-        hour > 23 ? (hour = hour - 24) : hour;
-        this.hours.push(hour);
-        i === 0 ? this.isActiveHour.push(true) : this.isActiveHour.push(false);
-      }
-    },
-    findActiveHour(hours, hourIndex) {
-      for (let i = 0; i < hours.length; i++) {
-        i === hourIndex
-          ? this.isActiveHour.push(true)
-          : this.isActiveHour.push(false);
-      }
-    },
   },
   computed: {
     ...mapState({
@@ -90,6 +69,12 @@ export default {
     },
     weatherCondition() {
       return this.forecast[this.dayIndex].hour[this.hourIndex].condition.text;
+    },
+    itemClassObj() {
+      return {
+        "hourly-weather__item": true,
+        active: this.activeHour,
+      };
     },
   },
   created() {
