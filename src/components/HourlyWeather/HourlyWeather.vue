@@ -60,6 +60,7 @@ export default {
       hour.scrollIntoView({
         behavior: "smooth",
         block: "center",
+        inline: "start",
       });
     },
   },
@@ -85,6 +86,10 @@ export default {
   mounted() {
     this.scrollToHour(this.hourIndex);
     console.log("HEEEEELLLOW");
+  },
+  updated() {
+    this.scrollToHour(this.hourIndex);
+    console.log("update");
   },
 };
 </script>
