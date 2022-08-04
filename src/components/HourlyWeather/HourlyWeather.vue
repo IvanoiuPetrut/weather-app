@@ -6,8 +6,9 @@
       @click="
         deactivateAllHours();
         activateHour(index);
+        scrollToHour(index);
       "
-      :class="{ active: activeHour[index] }"
+      :class="[activeHour[index] ? 'active' : '', `hour--${index}`]"
     >
       <p class="hourly-weather__temperature">{{ temperature(hour) }}</p>
       <WeatherImg
@@ -54,6 +55,13 @@ export default {
     deactivateAllHours() {
       this.$store.commit("deactivateAllHours");
     },
+    scrollToHour(index) {
+      const hour = document.querySelector(`.hour--${index}`);
+      hour.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    },
   },
   computed: {
     ...mapState({
@@ -70,15 +78,12 @@ export default {
     weatherCondition() {
       return this.forecast[this.dayIndex].hour[this.hourIndex].condition.text;
     },
-    itemClassObj() {
-      return {
-        "hourly-weather__item": true,
-        active: this.activeHour,
-      };
-    },
   },
   created() {
     this.$store.commit("setActiveHour", this.hourIndex);
+  },
+  mounted() {
+    this.scrollToHour(22);
   },
 };
 </script>
