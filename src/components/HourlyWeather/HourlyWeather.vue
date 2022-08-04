@@ -1,27 +1,77 @@
 <template>
-  <ul class="hourly-weather">
-    <li
-      v-for="(hour, index) in hours"
-      :key="index"
-      @click="
-        deactivateAllHours();
-        activateHour(index);
-        scrollToHour(index);
-      "
-      :class="[activeHour[index] ? 'active' : '', `hour--${index}`]"
+  <div class="hourly-weather__wrapper">
+    <button
+      @click="scrollToBeginning()"
+      class="btn"
+      type="button"
+      aria-label="Scroll weather hours to right"
     >
-      <p class="hourly-weather__temperature">{{ temperature(hour) }}</p>
-      <WeatherImg
-        :hourIndex="hours[index]"
-        class="hourly-weather__img"
-      ></WeatherImg>
-      <Hours
-        :hours="hours"
-        :hourIndex="index"
-        class="hourly-weather__hour"
-      ></Hours>
-    </li>
-  </ul>
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-chevron-left"
+        width="44"
+        height="44"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <polyline points="15 6 9 12 15 18" />
+      </svg>
+    </button>
+    <ul class="hourly-weather">
+      <li
+        v-for="(hour, index) in hours"
+        :key="index"
+        @click="
+          deactivateAllHours();
+          activateHour(index);
+          scrollToHour(index);
+        "
+        :class="[activeHour[index] ? 'active' : '', `hour--${index}`]"
+      >
+        <p class="hourly-weather__temperature">{{ temperature(hour) }}</p>
+        <WeatherImg
+          :hourIndex="hours[index]"
+          class="hourly-weather__img"
+        ></WeatherImg>
+        <Hours
+          :hours="hours"
+          :hourIndex="index"
+          class="hourly-weather__hour"
+        ></Hours>
+      </li>
+    </ul>
+    <button
+      @click="scrollToEnd()"
+      class="btn"
+      type="button"
+      aria-label="Scroll weather hours to left"
+    >
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-chevron-right"
+        width="44"
+        height="44"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <polyline points="9 6 15 12 9 18" />
+      </svg>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -63,6 +113,23 @@ export default {
         inline: "start",
       });
     },
+    scrollToBeginning() {
+      console.log("scroll to beginning");
+      const hour = document.querySelector(".hour--0");
+      hour.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "start",
+      });
+    },
+    scrollToEnd() {
+      const hour = document.querySelector(".hour--23");
+      hour.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "start",
+      });
+    },
   },
   computed: {
     ...mapState({
@@ -96,6 +163,12 @@ export default {
 
 <style lang="scss" scoped>
 @use "../../assets/style/colors.scss";
+
+.hourly-weather__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
 .hourly-weather {
   width: 65vw;
   display: flex;
@@ -131,12 +204,26 @@ export default {
   }
 }
 .active {
-  // color: colors.$accent-color;
   border: 1px solid red;
   .hourly-weather {
     &__temperature {
       color: colors.$accent-color;
     }
+  }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: 1px solid colors.$transparent-color-neutral;
+  color: colors.$text-color;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    color: colors.$accent-color;
+    background-color: colors.$transparent-primary-color;
+    border-color: colors.$accent-color;
   }
 }
 </style>
