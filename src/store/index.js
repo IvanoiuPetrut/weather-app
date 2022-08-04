@@ -38,7 +38,6 @@ export default createStore({
     },
     setActiveHour(state, hourIndex) {
       state.activeHour[hourIndex] = 1;
-      console.log(hourIndex);
     },
     deactivateAllHours(state) {
       state.activeHour = state.activeHour.map(() => 0);
@@ -117,13 +116,6 @@ export default createStore({
               timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
             )
           );
-
-          console.log(
-            "from store " +
-              parseInt(
-                timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
-              )
-          );
         })
         .catch((error) => {
           console.log(error);
@@ -136,7 +128,6 @@ export default createStore({
         )
         .then((response) => {
           commit("setSearchCities", response.data);
-          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);

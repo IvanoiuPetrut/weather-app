@@ -45,7 +45,7 @@
 
 <script>
 import SearchList from "./SearchList.vue";
-import { mapState } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "SearchBar",
@@ -71,22 +71,9 @@ export default {
     },
   },
   methods: {
-    setCity(city) {
-      this.$store.commit("setCity", city);
-      console.log(`city` + this.$store.state.city);
-    },
-    setSearchCity(city) {
-      this.$store.commit("setSearchCity", city);
-    },
-    fetchWeather() {
-      this.$store.dispatch("fetchWeather");
-    },
-    fetchSearchList() {
-      this.$store.dispatch("fetchSearchList");
-    },
-    clearCities() {
-      this.$store.commit("clearCities");
-    },
+    ...mapActions(["fetchWeather", "fetchSearchList"]),
+    ...mapMutations(["setSearchCity", "clearCities", "setCity"]),
+
     clearSearchText() {
       this.searchText = "";
     },

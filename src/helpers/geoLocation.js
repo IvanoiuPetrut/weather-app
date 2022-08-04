@@ -4,7 +4,6 @@ export const geoLocation = {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       const location = latitude + "," + longitude;
-      console.log(location);
       this.$store.commit("setCity", location);
       this.$store.dispatch("fetchWeather");
     },

@@ -83,7 +83,8 @@ export default {
     this.$store.commit("setActiveHour", this.hourIndex);
   },
   mounted() {
-    this.scrollToHour(22);
+    this.scrollToHour(this.hourIndex);
+    console.log("HEEEEELLLOW");
   },
 };
 </script>
