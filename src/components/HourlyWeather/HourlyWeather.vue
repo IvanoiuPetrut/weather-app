@@ -164,6 +164,26 @@ export default {
 <style lang="scss" scoped>
 @use "../../assets/style/colors.scss";
 
+::-webkit-scrollbar {
+  height: 0.6rem;
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+  background-color: colors.$primary-color;
+  border-radius: 100px;
+  box-shadow: inset 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: colors.$secondary-color;
+  border: 1px solid colors.$transparent-color-neutral;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-color: colors.$accent-color;
+}
 .hourly-weather__wrapper {
   display: flex;
   align-items: center;
@@ -173,6 +193,7 @@ export default {
   width: 65vw;
   display: flex;
   overflow-x: scroll;
+  padding: 0 0 1rem 0;
   gap: 1.2rem;
   align-self: center;
   font-size: 1.4rem;
