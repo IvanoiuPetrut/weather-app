@@ -1,26 +1,60 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div v-if="this.city.length > 0">
+    <CurrentWeather class="current-weather"></CurrentWeather>
+  </div>
+  <div v-else>
+    <h2 class="heading--tertiary">Please enter a city</h2>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapState } from "vuex";
+import { geoLocation } from "./helpers/geoLocation";
+import CurrentWeather from "./components/CurrentWeather.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    CurrentWeather,
+  },
+  mixins: [geoLocation],
+  methods: {
+    getCurrentDate() {
+      return new Date().toISOString().slice(0, 10);
+    },
+  },
+  computed: {
+    ...mapState({
+      city: (state) => state.city,
+    }),
+  },
+  beforeCreate() {
+    this.$store.dispatch("settings/initialiseSettings");
+    this.$store.commit("initialiseStore");
+  },
+  created() {
+    this.$store.commit("setCurrentDate");
+    if (this.$store.state.city.length > 0) {
+      this.$store.dispatch("fetchWeather");
+    }
+    this.$store.subscribe((mutation, state) => {
+      let settings = {
+        isCelsius: state.settings.isCelsius,
+        isKmH: state.settings.isKmH,
+        isMm: state.settings.isMm,
+        isMb: state.settings.isMb,
+        isKm: state.settings.isKm,
+      };
+
+      let favoriteCities = {
+        favoriteCities: state.favoriteCities,
+      };
+
+      localStorage.setItem("settings", JSON.stringify(settings));
+      localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
+    });
+  },
+};
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss"></style>

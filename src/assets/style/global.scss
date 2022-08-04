@@ -1,0 +1,103 @@
+@use "./colors.scss";
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/roboto_regular_macroman/Roboto-Regular-webfont.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/roboto_light_macroman/Roboto-Light-webfont.woff")
+    format("woff");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("../fonts/roboto_bold_macroman/Roboto-Bold-webfont.woff")
+    format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+$font-stack: "roboto", sans-serif;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px rgba(51, 155, 240, 0.6);
+}
+
+ul {
+  list-style: none;
+}
+
+html {
+  font-size: 62.5%;
+  font-size: 1.2rem;
+  font-family: $font-stack;
+  color: colors.$text-color;
+  line-height: 1.5;
+}
+
+.btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+// HELPER CLASSES
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.margin-bottom--sm {
+  margin-bottom: 0.6rem;
+}
+
+.margin-bottom--md {
+  margin-bottom: 1.6rem;
+}
+
+.margin-bottom--bg {
+  margin-bottom: 3.2rem;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  stroke: currentColor;
+}
+
+// HEADINGS
+
+%headings {
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: colors.$text-color;
+}
+
+.heading--tertiary {
+  @extend %headings;
+  font-size: 1.4rem;
+}
+
+.heading--secondary {
+  @extend %headings;
+  font-size: 3rem;
+}
