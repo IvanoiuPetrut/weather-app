@@ -22,11 +22,11 @@ Weather App is a simple weather app that allows you to search for a city and get
 
 ## Technologies
 
-- VueJS
+- Vue 3 - Options API
 - Vuex
 - Axios
 - HTML5
-- SASS
+- CSS3, SASS
 
 ## Build process
 
