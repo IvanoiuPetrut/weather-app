@@ -91,7 +91,7 @@ export default createStore({
     fetchWeather({ commit }) {
       Promise.all([
         axios.get(
-          `http://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=yes&alerts=no`
+          `https://api.weatherapi.com/v1/forecast.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&days=6&aqi=yes&alerts=no`
         ),
         axios.get(
           `https://api.weatherapi.com/v1/current.json?key=c48712edce2441edae5122038222706&q=${this.state.city}&aqi=yes`
