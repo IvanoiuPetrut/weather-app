@@ -150,26 +150,37 @@ export default {
     padding: 0 2.4rem;
     display: none;
   }
+
   &__image {
-    width: 80%;
+    width: 70%;
     height: auto;
     align-self: center;
 
     @media (max-width: 1050px) {
-      width: 30%;
+      width: clamp(10rem, 50%, 20rem);
+      margin-top: 1.8rem;
     }
   }
+
   &__current-temp {
     font-size: 3.6rem;
     color: colors.$text-color;
+    @media (max-width: 650px) {
+      font-size: 2.8rem;
+    }
   }
+
   &__feels-like {
     font-size: 1.1rem;
     color: colors.$text-color-secondary;
   }
+
   &__condition {
     color: colors.$text-color;
     font-size: 1.4rem;
+    @media (max-width: 400px) {
+      font-size: 1rem;
+    }
   }
 
   .weather {
@@ -177,10 +188,10 @@ export default {
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 500px) {
+    @media (max-width: 1800px) {
       flex-direction: column;
       align-items: start;
-      margin-bottom: 1.6rem;
+      margin-bottom: 0.8rem;
     }
   }
 
@@ -206,6 +217,10 @@ export default {
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   padding: 0.2rem 0.8rem;
   border-radius: 7px;
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+  }
 }
 
 .region__wrapper {
@@ -217,6 +232,9 @@ export default {
     font-size: 1.8rem;
     font-weight: bold;
     letter-spacing: 1px;
+    @media (max-width: 500px) {
+      font-size: 1.4rem;
+    }
   }
 }
 
@@ -226,6 +244,9 @@ export default {
   gap: 0.8rem;
   .temperature__date {
     font-size: 1.2rem;
+    @media (max-width: 500px) {
+      font-size: 1rem;
+    }
   }
 }
 

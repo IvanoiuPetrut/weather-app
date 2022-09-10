@@ -134,6 +134,9 @@ export default {
   .logo {
     display: flex;
     align-items: center;
+    @media (max-width: 520px) {
+      display: none;
+    }
     .icon-tabler {
       margin-right: 0.6rem;
     }
