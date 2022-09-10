@@ -39,6 +39,7 @@
         <settings class="element__list element__list--active right"></settings>
       </div>
       <button
+        @click="toggleSettings"
         class="btn"
         type="button"
         aria-label="Weather settings and favorite cities"
@@ -62,6 +63,17 @@
           <circle cx="12" cy="12" r="3" />
         </svg>
       </button>
+      <div class="nav__settings">
+        <p class="element__title">Favorite Cities</p>
+        <ModularList
+          :list="favoriteCities"
+          @remove-item="removeItem"
+          @set-item="setItem"
+          class="element__list element__list--active"
+        ></ModularList>
+        <p class="element__title">Weather Preferences</p>
+        <settings class="element__list element__list--active right"></settings>
+      </div>
     </div>
   </nav>
 </template>
@@ -80,6 +92,11 @@ export default {
     Settings,
     SearchBar,
   },
+  data() {
+    return {
+      showSettings: false,
+    };
+  },
   methods: {
     removeItem(index) {
       console.log(index);
@@ -88,6 +105,9 @@ export default {
     setItem(index) {
       this.$store.commit("setCurrentCity", index);
       this.$store.dispatch("fetchWeather");
+    },
+    toggleSettings() {
+      this.showSettings = !this.showSettings;
     },
   },
   computed: {
@@ -130,6 +150,23 @@ export default {
 
   &__search-bar {
     width: 100%;
+  }
+
+  &__settings {
+    display: none;
+    gap: 1.6rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: colors.$primary-color;
+    padding: 1.6rem;
+    z-index: 1;
+    @media (max-width: 1450px) {
+      // display: flex;
+      // flex-direction: column;
+    }
   }
   .logo {
     display: flex;
