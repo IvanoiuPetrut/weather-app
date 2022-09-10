@@ -142,6 +142,10 @@ export default {
   height: 100vh;
   background-color: colors.$primary-color;
 
+  @media (max-width: 1050px) {
+    height: auto;
+  }
+
   &__search-bar {
     padding: 0 2.4rem;
     display: none;
@@ -150,6 +154,10 @@ export default {
     width: 80%;
     height: auto;
     align-self: center;
+
+    @media (max-width: 1050px) {
+      width: 30%;
+    }
   }
   &__current-temp {
     font-size: 3.6rem;
@@ -168,7 +176,14 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: start;
+      margin-bottom: 1.6rem;
+    }
   }
+
   &__wrapper {
     display: flex;
     flex-direction: column;

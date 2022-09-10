@@ -214,16 +214,47 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   border-radius: 7px;
-  // background-color: colors.$primary-color;
-  // padding: 1rem 1.2rem;
+  margin-bottom: 1.6rem;
+
+  @media (max-width: 1750px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media (max-width: 1450px) {
+    grid-template-columns: repeat(2, 1fr);
+    place-self: start;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
+
   div {
     text-align: center;
     background-color: colors.$primary-color;
     border: 1px solid colors.$transparent-color-neutral;
     padding: 0.6rem 1rem;
     border-radius: 7px;
+
+    @media (max-width: 1200px) {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+    }
     .description {
       font-weight: lighter;
+      @media (max-width: 1200px) {
+        margin-right: 0.6rem;
+      }
     }
     .amount {
       font-weight: bold;
@@ -234,5 +265,10 @@ export default {
   width: 3.6rem;
   height: 3.6rem;
   stroke: currentColor;
+  @media (max-width: 1200px) {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.6rem;
+  }
 }
 </style>

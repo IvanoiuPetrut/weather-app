@@ -38,6 +38,30 @@
         <p class="element__title">Weather Preferences</p>
         <settings class="element__list element__list--active right"></settings>
       </div>
+      <button
+        class="btn"
+        type="button"
+        aria-label="Weather settings and favorite cities"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-settings"
+          width="44"
+          height="44"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#2c3e50"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"
+          />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      </button>
     </div>
   </nav>
 </template>
@@ -84,6 +108,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   background-color: colors.$primary-color;
   padding: 0.6rem 1.6rem;
   font-size: 1rem;
@@ -93,6 +118,9 @@ export default {
     align-items: center;
     gap: 3.2rem;
     justify-content: space-between;
+    @media (max-width: 1200px) {
+      gap: 1.6rem;
+    }
   }
 
   &__elements {
@@ -130,6 +158,10 @@ export default {
       pointer-events: auto;
     }
   }
+
+  @media (max-width: 1450px) {
+    display: none;
+  }
   .element__title {
     padding: 0.2rem 0.8rem;
   }
@@ -147,6 +179,30 @@ export default {
   .right {
     left: -100%;
     transform: translate(20%, 0);
+  }
+}
+.btn {
+  display: none;
+  width: 60px;
+  height: 40px;
+  background-color: colors.$secondary-color;
+  border: none;
+  border-radius: 9px;
+  border: 1px solid colors.$transparent-color-neutral;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  &:hover {
+    background-color: colors.$transparent-primary-color;
+    border-color: colors.$accent-color;
+  }
+
+  @media (max-width: 1450px) {
+    display: block;
+  }
+  .icon {
+    width: 1.4rem;
+    stroke: colors.$text-color;
+    transform: rotate(90deg);
   }
 }
 </style>

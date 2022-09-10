@@ -146,6 +146,7 @@ export default {
   margin-top: 2.4rem;
   border-radius: 11px;
   position: relative;
+
   .img {
     font-size: 4rem;
     text-align: center;
@@ -153,6 +154,7 @@ export default {
   .moon-phase {
     font-size: 1.2rem;
     position: relative;
+    text-align: center;
     &::before {
       content: "";
       width: 100%;
@@ -160,6 +162,9 @@ export default {
       background-color: colors.$transparent-color-neutral;
       position: absolute;
       bottom: -2px;
+      @media (max-width: 1200px) {
+        width: 0%;
+      }
     }
   }
 }
@@ -182,6 +187,12 @@ export default {
   grid-gap: 3.2rem;
   width: 100%;
   place-items: center;
+  @media (max-width: 1250px) {
+    grid-gap: 1.6rem;
+  }
+  @media (max-width: 950px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .astro {
@@ -201,6 +212,9 @@ export default {
     grid-template-columns: 1fr 1fr;
     grid-gap: 3.2rem;
     border-bottom: 1px solid colors.$transparent-color-neutral;
+    @media (max-width: 950px) {
+      grid-gap: 1.6rem;
+    }
   }
 }
 </style>

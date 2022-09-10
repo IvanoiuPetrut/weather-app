@@ -188,14 +188,14 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  max-width: 100%;
 }
 .hourly-weather {
-  width: 65vw;
   display: flex;
-  overflow-x: scroll;
   padding: 0 0 1rem 0;
   gap: 1.2rem;
   align-self: center;
+  overflow-x: scroll;
   font-size: 1.4rem;
   &__temperature {
     font-size: 1.1rem;
