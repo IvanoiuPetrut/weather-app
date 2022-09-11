@@ -82,6 +82,11 @@ html {
   stroke: currentColor;
 }
 
+.icon--only-fill {
+  stroke: none;
+  fill: currentColor;
+}
+
 // HEADINGS
 
 %headings {

@@ -9,47 +9,17 @@
       <div class="astro">
         <div class="astro__sun margin-bottom--sm">
           <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-sunrise"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#2c3e50"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0"
-              />
-              <line x1="3" y1="21" x2="21" y2="21" />
-              <path d="M12 9v-6l3 3m-6 0l3 -3" />
-            </svg>
+            <IconWeather
+              name="sun-rise"
+              class="icon icon--only-fill"
+            ></IconWeather>
             <p class="astro__sunrise">Sunrise: {{ sunRise }}</p>
           </div>
           <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-sunset"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#2c3e50"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0"
-              />
-              <line x1="3" y1="21" x2="21" y2="21" />
-              <path d="M12 3v6l3 -3m-6 0l3 3" />
-            </svg>
+            <IconWeather
+              name="sun-set"
+              class="icon icon--only-fill"
+            ></IconWeather>
             <p class="astro__sunset">Sunset: {{ sunSet }}</p>
           </div>
         </div>
@@ -64,8 +34,13 @@
 
 <script>
 import { mapState } from "vuex";
+import IconWeather from "./IconWeather.vue";
+
 export default {
   name: "MoonPhase",
+  components: {
+    IconWeather,
+  },
   data() {
     return {
       moonPhaseTable: [
