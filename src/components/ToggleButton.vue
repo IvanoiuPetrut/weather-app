@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-group">
+  <div class="btn__group">
     <button
       class="btn btn--toggle btn--left"
       :class="{ active: isOptionOneActive }"
@@ -50,7 +50,9 @@ export default {
 @use "../assets/style/colors.scss";
 
 .btn--toggle {
+  display: inline-block;
   padding: 0.2rem 0.6rem;
+  width: 50%;
   color: colors.$text-color;
   background-color: colors.$secondary-color;
   transition: all 0.15s ease-in-out;
@@ -58,6 +60,10 @@ export default {
   &:hover {
     border-color: colors.$accent-color;
   }
+}
+
+.btn__group {
+  display: flex;
 }
 
 .btn--right {

@@ -38,11 +38,9 @@
         <p class="element__title">Weather Preferences</p>
         <settings class="element__list element__list--active right"></settings>
       </div>
-      <button
-        @click="toggleSettings"
-        class="btn"
-        type="button"
-        aria-label="Weather settings and favorite cities"
+      <div
+        class="btn btn--settings"
+        aria-label="Weather settings and favourite cities"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,17 +60,17 @@
           />
           <circle cx="12" cy="12" r="3" />
         </svg>
-      </button>
-      <div class="nav__settings">
-        <p class="element__title">Favorite Cities</p>
-        <ModularList
-          :list="favoriteCities"
-          @remove-item="removeItem"
-          @set-item="setItem"
-          class="element__list element__list--active"
-        ></ModularList>
-        <p class="element__title">Weather Preferences</p>
-        <settings class="element__list element__list--active right"></settings>
+        <div class="nav__settings nav__settings--active">
+          <p class="element__title">Favorite Cities</p>
+          <ModularList
+            :list="favoriteCities"
+            @remove-item="removeItem"
+            @set-item="setItem"
+            class="element__list"
+          ></ModularList>
+          <p class="element__title">Weather Preferences</p>
+          <settings class="element__list"></settings>
+        </div>
       </div>
     </div>
   </nav>
@@ -156,18 +154,28 @@ export default {
     display: none;
     gap: 1.6rem;
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
+    top: 55px;
+    right: 30px;
+    border: 1px solid colors.$transparent-color-neutral;
     background-color: colors.$primary-color;
+    border-radius: 7px;
     padding: 1.6rem;
     z-index: 1;
-    @media (max-width: 1450px) {
-      // display: flex;
-      // flex-direction: column;
+    cursor: default;
+
+    .element__title {
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+    .element__list:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+
+    .element__list {
+      padding: 0;
     }
   }
+
   .logo {
     display: flex;
     align-items: center;
@@ -221,6 +229,14 @@ export default {
     transform: translate(20%, 0);
   }
 }
+.btn--settings {
+  &:hover {
+    background-color: colors.$primary-color;
+    .nav__settings--active {
+      display: block;
+    }
+  }
+}
 .btn {
   display: none;
   width: 60px;
@@ -237,7 +253,9 @@ export default {
   }
 
   @media (max-width: 1450px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .icon {
     width: 1.4rem;

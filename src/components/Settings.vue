@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="settings">
-      <div>
+      <div class="settings__field">
         <span>Temperature</span>
         <ToggleButton
           class="btn"
@@ -11,7 +11,7 @@
           secondOption="°F"
         ></ToggleButton>
       </div>
-      <div>
+      <div class="settings__field">
         <span>Speed</span>
         <ToggleButton
           class="btn"
@@ -21,7 +21,7 @@
           secondOption="Mp/h"
         ></ToggleButton>
       </div>
-      <div>
+      <div class="settings__field">
         <span>Supraface</span>
         <ToggleButton
           class="btn"
@@ -31,7 +31,7 @@
           secondOption="inch"
         ></ToggleButton>
       </div>
-      <div>
+      <div class="settings__field">
         <span>Pressure</span>
         <ToggleButton
           class="btn"
@@ -41,7 +41,7 @@
           secondOption="inch"
         ></ToggleButton>
       </div>
-      <div>
+      <div class="settings__field">
         <span>Distance</span>
         <ToggleButton
           class="btn"
@@ -105,9 +105,15 @@ export default {
   flex-direction: column;
   gap: 0.6rem;
   width: 15.6rem;
-  div {
+  @media (max-width: 420px) {
+    width: 100%;
+  }
+  .settings__field {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 420px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 

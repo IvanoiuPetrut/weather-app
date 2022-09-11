@@ -48,11 +48,19 @@ ul {
   &__content {
     color: colors.$text-color;
     padding: 0.2rem 0.6rem;
+    background-color: colors.$secondary-color;
+    border: 1px solid colors.$transparent-color-neutral;
+    border-radius: 7px;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
     &:hover {
-      color: colors.$accent-color;
+      border-color: colors.$accent-color;
+      background-color: colors.$transparent-primary-color;
     }
+  }
+
+  &__content:not(:last-child) {
+    margin-bottom: 0.4rem;
   }
 
   .btn {
