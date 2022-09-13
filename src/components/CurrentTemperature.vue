@@ -1,12 +1,12 @@
 <template>
   <div class="temperature">
     <SearchBar class="temperature__search-bar"></SearchBar>
-    <img
-      class="temperature__image"
-      :src="weatherImage"
-      :alt="weatherCondition"
-    />
     <div class="weather">
+      <!-- <img
+        class="temperature__image"
+        :src="weatherImage"
+        :alt="weatherCondition"
+      /> -->
       <p class="temperature__current-temp">{{ temperature }}</p>
       <div class="temperature__wrapper">
         <p class="temperature__high">High: {{ highTemp }}</p>
@@ -29,28 +29,15 @@
         <PrimaryButton :onClick="addCity" :tooltip="tooltip">+</PrimaryButton>
       </div>
     </div>
-    <div class="date__wrapper">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-calendar"
-        width="44"
-        height="44"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="#2c3e50"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <rect x="4" y="5" width="16" height="16" rx="2" />
-        <line x1="16" y1="3" x2="16" y2="7" />
-        <line x1="8" y1="3" x2="8" y2="7" />
-        <line x1="4" y1="11" x2="20" y2="11" />
-        <line x1="11" y1="15" x2="12" y2="15" />
-        <line x1="12" y1="15" x2="12" y2="18" />
-      </svg>
-      <p class="temperature__date">{{ currentDate }}</p>
+    <div class="time">
+      <div class="date__wrapper">
+        <IconWeather name="calendar" class="icon"></IconWeather>
+        <p class="temperature__date">{{ currentDate }}</p>
+      </div>
+      <div class="date__wrapper">
+        <IconWeather name="clock" class="icon"></IconWeather>
+        <p class="temperature__date">{{ currentTime }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -59,11 +46,13 @@
 import { mapState } from "vuex";
 import PrimaryButton from "./PrimaryButton.vue";
 import SearchBar from "./SearchBar.vue";
+import IconWeather from "./IconWeather.vue";
 export default {
   name: "CurrentTemperature",
   components: {
     PrimaryButton,
     SearchBar,
+    IconWeather,
   },
   data() {
     return {
@@ -90,6 +79,7 @@ export default {
       isCelsius: (state) => state.settings.isCelsius,
       hourIndex: (state) => state.hourIndex,
       dayIndex: (state) => state.dayIndex,
+      localtime: (state) => state.localtime,
     }),
     name() {
       return this.currentWeather.location.name;
@@ -101,7 +91,10 @@ export default {
       return this.currentWeather.location.country;
     },
     currentDate() {
-      return this.formatDate(this.forecast[this.dayIndex].date);
+      return this.localtime.split(" ")[0];
+    },
+    currentTime() {
+      return this.localtime.split(" ")[1];
     },
     weatherImage() {
       return this.forecast[this.dayIndex].hour[this.hourIndex].condition.icon;
@@ -163,7 +156,7 @@ export default {
   }
 
   &__current-temp {
-    font-size: 3.6rem;
+    font-size: 2.8rem;
     color: colors.$text-color;
     @media (max-width: 650px) {
       font-size: 2.8rem;
@@ -185,13 +178,18 @@ export default {
 
   .weather {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 0.8rem;
 
-    @media (max-width: 1800px) {
-      flex-direction: column;
-      align-items: start;
-      margin-bottom: 0.8rem;
+    @media (max-width: 1050px) {
+      margin-top: 1.8rem;
+    }
+
+    &__section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
@@ -238,12 +236,18 @@ export default {
   }
 }
 
+.time {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 .date__wrapper {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   .temperature__date {
     font-size: 1.2rem;
+    letter-spacing: 0.5px;
     @media (max-width: 500px) {
       font-size: 1rem;
     }
@@ -257,5 +261,10 @@ export default {
 .heading--secondary {
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+.icon {
+  width: 1.8rem;
+  height: 1.8rem;
 }
 </style>

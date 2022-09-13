@@ -8,6 +8,7 @@ export default createStore({
     searchCity: "",
     country: "",
     date: "",
+    localtime: "",
     hourIndex: 0,
     hours: [
       0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -32,6 +33,9 @@ export default createStore({
     },
     setCurrentWeather(state, currentWeather) {
       state.currentWeather = currentWeather;
+    },
+    setLocaltime(state, localtime) {
+      state.localtime = localtime;
     },
     setHourIndex(state, hourIndex) {
       state.hourIndex = hourIndex;
@@ -103,6 +107,7 @@ export default createStore({
         .then(([forecast, currentWeather, timmeZone]) => {
           commit("setForecast", forecast.data.forecast.forecastday);
           commit("setCurrentWeather", currentWeather.data);
+          commit("setLocaltime", timmeZone.data.location.localtime);
           commit(
             "setHourIndex",
             parseInt(
