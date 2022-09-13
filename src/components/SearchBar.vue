@@ -78,10 +78,12 @@ export default {
       this.searchText = "";
     },
     fetchAndResetWeather(city) {
-      this.setCity(city);
-      this.fetchWeather();
-      this.clearSearchText();
-      this.clearCities();
+      if (city.length > 1) {
+        this.setCity(city);
+        this.fetchWeather();
+        this.clearSearchText();
+        this.clearCities();
+      }
     },
     toggleVisibility() {
       setTimeout(() => {
