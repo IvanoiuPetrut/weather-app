@@ -6,23 +6,7 @@
       type="button"
       aria-label="Scroll weather hours to right"
     >
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-chevron-left"
-        width="44"
-        height="44"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="#2c3e50"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <polyline points="15 6 9 12 15 18" />
-      </svg>
+      <IconWeather name="arrow-left" class="icon"></IconWeather>
     </button>
     <ul class="hourly-weather">
       <li
@@ -53,23 +37,7 @@
       type="button"
       aria-label="Scroll weather hours to left"
     >
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-chevron-right"
-        width="44"
-        height="44"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="#2c3e50"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <polyline points="9 6 15 12 9 18" />
-      </svg>
+      <IconWeather name="arrow-right" class="icon"></IconWeather>
     </button>
   </div>
 </template>
@@ -78,12 +46,14 @@
 import { mapActions, mapState } from "vuex";
 import Hours from "./Hours.vue";
 import WeatherImg from "./WeatherImg.vue";
+import IconWeather from "../IconWeather.vue";
 
 export default {
   name: "HourlyWeather",
   components: {
     Hours,
     WeatherImg,
+    IconWeather,
   },
   data() {
     return {
@@ -225,12 +195,18 @@ export default {
   }
 }
 .active {
-  border: 1px solid red;
   .hourly-weather {
     &__temperature {
       color: colors.$accent-color;
     }
+    &__hour {
+      color: colors.$accent-color;
+    }
   }
+}
+
+.active.active {
+  border-color: colors.$accent-color;
 }
 
 .btn {
