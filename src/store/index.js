@@ -123,7 +123,7 @@ export default createStore({
           );
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.code);
         });
     },
     fetchSearchList({ commit }) {
