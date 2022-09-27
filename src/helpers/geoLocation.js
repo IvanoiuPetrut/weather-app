@@ -9,7 +9,7 @@ export const geoLocation = {
     },
     error(error) {
       console.log(error);
-      this.$store.commit("setCity", "sibiu");
+      this.$store.commit("setCity", "New York");
       this.$store.dispatch("fetchWeather");
     },
   },
