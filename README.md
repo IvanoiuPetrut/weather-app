@@ -6,7 +6,7 @@
 
 Weather App is a simple weather app that allows you to search for a city and get the current weather. You can also get the weather for the next 3 days and see hourly weather for the next 24 hours.
 
-<a href="#"> Weather app live here </a>
+<a href="https://weather-app-vue-12c3a.web.app/"> Weather app live here </a>
 
 ## Features
 
