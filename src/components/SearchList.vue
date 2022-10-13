@@ -31,7 +31,6 @@ export default {
   methods: {
     getCity(city) {
       this.$emit("get-city", city);
-      console.log(city);
     },
   },
   computed: {

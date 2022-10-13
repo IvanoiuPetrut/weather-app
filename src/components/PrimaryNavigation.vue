@@ -97,7 +97,6 @@ export default {
   },
   methods: {
     removeItem(index) {
-      console.log(index);
       this.$store.commit("removeCity", index);
     },
     setItem(index) {

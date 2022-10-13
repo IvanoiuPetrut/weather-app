@@ -84,7 +84,6 @@ export default {
       });
     },
     scrollToBeginning() {
-      console.log("scroll to beginning");
       const hour = document.querySelector(".hour--0");
       hour.scrollIntoView({
         behavior: "smooth",
@@ -122,11 +121,9 @@ export default {
   },
   mounted() {
     this.scrollToHour(this.hourIndex);
-    console.log("HEEEEELLLOW");
   },
   updated() {
     this.scrollToHour(this.hourIndex);
-    console.log("update");
   },
 };
 </script>
