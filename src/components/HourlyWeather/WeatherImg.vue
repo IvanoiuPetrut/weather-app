@@ -1,5 +1,5 @@
 <template>
-  <img :src="weatherImage" :alt="weatherCondition" />
+  <img :src="weatherImage" :alt="weatherCondition" width="64" height="64" />
 </template>
 
 <script>

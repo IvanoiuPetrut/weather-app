@@ -151,6 +151,13 @@ export default {
 ::-webkit-scrollbar-thumb:hover {
   border-color: colors.$accent-color;
 }
+
+.icon {
+  // media screen for 500px
+  @media (max-width: 550px) {
+    display: none;
+  }
+}
 .hourly-weather__wrapper {
   display: flex;
   align-items: center;
