@@ -61,7 +61,7 @@ export default {
 
 .weather__main-panel {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .nav {
   position: sticky;
