@@ -171,16 +171,27 @@ export default {
   align-self: center;
   overflow-x: scroll;
   font-size: 1.4rem;
+  @media (max-width: 550px) {
+    font-size: 1.2rem;
+    gap: 0.4rem;
+  }
+
   &__temperature {
     font-size: 1.1rem;
     font-weight: bold;
+    @media (max-width: 550px) {
+      font-size: 0.9rem;
+    }
   }
   &__hour {
     font-size: 1rem;
+    @media (max-width: 550px) {
+      font-size: 0.8rem;
+    }
   }
   &__img {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2rem;
+    height: 2rem;
   }
   li {
     display: flex;
@@ -191,6 +202,9 @@ export default {
     padding: 0.6rem 0.8rem;
     border-radius: 13px;
     border: 1px solid colors.$transparent-color-neutral;
+    @media (max-width: 550px) {
+      padding: 0.3rem 0.4rem;
+    }
     &:hover {
       color: colors.$accent-color;
       background-color: rgba(0, 0, 0, 0.5);
