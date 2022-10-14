@@ -78,6 +78,7 @@ export default {
 .weather {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  background-color: colors.$secondary-color;
 
   @media (max-width: 1050px) {
     grid-template-columns: 1fr;
