@@ -4,11 +4,11 @@
       <h2 class="header__title">Get the weather</h2>
       <IconWeather name="logo" class="header__logo"></IconWeather>
     </div>
-    <SearchBar></SearchBar>
     <div class="get-your-location">
+      <SearchBar class="select-location__class"></SearchBar>
       <button class="get-your-location__btn">
         <IconWeather name="current-location" class="icon"></IconWeather>
-        Use my location
+        <span class="btn__text"> Use my location </span>
       </button>
     </div>
   </div>
@@ -40,6 +40,10 @@ export default {
   background-color: colors.$primary-color;
   border-radius: 13px;
   border: 1px solid colors.$transparent-color-neutral;
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1.6rem;
+  }
   .header {
     display: flex;
     align-items: center;
@@ -48,11 +52,29 @@ export default {
 
     &__title {
       font-size: 2rem;
+      @media (max-width: 768px) {
+        font-size: 1.6rem;
+      }
     }
 
     &__logo {
       width: 3.2rem;
       height: 3.2rem;
+      @media (max-width: 768px) {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  }
+  .get-your-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+
+    @media (max-width: 768px) {
+      flex-direction: row;
+      gap: 1.6rem;
     }
   }
 
@@ -70,6 +92,13 @@ export default {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 
+    @media (max-width: 768px) {
+      padding: 0.4rem 0.8rem;
+      .btn__text {
+        display: none;
+      }
+    }
+
     &:hover {
       background-color: colors.$transparent-primary-color;
       border-color: colors.$accent-color;
@@ -78,6 +107,11 @@ export default {
     .icon {
       width: 1.6rem;
       height: 1.6rem;
+
+      @media (max-width: 768px) {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
     }
   }
 }
