@@ -2,24 +2,7 @@
   <nav class="nav">
     <div class="nav__section">
       <div class="logo">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon icon-tabler icon-tabler-cloud-fog"
-          width="44"
-          height="44"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="#2c3e50"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path
-            d="M7 16a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12"
-          />
-          <line x1="5" y1="20" x2="19" y2="20" />
-        </svg>
+        <IconWeather name="logo"></IconWeather>
         <h1 class="heading--primary">Weather</h1>
       </div>
       <SearchBar class="nav__search-bar"></SearchBar>
@@ -81,6 +64,7 @@ import { mapState, mapMutations } from "vuex";
 import ModularList from "./ModularList.vue";
 import Settings from "./Settings.vue";
 import SearchBar from "./SearchBar.vue";
+import IconWeather from "./IconWeather.vue";
 
 export default {
   name: "PrimaryNavigation",
@@ -89,6 +73,7 @@ export default {
     ModularList,
     Settings,
     SearchBar,
+    IconWeather,
   },
   data() {
     return {

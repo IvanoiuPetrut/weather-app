@@ -1,9 +1,10 @@
 <template>
+  <SelectLocation></SelectLocation>
   <div v-if="this.city.length > 0">
     <CurrentWeather class="current-weather"></CurrentWeather>
   </div>
   <div v-else>
-    <h2 class="heading--tertiary">Please enter a city</h2>
+    <!-- <SelectLocation></SelectLocation> -->
   </div>
 </template>
 
@@ -11,11 +12,13 @@
 import { mapState } from "vuex";
 import { geoLocation } from "./helpers/geoLocation";
 import CurrentWeather from "./components/CurrentWeather.vue";
+import SelectLocation from "./components/SelectLocation.vue";
 
 export default {
   name: "App",
   components: {
     CurrentWeather,
+    SelectLocation,
   },
   mixins: [geoLocation],
   methods: {
