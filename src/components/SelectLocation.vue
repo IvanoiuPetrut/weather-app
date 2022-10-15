@@ -6,7 +6,7 @@
     </div>
     <div class="get-your-location">
       <SearchBar class="select-location__class"></SearchBar>
-      <button class="get-your-location__btn">
+      <button class="get-your-location__btn" @click="getLocaion">
         <IconWeather name="current-location" class="icon"></IconWeather>
         <span class="btn__text"> Use my location </span>
       </button>
@@ -24,6 +24,27 @@ export default {
     IconWeather,
     SearchBar,
   },
+  methods: {
+    success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const location = latitude + "," + longitude;
+      this.$store.commit("setCity", location);
+      this.$store.dispatch("fetchWeather");
+    },
+    error(error) {
+      console.log(error);
+    },
+    getLocation() {
+      console.log("get location");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => this.success(position),
+          (error) => this.error(error)
+        );
+      }
+    },
+  },
 };
 </script>
 
@@ -35,6 +56,7 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  margin: 0 auto;
   padding: 2rem 3.2rem;
   max-width: 600px;
   background-color: colors.$primary-color;

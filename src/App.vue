@@ -1,9 +1,9 @@
 <template>
-  <SelectLocation></SelectLocation>
   <div v-if="this.city.length > 0">
     <CurrentWeather class="current-weather"></CurrentWeather>
   </div>
   <div v-else>
+    <SelectLocation></SelectLocation>
     <!-- <SelectLocation></SelectLocation> -->
   </div>
 </template>
