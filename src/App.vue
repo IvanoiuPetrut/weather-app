@@ -10,7 +10,6 @@
 
 <script>
 import { mapState } from "vuex";
-import { geoLocation } from "./helpers/geoLocation";
 import CurrentWeather from "./components/CurrentWeather.vue";
 import SelectLocation from "./components/SelectLocation.vue";
 
@@ -20,7 +19,6 @@ export default {
     CurrentWeather,
     SelectLocation,
   },
-  mixins: [geoLocation],
   methods: {
     getCurrentDate() {
       return new Date().toISOString().slice(0, 10);

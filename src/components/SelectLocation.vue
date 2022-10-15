@@ -6,7 +6,7 @@
     </div>
     <div class="get-your-location">
       <SearchBar class="select-location__class"></SearchBar>
-      <button class="get-your-location__btn" @click="getLocaion">
+      <button class="get-your-location__btn" @click="getLocation">
         <IconWeather name="current-location" class="icon"></IconWeather>
         <span class="btn__text"> Use my location </span>
       </button>
@@ -43,6 +43,12 @@ export default {
           (error) => this.error(error)
         );
       }
+    },
+    logger() {
+      console.log("get location");
+    },
+    test() {
+      this.logger();
     },
   },
 };
