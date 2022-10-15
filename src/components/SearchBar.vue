@@ -72,13 +72,14 @@ export default {
   },
   methods: {
     ...mapActions(["fetchWeather", "fetchSearchList"]),
-    ...mapMutations(["setSearchCity", "clearCities", "setCity"]),
+    ...mapMutations(["setSearchCity", "clearCities", "setCity", "setLastCity"]),
 
     clearSearchText() {
       this.searchText = "";
     },
     fetchAndResetWeather(city) {
       if (city.length > 1) {
+        this.setLastCity(this.$store.state.city);
         this.setCity(city);
         this.fetchWeather();
         this.clearSearchText();

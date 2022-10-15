@@ -5,6 +5,7 @@ import settings from "./modules/settings";
 export default createStore({
   state: {
     city: "",
+    lastCity: "",
     searchCity: "",
     country: "",
     date: "",
@@ -22,6 +23,7 @@ export default createStore({
     currentWeather: null,
     searchCities: null,
     favoriteCities: [],
+    error: "",
   },
   getters: {},
   mutations: {
@@ -61,6 +63,12 @@ export default createStore({
     setCity(state, city) {
       state.city = city;
     },
+    setLastCity(state, lastCity) {
+      state.lastCity = lastCity;
+    },
+    showCity(state) {
+      console.log(state.city);
+    },
     addCity(state) {
       if (typeof state.currentWeather.location.name !== "undefined") {
         if (state.favoriteCities.length === 0) {
@@ -81,6 +89,9 @@ export default createStore({
     },
     setCurrentCity(state, index) {
       state.city = state.favoriteCities[index];
+    },
+    setError(state, error) {
+      state.error = error;
     },
     initialiseStore(state) {
       if (localStorage.getItem("favoriteCities")) {
@@ -121,9 +132,11 @@ export default createStore({
               timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
             )
           );
+          console.log("s-a parcurs tot");
         })
-        .catch((error) => {
-          console.log(error.code);
+        .catch(() => {
+          commit("setCity", this.state.lastCity);
+          commit("setError", "City not found");
         });
     },
     fetchSearchList({ commit }) {
