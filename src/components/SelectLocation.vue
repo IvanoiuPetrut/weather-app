@@ -5,8 +5,10 @@
       <IconWeather name="logo" class="header__logo"></IconWeather>
     </div>
     <div class="get-your-location">
+      <p v-if="this.$store.state.error.length > 0" class="error">
+        {{ this.$store.state.error }}
+      </p>
       <div class="select-location__search">
-        <p class="error">{{ this.$store.state.error }}</p>
         <SearchBar></SearchBar>
       </div>
       <button class="get-your-location__btn" @click="getLocation">
@@ -61,13 +63,24 @@ export default {
   gap: 2rem;
   margin: 0 auto;
   padding: 2rem 3.2rem;
-  max-width: 600px;
+  // max-width: 800px;
+  // make the width of the container a maximum of 700px and a minimum of 300px
+  width: clamp(200px, 90%, 600px);
   background-color: colors.$primary-color;
   border-radius: 13px;
   border: 1px solid colors.$transparent-color-neutral;
 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   @media (max-width: 768px) {
-    padding: 0.8rem 1.6rem;
+    padding: 1.6rem 2rem;
+  }
+
+  @media (max-width: 360px) {
+    padding: 1rem 0.6rem;
   }
   .header {
     display: flex;
@@ -75,10 +88,19 @@ export default {
     gap: 3.2rem;
     margin-bottom: 2.4rem;
 
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+      gap: 0.4rem;
+    }
+
     &__title {
       font-size: 2rem;
       @media (max-width: 768px) {
         font-size: 1.6rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1.4rem;
       }
     }
 
@@ -97,14 +119,24 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
+  }
+  .error {
+    font-size: 1rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 7px;
+    color: colors.$red;
+    background-color: colors.$red-transparent;
+    border: 1px solid colors.$red;
+    white-space: nowrap;
 
-    .error {
-      font-size: 1rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 7px;
-      color: colors.$red;
-      background-color: colors.$red-transparent;
-      border: 1px solid colors.$red;
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+      top: -120%;
     }
   }
   .get-your-location {
@@ -112,10 +144,15 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 2.4rem;
+    position: relative;
 
     @media (max-width: 768px) {
       flex-direction: row;
       gap: 1.6rem;
+    }
+
+    @media (max-width: 480px) {
+      gap: 0.6rem;
     }
   }
 

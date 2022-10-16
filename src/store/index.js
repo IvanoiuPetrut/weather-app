@@ -132,7 +132,6 @@ export default createStore({
               timmeZone.data.location.localtime.split(" ")[1].slice(0, -3)
             )
           );
-          console.log("s-a parcurs tot");
         })
         .catch(() => {
           commit("setCity", this.state.lastCity);
