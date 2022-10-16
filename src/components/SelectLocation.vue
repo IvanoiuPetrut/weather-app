@@ -5,7 +5,10 @@
       <IconWeather name="logo" class="header__logo"></IconWeather>
     </div>
     <div class="get-your-location">
-      <SearchBar class="select-location__class"></SearchBar>
+      <div class="select-location__search">
+        <p class="error">{{ this.$store.state.error }}</p>
+        <SearchBar></SearchBar>
+      </div>
       <button class="get-your-location__btn" @click="getLocation">
         <IconWeather name="current-location" class="icon"></IconWeather>
         <span class="btn__text"> Use my location </span>
@@ -43,12 +46,6 @@ export default {
           (error) => this.error(error)
         );
       }
-    },
-    logger() {
-      console.log("get location");
-    },
-    test() {
-      this.logger();
     },
   },
 };
@@ -92,6 +89,22 @@ export default {
         width: 2.4rem;
         height: 2.4rem;
       }
+    }
+  }
+
+  .select-location__search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+
+    .error {
+      font-size: 1rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 7px;
+      color: colors.$red;
+      background-color: colors.$red-transparent;
+      border: 1px solid colors.$red;
     }
   }
   .get-your-location {
