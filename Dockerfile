@@ -16,6 +16,10 @@ RUN yarn install --frozen-lockfile
 # Copy project files
 COPY . .
 
+# Set build-time environment variable
+ARG VUE_APP_API_KEY
+ENV VUE_APP_API_KEY=$VUE_APP_API_KEY
+
 # Build the application
 RUN yarn build
 
