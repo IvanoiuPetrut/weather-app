@@ -10,7 +10,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     environment: docker-hub
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,9 +41,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/weather-app:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/weather-app:buildcache,mode=max
 
       - name: Image digest
         run: echo ${{ steps.meta.outputs.digest }}
-
