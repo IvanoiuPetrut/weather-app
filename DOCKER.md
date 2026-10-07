@@ -37,41 +37,20 @@ This approach results in a much smaller final image (~25MB) compared to includin
 
 ## GitHub Actions CI/CD
 
-The project includes an automated workflow that:
+The workflow in `.github/workflows/deploy.yml` runs on every push to `main` (or manually from the Actions tab) and:
 
-1. Triggers on push to `master` or `main` branches
-2. Builds the Docker image
-3. Pushes the image to Docker Hub with multiple tags:
-   - `latest` (for the default branch)
-   - Branch name (e.g., `main`, `master`)
-   - Git SHA (e.g., `main-abc1234`)
+1. Builds the Docker image, passing `VUE_APP_API_KEY` as a build argument
+2. Pushes it to the GitHub Container Registry as `ghcr.io/ivanoiupetrut/weather-app`, tagged `latest` and with the commit SHA
+3. Copies `deploy/compose.yml` to `~/apps/weather` on the VPS over SSH and restarts the container with the new image
 
-### Setting Up GitHub Secrets
+On the VPS, Traefik routes `weather.petrut.dev` to the container and handles HTTPS with Let's Encrypt.
 
-To enable the GitHub Actions workflow, you need to add the following secrets to your GitHub repository:
+### GitHub Secrets
 
-1. Go to your repository on GitHub
-2. Navigate to **Settings** → **Secrets and variables** → **Actions**
-3. Add the following secrets:
+- `VUE_APP_API_KEY` (in the `docker-hub` environment): the WeatherAPI key baked into the build
+- `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`, `VPS_KNOWN_HOSTS` (repository secrets): SSH access to the VPS
 
-   - `DOCKERHUB_USERNAME`: Your Docker Hub username
-   - `DOCKERHUB_TOKEN`: Your Docker Hub access token (create one at https://hub.docker.com/settings/security)
-
-### Workflow File Location
-
-The workflow is defined in `.github/workflows/docker-build-push.yml`
-
-## Pulling and Running from Docker Hub
-
-Once the image is pushed to Docker Hub, you can pull and run it:
-
-```bash
-# Pull the latest image
-docker pull <your-dockerhub-username>/weather-app:latest
-
-# Run the container
-docker run -p 8080:80 <your-dockerhub-username>/weather-app:latest
-```
+The registry login uses the workflow's built-in `GITHUB_TOKEN`, so no registry secret is needed.
 
 ## Nginx Configuration
 

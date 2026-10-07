@@ -1,0 +1,20 @@
+# Production stack. The deploy workflow copies this file to ~/apps/weather on the VPS,
+# where Traefik routes weather.petrut.dev to it.
+name: weather
+
+services:
+  weather-app:
+    image: ghcr.io/ivanoiupetrut/weather-app:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.weather.rule=Host(`weather.petrut.dev`)
+      - traefik.http.routers.weather.entrypoints=websecure
+      - traefik.http.routers.weather.tls.certresolver=letsencrypt
+      - traefik.http.services.weather.loadbalancer.server.port=80
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
